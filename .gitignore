@@ -1,0 +1,38 @@
+# --- SISTEMA / IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- FRONTEND (tienda-veterinaria-frontend) ---
+tienda-veterinaria-frontend/node_modules/
+tienda-veterinaria-frontend/dist/
+tienda-veterinaria-frontend/build/
+tienda-veterinaria-frontend/.env
+tienda-veterinaria-frontend/.env.local
+tienda-veterinaria-frontend/npm-debug.log*
+tienda-veterinaria-frontend/coverage/
+
+# --- BACKEND (tienda-veterinaria-backend) ---
+tienda-veterinaria-backend/__pycache__/
+tienda-veterinaria-backend/*.py[cod]
+
+# Entornos Virtuales
+tienda-veterinaria-backend/env/
+tienda-veterinaria-backend/venv/
+tienda-veterinaria-backend/.venv/
+
+# Secretos (¡CRÍTICO!)
+tienda-veterinaria-backend/.env
+.env
+
+tienda-veterinaria-backend/.pytest_cache/
+.pytest_cache/
+
+
+
+tienda-veterinaria-backend/media/productos
+tienda-veterinaria-backend/staticfiles/
+
+# --- OTROS ---
+*.log

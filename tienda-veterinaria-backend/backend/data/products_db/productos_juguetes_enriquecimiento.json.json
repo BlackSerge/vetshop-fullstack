@@ -1,0 +1,727 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 81,
+      "nombre": "Pelota Interactiva Dispensadora de Comida para Perros",
+      "slug": "pelota-interactiva-dispensadora-comida-perros",
+      "descripcion_corta": "Estimula el juego y la mente, liberando premios gradualmente.",
+      "descripcion_larga": "Fabricada en caucho no tóxico y resistente a mordiscos. Nivel de dificultad ajustable. Diámetro de 10cm.",
+      "precio": "18.50",
+      "precio_oferta": "16.00",
+      "get_precio_actual": "16.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG001",
+      "stock": 110,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T16:40:00Z",
+      "updated_at": "2023-11-21T16:40:00Z",
+      "imagenes": [
+        {
+          "id": 81,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_1.jpg",
+          "alt_text": "Pelota dispensadora de comida",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SnackBall",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 82,
+      "nombre": "Rascador para Gatos de Cartón Ondulado con Hierba Gatera",
+      "slug": "rascador-gatos-carton-ondulado",
+      "descripcion_corta": "Protege tus muebles y proporciona un lugar ideal para afilar las uñas.",
+      "descripcion_larga": "Fabricado con cartón reciclado resistente. Incluye bolsa de hierba gatera para atraer al gato. Diseño moderno.",
+      "precio": "12.00",
+      "precio_oferta": null,
+      "get_precio_actual": "12.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG002",
+      "stock": 150,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:45:00Z",
+      "updated_at": "2023-11-21T16:45:00Z",
+      "imagenes": [
+        {
+          "id": 82,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_2.jpg",
+          "alt_text": "Rascador de cartón para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ScratchyCat",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 83,
+      "nombre": "Juguete Interactivo con Plumas para Gatos",
+      "slug": "juguete-interactivo-plumas-gatos",
+      "descripcion_corta": "Estimula el instinto cazador y proporciona horas de diversión.",
+      "descripcion_larga": "Varita extensible con plumas de colores vibrantes. Mango ergonómico para juego activo con tu gato.",
+      "precio": "9.99",
+      "precio_oferta": "8.50",
+      "get_precio_actual": "8.50",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG003",
+      "stock": 200,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:50:00Z",
+      "updated_at": "2023-11-21T16:50:00Z",
+      "imagenes": [
+        {
+          "id": 83,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_3.jpg",
+          "alt_text": "Varita con plumas para gato",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FeatherFlick",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 84,
+      "nombre": "Manta Olfativa para Perros (Snuffle Mat)",
+      "slug": "manta-olfativa-perros",
+      "descripcion_corta": "Juguete de inteligencia que estimula el olfato y ralentiza la ingesta.",
+      "descripcion_larga": "Ideal para esconder premios y que el perro los busque. Reduce el estrés y el aburrimiento. Lavable a máquina.",
+      "precio": "32.00",
+      "precio_oferta": null,
+      "get_precio_actual": "32.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG004",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T16:55:00Z",
+      "updated_at": "2023-11-21T16:55:00Z",
+      "imagenes": [
+        {
+          "id": 84,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_4.jpg",
+          "alt_text": "Manta olfativa para perros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SnufflePaws",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 85,
+      "nombre": "Túnel Plegable para Gatos con Bola Colgante",
+      "slug": "tunel-plegable-gatos",
+      "descripcion_corta": "Espacio para explorar, esconderse y jugar. Fácil de guardar.",
+      "descripcion_larga": "Fabricado en nylon resistente con bola colgante para mayor diversión. Plegable para ahorrar espacio. Diámetro de 25cm, longitud de 120cm.",
+      "precio": "25.00",
+      "precio_oferta": null,
+      "get_precio_actual": "25.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG005",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:00:00Z",
+      "updated_at": "2023-11-21T17:00:00Z",
+      "imagenes": [
+        {
+          "id": 85,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_5.jpg",
+          "alt_text": "Túnel plegable para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CatTunnel",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 86,
+      "nombre": "Set de 3 Pelotas de Tenis Extra Resistentes para Perros",
+      "slug": "set-pelotas-tenis-extra-resistentes",
+      "descripcion_corta": "Ideales para juegos de lanzar y recoger. Flotan en el agua.",
+      "descripcion_larga": "Núcleo de caucho duradero y fieltro no abrasivo. Colores vivos para fácil visibilidad. Diámetro estándar.",
+      "precio": "10.50",
+      "precio_oferta": "9.00",
+      "get_precio_actual": "9.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG006",
+      "stock": 160,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:05:00Z",
+      "updated_at": "2023-11-21T17:05:00Z",
+      "imagenes": [
+        {
+          "id": 86,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_6.jpg",
+          "alt_text": "Pelotas de tenis para perros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TuffBounce",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 87,
+      "nombre": "Juguete para Morder con Sonido para Cachorros",
+      "slug": "juguete-morder-sonido-cachorros",
+      "descripcion_corta": "Alivia las encías de los cachorros y los entretiene.",
+      "descripcion_larga": "Fabricado en caucho natural suave y seguro. Con chirriador interno. Diseño de hueso o animal.",
+      "precio": "7.50",
+      "precio_oferta": null,
+      "get_precio_actual": "7.50",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG007",
+      "stock": 130,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:10:00Z",
+      "updated_at": "2023-11-21T17:10:00Z",
+      "imagenes": [
+        {
+          "id": 87,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_7.jpg",
+          "alt_text": "Juguete para morder de cachorro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PuppyChew",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 88,
+      "nombre": "Centro de Juegos para Gatos con Rascadores y Plataformas",
+      "slug": "centro-juegos-gatos-rascadores-plataformas",
+      "descripcion_corta": "Torre multinivel para trepar, rascar y descansar.",
+      "descripcion_larga": "Con varios postes rascadores de sisal, plataformas de observación y una cueva acogedora. Altura de 1.5m.",
+      "precio": "120.00",
+      "precio_oferta": "99.99",
+      "get_precio_actual": "99.99",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG008",
+      "stock": 25,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T17:15:00Z",
+      "updated_at": "2023-11-21T17:15:00Z",
+      "imagenes": [
+        {
+          "id": 88,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_8.jpg",
+          "alt_text": "Centro de juegos para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CatPlayland",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 89,
+      "nombre": "Dispensador de Golosinas para Entrenamiento de Perros",
+      "slug": "dispensador-golosinas-entrenamiento-perros",
+      "descripcion_corta": "Libera premios con un botón. Ideal para reforzar el buen comportamiento.",
+      "descripcion_larga": "Alcance de hasta 3 metros. Compacto y fácil de usar con una mano. Incluye clip para cinturón.",
+      "precio": "19.99",
+      "precio_oferta": null,
+      "get_precio_actual": "19.99",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG009",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:20:00Z",
+      "updated_at": "2023-11-21T17:20:00Z",
+      "imagenes": [
+        {
+          "id": 89,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_9.jpg",
+          "alt_text": "Dispensador de golosinas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TreatLauncher",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 90,
+      "nombre": "Juego de Cuerda con Nudos para Perros Grandes",
+      "slug": "juego-cuerda-nudos-perros-grandes",
+      "descripcion_corta": "Resistente para juegos de tira y afloja, ayuda a limpiar los dientes.",
+      "descripcion_larga": "Fabricado con algodón natural trenzado. Ideal para perros de razas grandes y mordedores fuertes. Longitud de 60cm.",
+      "precio": "14.00",
+      "precio_oferta": "12.50",
+      "get_precio_actual": "12.50",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG010",
+      "stock": 75,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:25:00Z",
+      "updated_at": "2023-11-21T17:25:00Z",
+      "imagenes": [
+        {
+          "id": 90,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_10.jpg",
+          "alt_text": "Cuerda con nudos para perros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "RopeTug",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 91,
+      "nombre": "Ratón de Juguete con Hierba Gatera (3 unidades)",
+      "slug": "raton-juguete-hierba-gatera",
+      "descripcion_corta": "Estimula el instinto cazador y proporciona horas de entretenimiento.",
+      "descripcion_larga": "Fabricados con materiales suaves y rellenos de hierba gatera natural. Sonido de cascabel para atraer la atención. Pack de 3.",
+      "precio": "7.00",
+      "precio_oferta": null,
+      "get_precio_actual": "7.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG011",
+      "stock": 250,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:30:00Z",
+      "updated_at": "2023-11-21T17:30:00Z",
+      "imagenes": [
+        {
+          "id": 91,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_11.jpg",
+          "alt_text": "Ratones de juguete para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "MiceNip",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 92,
+      "nombre": "Puzzle Interactivo para Perros (Nivel 2)",
+      "slug": "puzzle-interactivo-perros-nivel-2",
+      "descripcion_corta": "Desafía la inteligencia de tu perro para encontrar los premios.",
+      "descripcion_larga": "Con varios compartimentos y mecanismos para mover o levantar. Base antideslizante. Plástico resistente.",
+      "precio": "39.99",
+      "precio_oferta": null,
+      "get_precio_actual": "39.99",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG012",
+      "stock": 50,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T17:35:00Z",
+      "updated_at": "2023-11-21T17:35:00Z",
+      "imagenes": [
+        {
+          "id": 92,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_12.jpg",
+          "alt_text": "Puzzle interactivo para perros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "BrainyPaws",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 93,
+      "nombre": "Frisbee Flexible para Perros (Flotante)",
+      "slug": "frisbee-flexible-perros-flotante",
+      "descripcion_corta": "Ideal para juegos al aire libre, parque o playa.",
+      "descripcion_larga": "Fabricado en caucho natural suave y flexible. Flota en el agua. Colores brillantes para fácil localización. Diámetro de 23cm.",
+      "precio": "12.00",
+      "precio_oferta": null,
+      "get_precio_actual": "12.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG013",
+      "stock": 100,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:40:00Z",
+      "updated_at": "2023-11-21T17:40:00Z",
+      "imagenes": [
+        {
+          "id": 93,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_13.jpg",
+          "alt_text": "Frisbee para perros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FlyDog",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 94,
+      "nombre": "Caña de Pescar con Plumas para Gatos (2 recambios)",
+      "slug": "cana-pescar-plumas-gatos-recambios",
+      "descripcion_corta": "Estimula el juego y el ejercicio con tu gato.",
+      "descripcion_larga": "Varita ligera y flexible con cuerda elástica. Incluye dos recambios de plumas. Mango antideslizante.",
+      "precio": "14.99",
+      "precio_oferta": null,
+      "get_precio_actual": "14.99",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG014",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:45:00Z",
+      "updated_at": "2023-11-21T17:45:00Z",
+      "imagenes": [
+        {
+          "id": 94,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_14.jpg",
+          "alt_text": "Caña de pescar para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "KittyTease",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 95,
+      "nombre": "Bloque de Sal Mineral para Roedores",
+      "slug": "bloque-sal-mineral-roedores",
+      "descripcion_corta": "Aporta minerales esenciales y ayuda al desgaste dental natural.",
+      "descripcion_larga": "Con soporte para colgar en la jaula. Rico en calcio y oligoelementos. Apto para hámsters, conejos y cobayas.",
+      "precio": "4.50",
+      "precio_oferta": null,
+      "get_precio_actual": "4.50",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG015",
+      "stock": 180,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T17:50:00Z",
+      "updated_at": "2023-11-21T17:50:00Z",
+      "imagenes": [
+        {
+          "id": 95,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_15.jpg",
+          "alt_text": "Bloque de sal para roedores",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "MineralRodent",
+      "tipo_mascota": "roedor"
+    },
+    {
+      "id": 96,
+      "nombre": "Cama Colgante para Gatos de Ventana",
+      "slug": "cama-colgante-gatos-ventana",
+      "descripcion_corta": "Un lugar elevado y seguro para que tu gato observe el exterior.",
+      "descripcion_larga": "Se adhiere a la ventana con ventosas extra fuertes. Estructura de aluminio resistente y funda lavable. Soporta hasta 15kg.",
+      "precio": "48.00",
+      "precio_oferta": "40.00",
+      "get_precio_actual": "40.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG016",
+      "stock": 30,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T17:55:00Z",
+      "updated_at": "2023-11-21T17:55:00Z",
+      "imagenes": [
+        {
+          "id": 96,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_16.jpg",
+          "alt_text": "Cama colgante para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "WindowPerch",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 97,
+      "nombre": "Juguete de Goma para Morder con Textura",
+      "slug": "juguete-goma-morder-textura",
+      "descripcion_corta": "Limpieza dental y alivio del estrés masticando.",
+      "descripcion_larga": "Fabricado en goma natural con diferentes texturas para masajear encías. Diseño de hueso o anillo. Apto para perros de tamaño mediano.",
+      "precio": "11.00",
+      "precio_oferta": null,
+      "get_precio_actual": "11.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG017",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:00:00Z",
+      "updated_at": "2023-11-21T18:00:00Z",
+      "imagenes": [
+        {
+          "id": 97,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_17.jpg",
+          "alt_text": "Juguete de goma para morder",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ChewBuddy",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 98,
+      "nombre": "Bolas de Lana con Cascabel para Gatos (5 unidades)",
+      "slug": "bolas-lana-cascabel-gatos",
+      "descripcion_corta": "Juego divertido y ligero que estimula el instinto cazador.",
+      "descripcion_larga": "Fabricadas con lana suave y seguras para masticar. Pequeño cascabel interior para atraer la atención. Colores surtidos.",
+      "precio": "6.00",
+      "precio_oferta": null,
+      "get_precio_actual": "6.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG018",
+      "stock": 200,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:05:00Z",
+      "updated_at": "2023-11-21T18:05:00Z",
+      "imagenes": [
+        {
+          "id": 98,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_18.jpg",
+          "alt_text": "Bolas de lana con cascabel",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "JingleBalls",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 99,
+      "nombre": "Juego de Madera de Inteligencia para Roedores",
+      "slug": "juego-madera-inteligencia-roedores",
+      "descripcion_corta": "Desafía la mente de tu hámster o conejo para obtener premios.",
+      "descripcion_larga": "Fabricado con madera natural no tóxica. Varios compartimentos para esconder comida. Tamaño pequeño.",
+      "precio": "16.00",
+      "precio_oferta": "14.00",
+      "get_precio_actual": "14.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG019",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:10:00Z",
+      "updated_at": "2023-11-21T18:10:00Z",
+      "imagenes": [
+        {
+          "id": 99,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_19.jpg",
+          "alt_text": "Juego de inteligencia para roedores",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "RodentIQ",
+      "tipo_mascota": "roedor"
+    },
+    {
+      "id": 100,
+      "nombre": "Flotador Salvavidas para Perros (Talla M)",
+      "slug": "flotador-salvavidas-perros-talla-m",
+      "descripcion_corta": "Seguridad extra para tu perro en la piscina, lago o mar.",
+      "descripcion_larga": "Con asa de rescate y anilla para correa. Diseño ergonómico y flotabilidad óptima. Colores vivos para fácil localización.",
+      "precio": "38.00",
+      "precio_oferta": "35.00",
+      "get_precio_actual": "35.00",
+      "categoria": 5,
+      "categoria_info": {
+        "id": 5,
+        "nombre": "Juguetes y enriquecimiento",
+        "slug": "juguetes-y-enriquecimiento",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "JUG020",
+      "stock": 40,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T18:15:00Z",
+      "updated_at": "2023-11-21T18:15:00Z",
+      "imagenes": [
+        {
+          "id": 100,
+          "imagen": "http://localhost:8000/media/productos/placeholder_juguetes_20.jpg",
+          "alt_text": "Chaleco salvavidas para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SwimSafe",
+      "tipo_mascota": "perro"
+    }
+  ]
+}

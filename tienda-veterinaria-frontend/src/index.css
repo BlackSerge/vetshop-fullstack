@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; /* Altura para scroll horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+
+/* Carrusel Infinito */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Mueve la mitad del ancho total */
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused; /* Pausar al pasar el mouse */
+}
