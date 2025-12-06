@@ -66,9 +66,11 @@ MIDDLEWARE = [
 
 #FRONTEND_URL = os.getenv('FRONTEND_URL')
 
+# settings.py - Corrección
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://vetshop-fullstack.vercel.app", 
 ]
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
