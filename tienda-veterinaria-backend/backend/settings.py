@@ -64,7 +64,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-FRONTEND_URL = os.getenv('FRONTEND_URL')
+#FRONTEND_URL = os.getenv('FRONTEND_URL')
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
@@ -72,12 +72,12 @@ CORS_ALLOWED_ORIGINS = [
 ]
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "https://vetshop-fullstack.vercel.app",
 ]
 
-if FRONTEND_URL:
-    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
-    CSRF_TRUSTED_ORIGINS.append(FRONTEND_URL)
+#if FRONTEND_URL:
+    #CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
+    #CSRF_TRUSTED_ORIGINS.append(FRONTEND_URL)
 
 CORS_ALLOW_CREDENTIALS = True
 
