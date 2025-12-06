@@ -143,13 +143,40 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # ----------------------------------------
 # DATABASE
 # ----------------------------------------
+DB_URL_FINAL = None
+
+# 2. INTENTA CONSTRUIR la DATABASE_URL usando tus variables separadas
+# Esto solo ocurrirá en local si definiste DB_HOST, etc., en tu .env
+db_host = os.environ.get('DB_HOST')
+db_name = os.environ.get('DB_NAME')
+
+if db_host and db_name:
+    # Si las variables separadas existen, construimos la URL completa para dj_database_url
+    DB_URL_FINAL = 'postgres://{user}:{password}@{host}:{port}/{name}'.format(
+        user=os.environ.get('DB_USER'),
+        password=os.environ.get('DB_PASSWORD'),
+        host=db_host,
+        port=os.environ.get('DB_PORT', '5432'),
+        name=db_name
+    )
+
+# 3. Definir la Configuración de Django
 DATABASES = {
     'default': dj_database_url.config(
-        # En local usa SQLite si no hay variable DATABASE_URL
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}", 
+        # Si DB_URL_FINAL es None, dj_database_url buscará DATABASE_URL.
+        # En Render, usará la variable inyectada. En local, si DB_URL_FINAL no se construyó,
+        # usará SQLite.
+        default=os.environ.get('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
+        env='DATABASE_URL',
         conn_max_age=600
     )
 }
+
+# 4. Sobreescribir la configuración si la URL local fue construida
+# Esto asegura que si estamos en LOCAL y construimos la URL, esa es la que se usa.
+if DB_URL_FINAL:
+    DATABASES['default'] = dj_database_url.config(default=DB_URL_FINAL, conn_max_age=600)
+
 
 # --- Configuración de Django REST Framework (DRF) ---
 REST_FRAMEWORK = {
