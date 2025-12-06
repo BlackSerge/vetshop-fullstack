@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ----------------------------------------
 # --- SEGURIDAD ---
 # Usamos os.getenv para leer del .env
-SECRET_KEY = os.getenv('SECRET_KEY') 
+SECRET_KEY = os.getenv('SECRET_KEY', 'dummy-key-for-build')
 
 # DEBUG debe ser False en producción, pero True en local
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
@@ -200,7 +200,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sergiosaborit99@gmail.com'
-EMAIL_HOST_PASSWORD = 'svvdfjsswxiykjyd'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'dummy-email-password')
 DEFAULT_FROM_EMAIL = 'VetShop <no-reply@vetshop.com>'
 
 
@@ -233,9 +233,9 @@ SIMPLE_JWT = {
 
 }
 
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_dummy')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_dummy')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_dummy')
 
 
 
