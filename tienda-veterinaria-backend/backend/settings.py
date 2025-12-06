@@ -2,6 +2,7 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 
 
 load_dotenv()
@@ -135,14 +136,11 @@ WSGI_APPLICATION = "backend.wsgi.application"
 # DATABASE
 # ----------------------------------------
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv('DB_NAME'),
-        "USER": os.getenv('DB_USER'),
-        "PASSWORD": os.getenv('DB_PASSWORD'),
-        "HOST": os.getenv('DB_HOST', 'localhost'),
-        "PORT": os.getenv('DB_PORT', '5432'),
-    }
+    'default': dj_database_url.config(
+        # En local usa SQLite si no hay variable DATABASE_URL
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}", 
+        conn_max_age=600
+    )
 }
 
 # --- Configuración de Django REST Framework (DRF) ---
