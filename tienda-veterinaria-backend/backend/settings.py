@@ -64,12 +64,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Permitir solicitudes desde React (Vite) en desarrollo
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    
-]
+FRONTEND_URL = os.getenv('FRONTEND_URL')
+
+CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:5173"]
+
+if FRONTEND_URL:
+    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
+    CSRF_TRUSTED_ORIGINS.append(FRONTEND_URL)
+
 CORS_ALLOW_CREDENTIALS = True
 
 # --- CORRECCIÓN CRÍTICA: Eliminar CORS_ALLOW_ALL_HEADERS y usar CORS_ALLOW_HEADERS explícitamente ---
@@ -97,11 +100,7 @@ CORS_ALLOW_HEADERS = [
 # Exponer el encabezado personalizado del carrito para que el frontend pueda leerlo de las respuestas.
 CORS_EXPOSE_HEADERS = ['X-Cart-Session'] # <--- Ya lo habías añadido, es correcto.
 
-# Evita errores de CSRF en desarrollo para el origen del frontend
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-]
+
 
 
 LOGIN_URL = '/cuentas/iniciar-sesion/' # URL a la que redirigir si se requiere login
