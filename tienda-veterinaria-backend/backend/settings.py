@@ -30,6 +30,32 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+# ----------------------------------------
+# CONFIGURACIÓN DE ALMACENAMIENTO EN LA NUBE (CLOUDINARY)
+# Se activa SÓLO si no estamos en modo DEBUG (es decir, en producción)
+# ----------------------------------------
+if not DEBUG:
+    # Obtener credenciales de las variables de entorno de Render
+    CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME')
+    CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY')
+    CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET')
+    
+    # 1. Usar Cloudinary como almacenamiento por defecto para archivos subidos (MEDIA)
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    
+    # 2. Configurar la URL de medios para que apunte a Cloudinary
+    # (El MEDIA_URL definido arriba queda sobrescrito por la URL de Cloudinary)
+    CLOUDINARY_URL = f"cloudinary://{CLOUDINARY_API_KEY}:{CLOUDINARY_API_SECRET}@{CLOUDINARY_CLOUD_NAME}"
+
+    # Importante: Mantener STATICFILES_STORAGE para Whitenoise si los estáticos no van a Cloudinary
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
+# Si DEBUG es True (Local), se usa la configuración de MEDIA_ROOT/MEDIA_URL local.
+
+# ----------------------------------------
+# ... (resto de tu archivo settings.py)
+
+
 AUTH_USER_MODEL = 'usuarios.CustomUser' # <-- Esta línea es CRUCIAL!
 
 
@@ -50,6 +76,8 @@ INSTALLED_APPS = [
     "usuarios",
     "carrito",
     "pedidos",
+    "cloudinary_storage",
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
