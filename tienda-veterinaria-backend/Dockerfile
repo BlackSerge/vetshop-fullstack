@@ -1,3 +1,5 @@
+# Dockerfile (dentro de tienda-veterinaria-backend)
+
 FROM python:3.10-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -10,15 +12,18 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 
-COPY tienda-veterinaria-backend/requirements.txt /app/
+# Copia requirements.txt (ahora en la subcarpeta)
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install gunicorn whitenoise
 
-COPY tienda-veterinaria-backend/ /app/
+# Copia todo el contenido de la subcarpeta (incluyendo start_server.sh, settings.py, data.json)
+COPY . /app/
 
-# ⚠️ IMPORTANTE: NO HAY LÍNEA 'RUN ... collectstatic' AQUÍ. LA HE BORRADO.
+# Otorga permisos al script
+RUN chmod +x start_server.sh
 
 EXPOSE 8000
 
-# El comando final hace todo: estáticos, migraciones y servidor
-CMD sh -c "python manage.py collectstatic --no-input && python manage.py migrate && gunicorn --bind 0.0.0.0:8000 backend.wsgi:application"
+# Usaremos el Start Command de Render, pero mantenemos este CMD como fallback
+CMD gunicorn --bind 0.0.0.0:8000 backend.wsgi:application
