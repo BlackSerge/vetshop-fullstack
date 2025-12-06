@@ -16,8 +16,9 @@ RUN pip install gunicorn whitenoise
 
 COPY tienda-veterinaria-backend/ /app/
 
-# CAMBIO AQUÍ: Añadimos DATABASE_URL dummy
-RUN SECRET_KEY=dummy DATABASE_URL=sqlite:///dummy.db python manage.py collectstatic --no-input
+# ⚠️ IMPORTANTE: NO HAY LÍNEA 'RUN ... collectstatic' AQUÍ. LA HE BORRADO.
 
 EXPOSE 8000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend.wsgi:application"]
+
+# El comando final hace todo: estáticos, migraciones y servidor
+CMD sh -c "python manage.py collectstatic --no-input && python manage.py migrate && gunicorn --bind 0.0.0.0:8000 backend.wsgi:application"
