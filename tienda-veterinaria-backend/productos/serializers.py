@@ -59,6 +59,8 @@ class SimpleCategoriaSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'nombre', 'slug'] # Asegurarse que son solo de lectura
 
 
+# backend/productos/serializers.py
+
 class ImagenProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ImagenProducto
@@ -66,12 +68,28 @@ class ImagenProductoSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        request = self.context.get('request')
-        if representation['imagen'] and request:
-            # Asegura que la URL de la imagen sea absoluta para el frontend
-            representation['imagen'] = request.build_absolute_uri(instance.imagen.url)
+        
+        if instance.imagen:
+            # Obtenemos la URL que Django cree que tiene el archivo
+            url = instance.imagen.url
+            
+            # --- LÓGICA DE URL INTELIGENTE ---
+            
+            # 1. Si ya es una URL absoluta (Cloudinary, S3, o externa)
+            if url.startswith('http'):
+                representation['imagen'] = url
+            
+            # 2. Si es una ruta relativa (/media/foto.jpg) y estamos en un contexto HTTP (Request)
+            else:
+                request = self.context.get('request')
+                if request:
+                    # Construye la URL completa usando el dominio del servidor actual
+                    representation['imagen'] = request.build_absolute_uri(url)
+                else:
+                    # Fallback si no hay request (raro en API)
+                    representation['imagen'] = url
+
         return representation
-    
 
     
 class ReviewSerializer(serializers.ModelSerializer):
