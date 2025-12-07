@@ -1,84 +1,57 @@
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
+from datetime import timedelta
+import cloudinary.api
+import cloudinary.uploader
+import cloudinary_storage
 
-
+# Carga variables de entorno desde el archivo .env
 load_dotenv()
 
+# --- RUTAS BÁSICAS ---
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# SECURITY / DEBUG
-# ----------------------------------------
-# --- SEGURIDAD ---
+# --- SEGURIDAD Y ENTORNO ---
 # Usamos os.getenv para leer del .env
 SECRET_KEY = os.getenv('SECRET_KEY', 'dummy-key-for-build')
 
-# DEBUG debe ser False en producción, pero True en local
+# DEBUG debe ser False en producción
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".onrender.com","192.168.75.8"] # Añadiremos render luego
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".onrender.com"]
+RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
 
 
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-# Verifica si las credenciales de Cloudinary están presentes (solo lo estarán en Render)
-if os.getenv('CLOUDINARY_CLOUD_NAME'):
-    # Establece las credenciales usando las variables de Render
-    CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME')
-    CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY')
-    CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET')
-    
-    # CRÍTICO: Activa el almacenamiento en la nube
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    # 2. Configurar la URL de medios para que apunte a Cloudinary
-    # (El MEDIA_URL definido arriba queda sobrescrito por la URL de Cloudinary)
-    CLOUDINARY_URL = f"cloudinary://{CLOUDINARY_API_KEY}:{CLOUDINARY_API_SECRET}@{CLOUDINARY_CLOUD_NAME}"
-
-    # Importante: Mantener STATICFILES_STORAGE para Whitenoise si los estáticos no van a Cloudinary
-    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    
-# Si DEBUG es True (Local), se usa la configuración de MEDIA_ROOT/MEDIA_URL local.
-
-# ----------------------------------------
-# ... (resto de tu archivo settings.py)
-
-
-AUTH_USER_MODEL = 'usuarios.CustomUser' # <-- Esta línea es CRUCIAL!
-
-
-# ----------------------------------------
-# CORS CONFIG
-# ----------------------------------------
+# --- APLICACIONES ---
 INSTALLED_APPS = [
-    "corsheaders",                # Cargar antes que django.contrib.auth, etc.
+    # 3rd party apps (CORS, REST, Cloudinary)
+    "corsheaders",
+    "rest_framework",
+    'rest_framework_simplejwt',
+    "cloudinary_storage",
+    "cloudinary",
+
+    # Django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
-    'rest_framework_simplejwt',
+
+    # Local apps
     "productos",
     "usuarios",
     "carrito",
     "pedidos",
-    "cloudinary_storage",
-    "cloudinary",
 ]
 
+# --- MIDDLEWARE ---
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",        # 1️⃣ Debe ser el primero
-    "django.middleware.common.CommonMiddleware",    # 2️⃣ Justo después del CorsMiddleware
+    "corsheaders.middleware.CorsMiddleware",       # 1️⃣ Debe ser el primero
+    "django.middleware.common.CommonMiddleware",    # 2️⃣ Justo después
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     'django.middleware.locale.LocaleMiddleware',
@@ -88,67 +61,53 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-#FRONTEND_URL = os.getenv('FRONTEND_URL')
+# --- AUTENTICACIÓN PERSONALIZADA ---
+AUTH_USER_MODEL = 'usuarios.CustomUser'
+LOGIN_URL = '/cuentas/iniciar-sesion/'
+LOGIN_REDIRECT_URL = '/cuentas/perfil/'
+LOGOUT_REDIRECT_URL = '/'
 
-# settings.py - Corrección
+# --- CONFIGURACIÓN DE CORS / CSRF ---
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://vetshop-fullstack.vercel.app", 
 ]
+
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "https://vetshop-fullstack.vercel.app",
 ]
 
-#if FRONTEND_URL:
-    #CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
-    #CSRF_TRUSTED_ORIGINS.append(FRONTEND_URL)
-
 CORS_ALLOW_CREDENTIALS = True
 
-# --- CORRECCIÓN CRÍTICA: Eliminar CORS_ALLOW_ALL_HEADERS y usar CORS_ALLOW_HEADERS explícitamente ---
-# El error indica que 'CORS_ALLOW_ALL_HEADERS = True' no está funcionando como se esperaba para 'x-cart-session'.
-# La solución es ser explícito con los encabezados permitidos en las solicitudes (Request Headers).
-# Comentamos/eliminamos CORS_ALLOW_ALL_HEADERS para evitar conflictos.
-# CORS_ALLOW_ALL_HEADERS = True # <--- ¡COMENTADO O ELIMINADO!
-
-# Definir explícitamente los encabezados que el frontend PUEDE ENVIAR en las solicitudes.
-# Esto incluye encabezados estándar y tus encabezados personalizados.
+# Define explícitamente los encabezados permitidos para la solicitud.
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
-    'authorization',        # Necesario para el token JWT
-    'content-type',         # Necesario para enviar JSON
-    'dnt',                  # Do Not Track header
-    'origin',               # Origen de la solicitud
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
     'user-agent',
-    'x-csrftoken',          # Token CSRF de Django (usado por SessionAuthentication, aunque JWT no lo requiere tanto)
+    'x-csrftoken',
     'x-requested-with',
-    'x-cart-session',       # <--- ¡TU ENCABEZADO PERSONALIZADO PARA EL CARRITO!
+    'x-cart-session', # <--- Encabezado personalizado
 ]
-# --- FIN CORRECCIÓN CRÍTICA ---
 
 # Exponer el encabezado personalizado del carrito para que el frontend pueda leerlo de las respuestas.
-CORS_EXPOSE_HEADERS = ['X-Cart-Session'] # <--- Ya lo habías añadido, es correcto.
+CORS_EXPOSE_HEADERS = ['X-Cart-Session']
 
 
-
-
-LOGIN_URL = '/cuentas/iniciar-sesion/' # URL a la que redirigir si se requiere login
-LOGIN_REDIRECT_URL = '/cuentas/perfil/' # URL a la que redirigir después de iniciar sesión exitosamente
-LOGOUT_REDIRECT_URL = '/' # URL a la que redirigir después de cerrar sesión (o '/cuentas/iniciar-sesion/')
-
-# ----------------------------------------
-# URLS / TEMPLATES / WSGI
-# ----------------------------------------
+# --- URLS / TEMPLATES / WSGI ---
 ROOT_URLCONF = "backend.urls"
+WSGI_APPLICATION = "backend.wsgi.application"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         'DIRS': [BASE_DIR / 'templates'], 
-        "APP_DIRS": True, # Esto es clave para encontrar las plantillas de 'usuarios'
+        "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 'django.template.context_processors.debug',
@@ -160,22 +119,14 @@ TEMPLATES = [
     },
 ]
 
-
-
-WSGI_APPLICATION = "backend.wsgi.application"
-
-# ----------------------------------------
-# DATABASE
-# ----------------------------------------
+# --- CONFIGURACIÓN DE BASE DE DATOS ---
 DB_URL_FINAL = None
 
-# 2. INTENTA CONSTRUIR la DATABASE_URL usando tus variables separadas
-# Esto solo ocurrirá en local si definiste DB_HOST, etc., en tu .env
+# 1. Intenta construir la DATABASE_URL usando variables separadas (para local)
 db_host = os.environ.get('DB_HOST')
 db_name = os.environ.get('DB_NAME')
 
 if db_host and db_name:
-    # Si las variables separadas existen, construimos la URL completa para dj_database_url
     DB_URL_FINAL = 'postgres://{user}:{password}@{host}:{port}/{name}'.format(
         user=os.environ.get('DB_USER'),
         password=os.environ.get('DB_PASSWORD'),
@@ -184,27 +135,24 @@ if db_host and db_name:
         name=db_name
     )
 
-# 3. Definir la Configuración de Django
+# 2. Definir la Configuración de Django
 DATABASES = {
     'default': dj_database_url.config(
-        # Si DB_URL_FINAL es None, dj_database_url buscará DATABASE_URL.
-        # En Render, usará la variable inyectada. En local, si DB_URL_FINAL no se construyó,
-        # usará SQLite.
+        # Usará DATABASE_URL (Render) o el fallback a SQLite (local sin DATABASE_URL)
         default=os.environ.get('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
         env='DATABASE_URL',
         conn_max_age=600
     )
 }
 
-# 4. Sobreescribir la configuración si la URL local fue construida
-# Esto asegura que si estamos en LOCAL y construimos la URL, esa es la que se usa.
+# 3. Sobreescribir la configuración si la URL local fue construida
 if DB_URL_FINAL:
     DATABASES['default'] = dj_database_url.config(default=DB_URL_FINAL, conn_max_age=600)
 
 
-# --- Configuración de Django REST Framework (DRF) ---
+# --- CONFIGURACIÓN DRF / RATE LIMITING ---
 REST_FRAMEWORK = {
-'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
@@ -213,47 +161,44 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 12,
 
-    # --- NUEVO: RATE LIMITING ---
     'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.AnonRateThrottle', # Para no logueados
-        'rest_framework.throttling.UserRateThrottle'  # Para logueados
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/day',   # 100 peticiones al día para anónimos
-        'user': '1000/day',  # 1000 peticiones al día para usuarios
-        'burst': '60/min',   # (Opcional) Límite de ráfaga
+        'anon': '100/day',
+        'user': '1000/day',
+        'burst': '60/min',
     },
-    # --- FIN RATE LIMITING ---
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 12, # Asegúrate que esto coincida con tu frontend (actualmente 12)
 }
 
+# --- JWT CONFIG ---
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'JTI_CLAIM': 'jti',
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+}
 
-# ----------------------------------------
-# LANGUAGE / TIMEZONE
-# ----------------------------------------
-LANGUAGE_CODE = "en"
-TIME_ZONE = "America/Havana"
-USE_I18N = True
-USE_TZ = True
+# --- VALIDADORES DE CONTRASEÑA ---
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'usuarios.validators.ComplexPasswordValidator',},
+]
 
-# ----------------------------------------
-# STATIC FILES
-# ----------------------------------------
-STATIC_URL = "static/"
-
-# ----------------------------------------
-# DEFAULT PRIMARY KEY
-# ----------------------------------------
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-# --- Configuración de Correo Electrónico ---
-# Para desarrollo: Mostrar correos en la consola
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-
-# Para producción (ejemplo con SendGrid o un SMTP genérico):
+# --- CONFIGURACIÓN DE CORREO ELECTRÓNICO ---
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
@@ -262,58 +207,47 @@ EMAIL_HOST_USER = 'sergiosaborit99@gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'dummy-email-password')
 DEFAULT_FROM_EMAIL = 'VetShop <no-reply@vetshop.com>'
 
-
-
-from datetime import timedelta
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': SECRET_KEY,
-    'VERIFYING_KEY': None,
-    'AUDIENCE': None,
-    'ISSUER': None,
-
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'USER_ID_FIELD': 'id',
-    'USER_ID_CLAIM': 'user_id',
-
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-    'TOKEN_TYPE_CLAIM': 'token_type',
-
-    'JTI_CLAIM': 'jti',
-
-    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
-    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
-
-}
-
+# --- STRIPE ---
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_dummy')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_dummy')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_dummy')
 
+# --- CONFIGURACIÓN DE LOCALIZACIÓN ---
+LANGUAGE_CODE = "en"
+TIME_ZONE = "America/Havana"
+USE_I18N = True
+USE_TZ = True
 
+# --- CONFIGURACIÓN DE CLOUDINARY Y ARCHIVOS ---
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        # Evita contraseñas parecidas al usuario (ej: usuario "sergio", pass "sergio123")
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+# ----------------------------------------
+# ⚠️ LÓGICA DE PRODUCCIÓN CRÍTICA (RENDER/CLOUDINARY)
+# ----------------------------------------
 
-    {
-        # Evita contraseñas comunes ("123456", "password")
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        # Evita contraseñas numéricas puras ("123456789")
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-    {
-        'NAME': 'usuarios.validators.ComplexPasswordValidator',
-    },
-]
+# Detecta si estamos en Render (o si se ha configurado Cloudinary)
+if os.getenv('CLOUDINARY_CLOUD_NAME'):
+    
+    # 1. Configuración de Hosting
+    # Si Render está presente, añádelo a ALLOWED_HOSTS
+    if RENDER_EXTERNAL_HOSTNAME:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
+    # 2. Configuración de Seguridad SSL (Importante para Render)
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    USE_X_FORWARDED_HOST = True
+    
+    # 3. Lectura de Credenciales de Cloudinary (para el ORM/Storage)
+    CLOUDINARY_CLOUD_NAME = os.getenv('CLOUDINARY_CLOUD_NAME')
+    CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY')
+    CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET')
+    
+    # 4. ¡CRÍTICO! Activa el Almacenamiento en Cloudinary para MEDIA files
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    
+    # 5. Configuración de Whitenoise (Archivos Estáticos)
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
