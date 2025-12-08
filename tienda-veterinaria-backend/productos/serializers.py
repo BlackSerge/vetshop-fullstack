@@ -66,21 +66,24 @@ class ImagenProductoSerializer(serializers.ModelSerializer):
         model = ImagenProducto
         fields = ['id', 'imagen', 'alt_text', 'is_feature', 'order']
 
-def to_representation(self, instance):
-    representation = super().to_representation(instance)
-    
-    if instance.imagen:
-        url = str(instance.imagen)  # evita usar .url si hay path absoluto
-        if url.startswith('https'):  # Cloudinary u otra URL externa
-            representation['imagen'] = url
-        else:  # local dev
-            request = self.context.get('request')
-            if request:
-                representation['imagen'] = request.build_absolute_uri(instance.imagen.url)
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        
+        if instance.imagen:
+            # Convierte a string puro
+            url = str(instance.imagen)
+            # Si es una URL absoluta (Cloudinary)
+            if url.startswith('https://') or url.startswith('http://'):
+                representation['imagen'] = url
             else:
-                representation['imagen'] = instance.imagen.url
+                # Ruta local
+                request = self.context.get('request')
+                if request:
+                    representation['imagen'] = request.build_absolute_uri(instance.imagen.url)
+                else:
+                    representation['imagen'] = instance.imagen.url
 
-    return representation
+        return representation
 
     
 class ReviewSerializer(serializers.ModelSerializer):
