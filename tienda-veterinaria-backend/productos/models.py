@@ -106,12 +106,17 @@ class Producto(models.Model):
 
 
 # Modelo para Imágenes de Productos (Solo el Admin las gestionará)
+# models.py
+from django.db import models
+from cloudinary.models import CloudinaryField
+
 class ImagenProducto(models.Model):
-    producto = models.ForeignKey(Producto, related_name='imagenes', on_delete=models.CASCADE, verbose_name="Producto")
-    imagen = models.ImageField(upload_to='productos/', verbose_name="Archivo de Imagen")
-    alt_text = models.CharField(max_length=255, blank=True, verbose_name="Texto Alternativo")
-    is_feature = models.BooleanField(default=False, verbose_name="Es Imagen Principal")
-    order = models.PositiveIntegerField(default=0, blank=False, null=False, verbose_name="Orden")
+    producto = models.ForeignKey(Producto, related_name='imagenes', on_delete=models.CASCADE)
+    # CloudinaryField en vez de ImageField
+    imagen = CloudinaryField('imagen', blank=True, null=True)
+    alt_text = models.CharField(max_length=255, blank=True)
+    is_feature = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0)
 
     class Meta:
         verbose_name = "Imagen de Producto"
@@ -121,6 +126,7 @@ class ImagenProducto(models.Model):
 
     def __str__(self):
         return f"Imagen para {self.producto.nombre} - {self.alt_text or self.imagen.name}"
+
     
 
 class Review(models.Model):

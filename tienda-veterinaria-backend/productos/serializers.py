@@ -66,30 +66,21 @@ class ImagenProductoSerializer(serializers.ModelSerializer):
         model = ImagenProducto
         fields = ['id', 'imagen', 'alt_text', 'is_feature', 'order']
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        
-        if instance.imagen:
-            # Obtenemos la URL que Django cree que tiene el archivo
-            url = instance.imagen.url
-            
-            # --- LÓGICA DE URL INTELIGENTE ---
-            
-            # 1. Si ya es una URL absoluta (Cloudinary, S3, o externa)
-            if url.startswith('http'):
-                representation['imagen'] = url
-            
-            # 2. Si es una ruta relativa (/media/foto.jpg) y estamos en un contexto HTTP (Request)
+def to_representation(self, instance):
+    representation = super().to_representation(instance)
+    
+    if instance.imagen:
+        url = str(instance.imagen)  # evita usar .url si hay path absoluto
+        if url.startswith('https'):  # Cloudinary u otra URL externa
+            representation['imagen'] = url
+        else:  # local dev
+            request = self.context.get('request')
+            if request:
+                representation['imagen'] = request.build_absolute_uri(instance.imagen.url)
             else:
-                request = self.context.get('request')
-                if request:
-                    # Construye la URL completa usando el dominio del servidor actual
-                    representation['imagen'] = request.build_absolute_uri(url)
-                else:
-                    # Fallback si no hay request (raro en API)
-                    representation['imagen'] = url
+                representation['imagen'] = instance.imagen.url
 
-        return representation
+    return representation
 
     
 class ReviewSerializer(serializers.ModelSerializer):
