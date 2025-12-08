@@ -11,7 +11,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*"] # Permisivo para pruebas
 # Si tienes DATABASE_URL en tu .env local, usará esa. Si no, SQLite.
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        default=os.getenv("DATABASE_URL_LOCAL", f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
         conn_max_age=600
     )
 }
