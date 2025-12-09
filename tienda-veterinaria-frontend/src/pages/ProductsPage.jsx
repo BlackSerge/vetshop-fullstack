@@ -346,129 +346,125 @@ export default function ProductsPage() {
             )}
         </AnimatePresence>
 
-        <motion.aside
-            className={`
-                fixed lg:sticky top-0 lg:top-24 left-0 h-full lg:h-[calc(100vh-8rem)]
-                z-50 lg:z-30 overflow-hidden flex-shrink-0
-                ${colors.cardBg} ${colors.text} lg:border ${colors.border} lg:rounded-xl
-                shadow-2xl lg:shadow-none
-            `}
-            initial={false}
-            animate={{ 
-                width: sidebarOpen ? (window.innerWidth >= 1024 ? "18rem" : "80%") : (window.innerWidth >= 1024 ? "0rem" : "0rem"),
-                x: (window.innerWidth < 1024 && !sidebarOpen) ? "-100%" : "0%"
-            }}
-            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-        >
-             <div className="w-full h-full overflow-y-auto p-6 scrollbar-thin">
-                <div className="flex justify-between items-center mb-6 lg:mb-4">
-                    <h2 className="text-xl font-bold flex items-center gap-2"><Filter size={20}/> Filtros</h2>
-                    <button onClick={() => setSidebarOpen(false)} className="lg:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full">
-                        <X size={20} />
-                    </button>
-                     <button onClick={() => setSidebarOpen(false)} className="hidden lg:block p-1 hover:text-purple-500 transition-colors" title="Ocultar filtros">
-                        <ArrowLeftFromLine size={20} />
-                    </button>
-                </div>
+      <motion.aside
+    className={`
+        fixed lg:sticky top-0 lg:top-24 left-0 h-full lg:h-[calc(100vh-8rem)]
+        z-50 lg:z-30 overflow-hidden flex-shrink-0
+        ${colors.cardBg} ${colors.text} lg:border ${colors.border} lg:rounded-xl
+        shadow-2xl lg:shadow-none
+    `}
+    initial={false}
+    animate={{ 
+        width: sidebarOpen ? (window.innerWidth >= 1024 ? "18rem" : "80%") : "0rem",
+        x: (window.innerWidth < 1024 && !sidebarOpen) ? "-100%" : "0%"
+    }}
+    transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+>
+    <div className="w-full h-full overflow-y-auto p-4 sm:p-6 scrollbar-thin">
+        <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg sm:text-xl font-bold flex items-center gap-2"><Filter size={20}/> Filtros</h2>
+            <button onClick={() => setSidebarOpen(false)} className="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full">
+                <X size={20} />
+            </button>
+        </div>
 
-                <div className="space-y-6">
-                    {/* Categorías */}
-                    <div>
-                        <label className="block text-sm font-semibold mb-2">Categoría</label>
-                        <AdminFormSelect
-                            name="category"
-                            options={categories.map(c => ({ value: c.slug, label: c.nombre }))}
-                            value={selectedCategorySlugSidebar}
-                            onChange={(e) => setSelectedCategorySlugSidebar(e.target.value)}
-                            className="focus:ring-purple-600 focus:border-purple-600"
+        <div className="space-y-4 sm:space-y-6">
+            {/* Categorías */}
+            <div>
+                <label className="block text-sm font-semibold mb-1 sm:mb-2">Categoría</label>
+                <AdminFormSelect
+                    name="category"
+                    options={categories.map(c => ({ value: c.slug, label: c.nombre }))}
+                    value={selectedCategorySlugSidebar}
+                    onChange={(e) => setSelectedCategorySlugSidebar(e.target.value)}
+                    className="focus:ring-purple-600 w-full text-sm"
+                />
+            </div>
+
+            {/* Precios */}
+            <div className="space-y-1">
+                <p className={`font-semibold text-xs uppercase tracking-wide mb-1 ${textTitle}`}>Precio</p>
+                <div className="flex items-center gap-2">
+                    <div className="relative flex-1">
+                        <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
+                        <input
+                            type="number"
+                            min="0"
+                            placeholder="Min"
+                            value={priceMinInput}
+                            onChange={handleMinPriceChange}
+                            className={`w-full pl-5 pr-2 py-2 rounded-md border text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors 
+                            ${isDark ? 'bg-gray-800 border-gray-700 text-white placeholder-gray-500' : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'}`}
                         />
                     </div>
-
-                    {/* Precios (Lógica Correcta) */}
-                   <div className="space-y-1">
-                        <p className={`font-semibold text-xs uppercase tracking-wider mb-1 ${textTitle}`}>Precio</p>
-                        <div className="flex items-center gap-2">
-                            <div className="relative w-24"> 
-                                <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
-                                <input 
-                                    type="number" 
-                                    min="0"
-                                    placeholder="Min" 
-                                    value={priceMinInput} 
-                                    onChange={handleMinPriceChange} 
-                                    className={`w-full pl-5 pr-2 py-1.5 rounded-md border text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors 
-                                    ${isDark ? 'bg-gray-800 border-gray-700 text-white placeholder-gray-500' : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'}`}
-                                />
-                            </div>
-
-                            <span className="text-gray-400">-</span>
-
-                            <div className="relative w-24">
-                                <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
-                                <input 
-                                    type="number" 
-                                    min="0"
-                                    placeholder="Max" 
-                                    value={priceMaxInput} 
-                                    onChange={handleMaxPriceChange} 
-                                    className={`w-full pl-5 pr-2 py-1.5 rounded-md border text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors
-                                    ${isDark ? 'bg-gray-800 border-gray-700 text-white placeholder-gray-500' : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'}`}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Marca */}
-                    <div>
-                        <label className="block text-sm font-semibold mb-2">Marca</label>
-                        <AdminFormSelect
-                            name="brand"
-                            options={availableBrands.map(b => ({ value: b, label: b }))}
-                            value={selectedBrandInput}
-                            onChange={(e) => setSelectedBrandInput(e.target.value)}
-                            className="focus:ring-purple-600"
+                    <span className="text-gray-400">-</span>
+                    <div className="relative flex-1">
+                        <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400 text-xs">$</span>
+                        <input
+                            type="number"
+                            min="0"
+                            placeholder="Max"
+                            value={priceMaxInput}
+                            onChange={handleMaxPriceChange}
+                            className={`w-full pl-5 pr-2 py-2 rounded-md border text-sm focus:outline-none focus:ring-1 focus:ring-purple-500 transition-colors
+                            ${isDark ? 'bg-gray-800 border-gray-700 text-white placeholder-gray-500' : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'}`}
                         />
                     </div>
-
-                    {/* Mascota */}
-                    <div>
-                        <label className="block text-sm font-semibold mb-2">Tipo de Mascota</label>
-                        <AdminFormSelect
-                            name="petTypeFull"
-                            options={petTypesOptions}
-                            value={selectedPetTypeInput}
-                            onChange={(e) => setSelectedPetTypeInput(e.target.value)}
-                            className="focus:ring-purple-600"
-                        />
-                    </div>
-                    
-                    {/* Ordenar */}
-                    <div>
-                        <label className="block text-sm font-semibold mb-2">Ordenar</label>
-                        <AdminFormSelect
-                            options={[
-                                { value: "", label: "Relevancia" },
-                                { value: "price-asc", label: "Precio: Bajo a Alto" },
-                                { value: "price-desc", label: "Precio: Alto a Bajo" },
-                                { value: "name-asc", label: "Nombre (A-Z)" },
-                            ]}
-                            value={sortOptionInput}
-                            onChange={(e) => setSortOptionInput(e.target.value)}
-                            className="focus:ring-purple-600"
-                        />
-                    </div>
-                </div>
-
-                <div className="pt-6 pb-2 mt-6 border-t border-gray-200 dark:border-gray-700 space-y-3">
-                    <button onClick={applySidebarFilters} className={`w-full py-3 rounded-lg font-bold transition-transform active:scale-95 ${colors.primary}`}>
-                        Aplicar Filtros
-                    </button>
-                    <button onClick={clearAllFilters} className={`w-full py-2 text-sm font-medium opacity-70 hover:opacity-100 hover:text-red-500 transition-colors`}>
-                        Limpiar Todo
-                    </button>
                 </div>
             </div>
-        </motion.aside>
+
+            {/* Marca */}
+            <div>
+                <label className="block text-sm font-semibold mb-1 sm:mb-2">Marca</label>
+                <AdminFormSelect
+                    name="brand"
+                    options={availableBrands.map(b => ({ value: b, label: b }))}
+                    value={selectedBrandInput}
+                    onChange={(e) => setSelectedBrandInput(e.target.value)}
+                    className="focus:ring-purple-600 w-full text-sm"
+                />
+            </div>
+
+            {/* Mascota */}
+            <div>
+                <label className="block text-sm font-semibold mb-1 sm:mb-2">Tipo de Mascota</label>
+                <AdminFormSelect
+                    name="petTypeFull"
+                    options={petTypesOptions}
+                    value={selectedPetTypeInput}
+                    onChange={(e) => setSelectedPetTypeInput(e.target.value)}
+                    className="focus:ring-purple-600 w-full text-sm"
+                />
+            </div>
+
+            {/* Ordenar */}
+            <div>
+                <label className="block text-sm font-semibold mb-1 sm:mb-2">Ordenar</label>
+                <AdminFormSelect
+                    options={[
+                        { value: "", label: "Relevancia" },
+                        { value: "price-asc", label: "Precio: Bajo a Alto" },
+                        { value: "price-desc", label: "Precio: Alto a Bajo" },
+                        { value: "name-asc", label: "Nombre (A-Z)" },
+                    ]}
+                    value={sortOptionInput}
+                    onChange={(e) => setSortOptionInput(e.target.value)}
+                    className="focus:ring-purple-600 w-full text-sm"
+                />
+            </div>
+        </div>
+
+        <div className="pt-4 pb-2 mt-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
+            <button onClick={applySidebarFilters} className={`w-full py-3 rounded-lg font-bold transition-transform active:scale-95 ${colors.primary}`}>
+                Aplicar Filtros
+            </button>
+            <button onClick={clearAllFilters} className={`w-full py-2 text-sm font-medium opacity-70 hover:opacity-100 hover:text-red-500 transition-colors`}>
+                Limpiar Todo
+            </button>
+        </div>
+    </div>
+</motion.aside>
+
 
 
         {/* --- CONTENIDO PRINCIPAL --- */}

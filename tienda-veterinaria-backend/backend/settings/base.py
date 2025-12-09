@@ -118,8 +118,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sergiosaborit99@gmail.com'
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'dummy')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'sergiosaborit99@gmail.com') # Leer de ENV o default
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') # Siempre de ENV por seguridad
 DEFAULT_FROM_EMAIL = 'VetShop <no-reply@vetshop.com>'
 
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_dummy')
