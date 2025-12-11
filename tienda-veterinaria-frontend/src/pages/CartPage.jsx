@@ -1,5 +1,5 @@
 import { useNavigate, Link } from 'react-router-dom';
-import { X, Plus, Minus, ShoppingBag, Trash2, ArrowRight, ArrowLeft, Package } from 'lucide-react';
+import { Plus, Minus, ShoppingBag, Trash2, ArrowRight, ArrowLeft, Package } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 
@@ -23,6 +23,10 @@ export default function CartPage() {
   // Zustand Theme
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
+
+  // --- ORDENAR ITEMS PARA EVITAR SALTOS ---
+  // Ordenamos por ID para mantener la consistencia visual al cambiar cantidades
+  const sortedItems = [...cartItems].sort((a, b) => a.id - b.id);
 
   // --- STYLES ---
   const glassContainer = isDark 
@@ -110,16 +114,19 @@ export default function CartPage() {
 
             <div className="grid lg:grid-cols-3 gap-8 items-start">
                 
-                {/* --- CART ITEMS LIST --- */}
-                <div className="lg:col-span-2 space-y-4">
-                    <AnimatePresence mode="popLayout">
-                        {cartItems.map((item) => (
+                {/* --- CART ITEMS LIST (Left Column Animation) --- */}
+                <motion.div 
+                    initial={{ opacity: 0, x: -20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ duration: 0.5 }}
+                    className="lg:col-span-2 space-y-4"
+                >
+                    <AnimatePresence mode="popLayout" initial={false}>
+                        {sortedItems.map((item) => (
                             <motion.div
                                 key={item.id}
-                                layout
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, x: -50 }}
+                                exit={{ opacity: 0, x: -20 }}
+                                transition={{ duration: 0.2 }}
                                 className={`group relative flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 rounded-2xl border backdrop-blur-sm transition-all shadow-sm ${itemCardClass}`}
                             >
                                 {/* Imagen */}
@@ -151,11 +158,15 @@ export default function CartPage() {
                                             {formatPrice(item.price)}
                                         </div>
                                         
-                                        {/* Controls */}
-                                        <div className="flex items-center bg-gray-100 dark:bg-gray-900 rounded-lg p-1 border border-gray-200 dark:border-gray-700">
+                                        {/* Controls - FIXED STYLES */}
+                                        <div className={`flex items-center rounded-lg p-1 border ${isDark ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-200'}`}>
                                             <button
                                                 onClick={() => handleUpdateQuantity(item.id, item.quantity, -1)}
-                                                className="w-8 h-8 flex items-center justify-center rounded-md bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                                className={`w-8 h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
+                                                    isDark 
+                                                    ? 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700' 
+                                                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                                                }`}
                                             >
                                                 <Minus size={14} />
                                             </button>
@@ -164,7 +175,11 @@ export default function CartPage() {
                                             </span>
                                             <button
                                                 onClick={() => handleUpdateQuantity(item.id, item.quantity, 1)}
-                                                className="w-8 h-8 flex items-center justify-center rounded-md bg-white dark:bg-gray-800 text-purple-600 dark:text-purple-400 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                                                className={`w-8 h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
+                                                    isDark 
+                                                    ? 'bg-gray-800 text-purple-400 border-gray-700 hover:bg-gray-700' 
+                                                    : 'bg-white text-purple-600 border-gray-300 hover:bg-gray-50'
+                                                }`}
                                             >
                                                 <Plus size={14} />
                                             </button>
@@ -180,19 +195,15 @@ export default function CartPage() {
                             </motion.div>
                         ))}
                     </AnimatePresence>
+                </motion.div>
 
-                    <div className="flex justify-end pt-4">
-                        <button 
-                            onClick={handleClearCart} 
-                            className="text-sm text-red-500 hover:text-red-700 font-medium hover:underline flex items-center gap-1 transition-colors"
-                        >
-                            <Trash2 size={14} /> Vaciar carrito
-                        </button>
-                    </div>
-                </div>
-
-                {/* --- SUMMARY CARD --- */}
-                <div className="lg:col-span-1">
+                {/* --- SUMMARY CARD (Right Column Animation) --- */}
+                <motion.div 
+                    initial={{ opacity: 0, x: 20 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="lg:col-span-1"
+                >
                     <div className={`sticky top-24 rounded-3xl border backdrop-blur-xl overflow-hidden ${glassContainer}`}>
                         <div className="p-6">
                             <h3 className={`text-xl font-black mb-6 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -225,9 +236,16 @@ export default function CartPage() {
 
                             <button
                                 onClick={handleCheckout}
-                                className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-lg shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 transition-transform active:scale-95"
+                                className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-lg shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 transition-transform active:scale-95 mb-3"
                             >
                                 Pagar Ahora <ArrowRight size={20} />
+                            </button>
+
+                            <button 
+                                onClick={handleClearCart} 
+                                className={`w-full py-3 rounded-xl font-bold border transition-colors flex items-center justify-center gap-2 ${isDark ? 'border-red-900/50 text-red-400 hover:bg-red-900/20' : 'border-red-200 text-red-600 hover:bg-red-50'}`}
+                            >
+                                <Trash2 size={18} /> Vaciar Carrito
                             </button>
                             
                             <p className="text-center text-xs opacity-50 mt-4">
@@ -235,7 +253,7 @@ export default function CartPage() {
                             </p>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
             </div>
         </div>
