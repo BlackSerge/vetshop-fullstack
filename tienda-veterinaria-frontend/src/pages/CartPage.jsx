@@ -1,70 +1,106 @@
-import { useState, useEffect } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Plus, Minus, ShoppingBag, Trash2, ArrowRight, ArrowLeft, Package } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { ShoppingBag, CreditCard, ShieldCheck, ArrowLeft, Package, Lock } from 'lucide-react';
 
-import api from "../api/axios";
-import CheckoutForm from "../components/CheckoutForm";
-import LoadingSpinner from "../components/LoadingSpinner";
-import { useCartStore } from "../store/useCartStore";
-import { useThemeStore } from "../store/useThemeStore";
+// Stores
+import { useCartStore } from '../store/useCartStore';
+import { useThemeStore } from '../store/useThemeStore';
+import LoadingSpinner from '../components/LoadingSpinner';
+import ConfirmModal from '../components/ConfirmModal';
 import { formatPrice } from "../utils/format";
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
-export default function CheckoutPage() {
-  const [clientSecret, setClientSecret] = useState("");
-  const cartItems = useCartStore((state) => state.items || []);
-  const storeTotal = useCartStore((state) => state.totalPrice);
-  const cartTotal = storeTotal || cartItems.reduce((acc, item) => acc + (Number(item.effective_price || item.price) * (item.quantity || 1)), 0);
-
-  const theme = useThemeStore((state) => state.theme);
-  const isDark = theme === "dark";
+export default function CartPage() {
   const navigate = useNavigate();
+  
+  // Zustand Cart
+  const cartItems = useCartStore((state) => state.items);
+  const cartTotalPrice = useCartStore((state) => state.totalPrice);
+  const loadingCart = useCartStore((state) => state.isLoading);
+  const updateItemQuantity = useCartStore((state) => state.updateQuantity);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const clearCart = useCartStore((state) => state.clearCart);
 
-  useEffect(() => {
-    if (cartItems.length > 0) {
-      api.post("/pedidos/create-payment-intent/")
-        .then((res) => setClientSecret(res.data.clientSecret))
-        .catch((err) => console.error("Error creating payment intent:", err));
-    }
-  }, [cartItems]);
+  // Zustand Theme
+  const theme = useThemeStore((state) => state.theme);
+  const isDark = theme === 'dark';
 
-  const appearance = { 
-    theme: isDark ? 'night' : 'stripe', 
-    variables: {
-      colorPrimary: '#9333ea', // purple-600
-      colorBackground: isDark ? '#1f2937' : '#ffffff',
-      colorText: isDark ? '#f3f4f6' : '#1f2937',
-      borderRadius: '12px',
-    }
-  };
-  const options = { clientSecret, appearance };
+  // --- MODAL STATES ---
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+  const [isClearModalOpen, setIsClearModalOpen] = useState(false);
+
+  // --- ORDENAR ITEMS ---
+  const sortedItems = [...cartItems].sort((a, b) => a.id - b.id);
 
   // --- STYLES ---
   const glassContainer = isDark 
     ? "bg-gray-900/60 border-gray-700/50 shadow-black/40" 
     : "bg-white/80 border-white/50 shadow-purple-200/50";
-  
+    
+  const itemCardClass = isDark
+    ? "bg-gray-800/40 border-gray-700 hover:bg-gray-800/60"
+    : "bg-white/60 border-gray-100 hover:bg-white/80";
+
+  // --- HANDLERS ---
+  const handleUpdateQuantity = async (itemId, currentQuantity, change) => {
+    const newQuantity = currentQuantity + change;
+    if (newQuantity <= 0) {
+      openDeleteModal(itemId);
+    } else {
+      await updateItemQuantity(itemId, newQuantity);
+    }
+  };
+
+  const openDeleteModal = (itemId) => {
+    setItemToDelete(itemId);
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmRemoveItem = async () => {
+    if (itemToDelete) {
+      await removeItem(itemToDelete);
+      setIsDeleteModalOpen(false);
+      setItemToDelete(null);
+    }
+  };
+
+  const confirmClearCart = async () => {
+    await clearCart();
+    setIsClearModalOpen(false);
+  };
+
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
+
+  if (loadingCart && cartItems.length === 0) {
+    return (
+      <div className={`min-h-[100dvh] flex justify-center items-center bg-gray-50 dark:bg-gray-900`}>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  // --- EMPTY CART STATE ---
   if (cartItems.length === 0) {
     return (
-        <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 text-center overflow-hidden relative font-sans">
-             <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0"></div>
-             <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+        <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-4 text-center overflow-hidden relative font-sans">
+             <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-10"></div>
+             <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-10 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
              
              <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-                className={`relative z-10 p-10 rounded-3xl border backdrop-blur-xl max-w-md w-full ${glassContainer}`}
+                className={`relative z-10 p-8 rounded-3xl border backdrop-blur-xl w-full max-w-sm mx-auto ${glassContainer}`}
              >
-                <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <ShoppingBag size={40} className="text-gray-400" />
+                <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
+                    <ShoppingBag size={40} className="text-purple-400 opacity-80" />
                 </div>
-                <h2 className={`text-2xl font-black mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Tu carrito está vacío</h2>
-                <Link to="/products" className="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 mt-6">
-                    <ArrowLeft size={20} /> Volver a la Tienda
+                <h2 className={`text-2xl font-black mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>Tu carrito está vacío</h2>
+                <p className={`mb-8 text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Parece que aún no has agregado nada.</p>
+                <Link to="/products" className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-lg shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 transition-all active:scale-95">
+                    <ArrowLeft size={20} /> Ir a la Tienda
                 </Link>
              </motion.div>
         </div>
@@ -72,137 +108,202 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="relative min-h-[100dvh] w-full py-6 px-4 md:py-12 overflow-x-hidden font-sans">
-      <Helmet>
-        <title>Finalizar Compra | VetShop</title>
-      </Helmet>
+    <section className="relative min-h-[100dvh] w-full pt-6 pb-40 md:py-12 overflow-x-hidden font-sans">
+        <Helmet>
+            <title>Mi Carrito | VetShop</title>
+        </Helmet>
 
-      {/* BACKGROUNDS */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0 fixed"></div>
-      <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out fixed ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+        {/* BACKGROUNDS FIX: fixed inset-0 and z-index to avoid layout shifts */}
+        <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-10"></div>
+        <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-10 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
 
-      <div className="relative z-10 container mx-auto max-w-6xl pb-32">
-        
-        {/* HEADER */}
-        <div className="flex items-center gap-4 mb-6">
-            <button 
-                onClick={() => navigate(-1)} 
-                className={`p-2 rounded-full border transition-colors ${isDark ? 'bg-gray-800/50 border-gray-700 text-white hover:bg-gray-700' : 'bg-white/50 border-gray-200 text-gray-900 hover:bg-white'}`}
-            >
-                <ArrowLeft size={24} />
-            </button>
-            <h1 className={`text-2xl md:text-3xl font-black tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
-                Finalizar Compra
-            </h1>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+        {/* CONTENEDOR FLUIDO: w-full max-w-5xl mx-auto px-4 evita cortes laterales */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4">
             
-            {/* --- COLUMN 1: ORDER SUMMARY (Left) --- */}
-            <motion.div 
-                initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
-                className="lg:col-span-5 space-y-6 order-2 lg:order-1"
-            >
-                <div className={`rounded-3xl border overflow-hidden backdrop-blur-xl ${glassContainer}`}>
-                    <div className={`p-5 border-b flex items-center gap-3 ${isDark ? 'border-gray-700/50' : 'border-gray-100'}`}>
-                        <ShoppingBag className="text-purple-500" size={24} />
-                        <h2 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Resumen</h2>
-                        <span className={`ml-auto text-xs font-bold px-3 py-1 rounded-full ${isDark ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
-                            {cartItems.length} items
-                        </span>
-                    </div>
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+                <h1 className={`text-2xl md:text-4xl font-black tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
+                    Tu Carrito <span className="text-purple-500">.</span>
+                </h1>
+                <span className={`px-3 py-1 rounded-full text-xs font-bold border ${isDark ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-200 text-gray-600'}`}>
+                    {cartItems.length} items
+                </span>
+            </div>
 
-                    {/* Lista de items - Sin max-height en móvil para permitir scroll nativo de la página */}
-                    <div className="p-5 md:max-h-[500px] overflow-y-auto custom-scrollbar">
-                        <div className="space-y-4">
-                            {cartItems.map((item) => (
-                                <div key={item.id} className="flex gap-4 items-center group">
-                                    <div className={`w-16 h-16 rounded-xl overflow-hidden border flex-shrink-0 ${isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-gray-50'}`}>
-                                        <img 
-                                            src={item.product_main_image || item.imagen} 
-                                            alt={item.product_name || item.nombre} 
-                                            className="w-full h-full object-cover"
-                                        />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                
+                {/* --- CART ITEMS LIST --- */}
+                <motion.div 
+                    initial={{ opacity: 0, x: -10 }} 
+                    animate={{ opacity: 1, x: 0 }} 
+                    transition={{ duration: 0.4 }}
+                    className="lg:col-span-2 space-y-4"
+                >
+                    <AnimatePresence mode="popLayout" initial={false}>
+                        {sortedItems.map((item) => (
+                            <motion.div
+                                key={item.id}
+                                exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className={`group relative flex flex-row items-stretch gap-3 p-3 rounded-2xl border backdrop-blur-sm transition-all shadow-sm ${itemCardClass}`}
+                            >
+                                {/* Imagen: w-20 (80px) es seguro para móviles pequeños */}
+                                <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-white flex-shrink-0 border border-gray-200 dark:border-gray-700 self-center">
+                                    <img
+                                        src={item.product_main_image || '/placeholder.jpg'}
+                                        alt={item.product_name}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+
+                                {/* Info */}
+                                <div className="flex-1 w-full min-w-0 flex flex-col justify-between py-0.5">
+                                    
+                                    {/* Top: Nombre y Trash */}
+                                    <div className="flex justify-between items-start gap-2">
+                                        <h2 className={`text-sm sm:text-lg font-bold leading-tight line-clamp-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                            {item.product_name}
+                                        </h2>
+                                        <button
+                                            onClick={() => openDeleteModal(item.id)}
+                                            className="p-2 -mr-2 -mt-2 text-gray-400 hover:text-red-500 transition-colors flex-shrink-0 active:scale-90"
+                                            title="Eliminar"
+                                        >
+                                            <Trash2 size={18} />
+                                        </button>
                                     </div>
-                                    <div className="flex-1 min-w-0">
-                                        <h3 className={`font-bold text-sm truncate ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>
-                                            {item.product_name || item.nombre}
-                                        </h3>
-                                        <p className={`text-xs mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                            x{item.quantity || 1}
-                                        </p>
+                                    
+                                    {/* Bottom: Precio y Controles */}
+                                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mt-2">
+                                        <div className="flex flex-col">
+                                            <span className={`text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 uppercase`}>Precio</span>
+                                            <span className={`text-sm font-semibold ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
+                                                {formatPrice(item.price)}
+                                            </span>
+                                        </div>
+                                        
+                                        <div className="flex justify-between items-center w-full sm:w-auto gap-4">
+                                             {/* Controls */}
+                                            <div className={`flex items-center rounded-lg p-0.5 border ${isDark ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-200'}`}>
+                                                <button
+                                                    onClick={() => handleUpdateQuantity(item.id, item.quantity, -1)}
+                                                    className={`w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
+                                                        isDark 
+                                                        ? 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700' 
+                                                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                                                    }`}
+                                                >
+                                                    <Minus size={12} />
+                                                </button>
+                                                <span className={`min-w-[2rem] text-center font-bold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                                    {item.quantity}
+                                                </span>
+                                                <button
+                                                    onClick={() => handleUpdateQuantity(item.id, item.quantity, 1)}
+                                                    className={`w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
+                                                        isDark 
+                                                        ? 'bg-gray-800 text-purple-400 border-gray-700 hover:bg-gray-700' 
+                                                        : 'bg-white text-purple-600 border-gray-300 hover:bg-gray-50'
+                                                    }`}
+                                                >
+                                                    <Plus size={12} />
+                                                </button>
+                                            </div>
+
+                                            {/* Subtotal en Móvil a la derecha */}
+                                            <div className="text-right sm:hidden">
+                                                 <span className={`text-[10px] block ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Total</span>
+                                                 <span className="text-base font-black text-purple-600 dark:text-purple-400">{formatPrice(item.subtotal)}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="text-right">
-                                        <p className={`font-bold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                                            {formatPrice((item.effective_price || item.price) * (item.quantity || 1))}
-                                        </p>
+                                    
+                                    {/* Subtotal Desktop */}
+                                    <div className="hidden sm:block mt-2 pt-2 border-t border-dashed border-gray-200 dark:border-gray-700 text-right">
+                                        <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                            Subtotal: <span className="text-purple-600 dark:text-purple-400 ml-1">{formatPrice(item.subtotal)}</span>
+                                        </span>
                                     </div>
                                 </div>
-                            ))}
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </motion.div>
+
+                {/* --- SUMMARY CARD --- */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="lg:col-span-1"
+                >
+                    <div className={`rounded-3xl border backdrop-blur-xl overflow-hidden ${glassContainer}`}>
+                        <div className="p-5 sm:p-6">
+                            <h3 className={`text-lg font-black mb-4 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                <Package size={20} className="text-purple-500" /> Resumen
+                            </h3>
+                            
+                            <div className="space-y-3 mb-6">
+                                <div className="flex justify-between text-sm">
+                                    <span className={isDark ? 'text-gray-400' : 'text-gray-600'}>Subtotal</span>
+                                    <span className={`font-medium ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>{formatPrice(cartTotalPrice)}</span>
+                                </div>
+                                <div className="flex justify-between text-sm">
+                                    <span className={isDark ? 'text-gray-400' : 'text-gray-600'}>Envío</span>
+                                    <span className="text-green-500 font-bold">Gratis</span>
+                                </div>
+                            </div>
+
+                            <div className="pt-4 border-t border-dashed border-gray-300 dark:border-gray-600 mb-6">
+                                <div className="flex justify-between items-end">
+                                    <span className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Total</span>
+                                    <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-500">
+                                        {formatPrice(cartTotalPrice)}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={handleCheckout}
+                                className="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-lg shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 transition-transform active:scale-95 mb-3"
+                            >
+                                Pagar Ahora <ArrowRight size={20} />
+                            </button>
+
+                            <button 
+                                onClick={() => setIsClearModalOpen(true)}
+                                className={`w-full py-3 rounded-xl font-bold border transition-colors flex items-center justify-center gap-2 ${isDark ? 'border-red-900/50 text-red-400 hover:bg-red-900/20' : 'border-red-200 text-red-600 hover:bg-red-50'}`}
+                            >
+                                <Trash2 size={18} /> Vaciar Carrito
+                            </button>
+                            
+                            <p className="text-center text-xs opacity-50 mt-4">
+                                Transacciones seguras y encriptadas.
+                            </p>
                         </div>
                     </div>
+                </motion.div>
 
-                    <div className={`p-5 border-t ${isDark ? 'bg-gray-800/30 border-gray-700/50' : 'bg-gray-50/50 border-gray-100'}`}>
-                         <div className="flex justify-between items-center mb-2">
-                            <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Subtotal</span>
-                            <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{formatPrice(cartTotal)}</span>
-                        </div>
-                        <div className="flex justify-between items-center mb-4">
-                            <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Envío</span>
-                            <span className="text-sm font-bold text-green-500">GRATIS</span>
-                        </div>
-                        <div className="flex justify-between items-center pt-4 border-t border-dashed border-gray-300 dark:border-gray-700">
-                            <span className={`text-lg font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>Total</span>
-                            <span className="text-2xl font-black text-purple-600 dark:text-purple-400">{formatPrice(cartTotal)}</span>
-                        </div>
-                    </div>
-                </div>
+            </div>
 
-                {/* Security Badge */}
-                <div className={`flex items-center justify-center gap-3 p-4 rounded-2xl border ${isDark ? 'bg-green-900/10 border-green-900/30 text-green-400' : 'bg-green-50 border-green-200 text-green-700'}`}>
-                    <ShieldCheck size={24} />
-                    <span className="text-sm font-bold">Pago 100% Seguro y Encriptado</span>
-                </div>
-            </motion.div>
-
-            {/* --- COLUMN 2: PAYMENT FORM (Right) --- */}
-            <motion.div 
-                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-                className="lg:col-span-7 order-1 lg:order-2"
-            >
-                <div className={`rounded-3xl border backdrop-blur-xl p-5 md:p-8 ${glassContainer}`}>
-                    <div className="mb-6 flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg">
-                            <CreditCard className="text-white" size={20} />
-                        </div>
-                        <div>
-                            <h2 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Detalles de Pago</h2>
-                            <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Procesado seguramente por Stripe</p>
-                        </div>
-                    </div>
-
-                    {clientSecret ? (
-                        <Elements options={options} stripe={stripePromise}>
-                            <CheckoutForm />
-                        </Elements>
-                    ) : (
-                        <div className="flex flex-col items-center justify-center py-20 gap-4">
-                            <LoadingSpinner />
-                            <p className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Iniciando pasarela de pago...</p>
-                        </div>
-                    )}
-                    
-                    <div className="mt-6 flex items-center justify-center gap-2 text-xs opacity-60">
-                         <Lock size={12} />
-                         <span>Powered by <strong>Stripe</strong></span>
-                    </div>
-                </div>
-            </motion.div>
+             {/* DIVISOR EXTRA PARA SCROLL MÓVIL */}
+             <div className="h-12 w-full"></div>
         </div>
-        
-        {/* ESPACIO FINAL PARA SCROLL EN MÓVIL REAL (Safari bar, Chrome bar) */}
-        <div className="w-full h-32 lg:hidden"></div>
-      </div>
-    </div>
+
+        {/* --- MODALS --- */}
+        <ConfirmModal 
+            isOpen={isDeleteModalOpen}
+            onClose={() => setIsDeleteModalOpen(false)}
+            onConfirm={confirmRemoveItem}
+            message="¿Estás seguro de que deseas eliminar este producto del carrito?"
+        />
+
+        <ConfirmModal 
+            isOpen={isClearModalOpen}
+            onClose={() => setIsClearModalOpen(false)}
+            onConfirm={confirmClearCart}
+            message="¿Estás seguro de que deseas vaciar todo el carrito? Esta acción no se puede deshacer."
+        />
+    </section>
   );
 }

@@ -18,7 +18,6 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 export default function CheckoutPage() {
   const [clientSecret, setClientSecret] = useState("");
   const cartItems = useCartStore((state) => state.items || []);
-  // Fallback safe calculation if totalPrice is not in store yet
   const storeTotal = useCartStore((state) => state.totalPrice);
   const cartTotal = storeTotal || cartItems.reduce((acc, item) => acc + (Number(item.effective_price || item.price) * (item.quantity || 1)), 0);
 
@@ -28,7 +27,6 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (cartItems.length > 0) {
-      // Create PaymentIntent as soon as the page loads
       api.post("/pedidos/create-payment-intent/")
         .then((res) => setClientSecret(res.data.clientSecret))
         .catch((err) => console.error("Error creating payment intent:", err));
@@ -51,25 +49,21 @@ export default function CheckoutPage() {
     ? "bg-gray-900/60 border-gray-700/50 shadow-black/40" 
     : "bg-white/80 border-white/50 shadow-purple-200/50";
   
-  const cardClass = isDark ? "bg-gray-800/50 border-gray-700" : "bg-white/60 border-gray-200";
-
-  // --- EMPTY CART STATE ---
   if (cartItems.length === 0) {
     return (
-        <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 text-center overflow-hidden relative font-sans">
-             <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0"></div>
-             <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+        <div className="min-h-[100dvh] w-full flex flex-col items-center justify-center p-4 text-center overflow-hidden relative font-sans">
+             <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-10"></div>
+             <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-10 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
              
              <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-                className={`relative z-10 p-10 rounded-3xl border backdrop-blur-xl max-w-md w-full ${glassContainer}`}
+                className={`relative z-10 p-8 rounded-3xl border backdrop-blur-xl w-full max-w-sm mx-auto ${glassContainer}`}
              >
                 <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
                     <ShoppingBag size={40} className="text-gray-400" />
                 </div>
                 <h2 className={`text-2xl font-black mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Tu carrito está vacío</h2>
-                <p className={`mb-8 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Parece que aún no has agregado productos para comprar.</p>
-                <Link to="/products" className="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 transition-all active:scale-95">
+                <Link to="/products" className="w-full py-3.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 mt-6">
                     <ArrowLeft size={20} /> Volver a la Tienda
                 </Link>
              </motion.div>
@@ -78,19 +72,20 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="relative min-h-[100dvh] w-full py-8 px-4 md:py-12 overflow-x-hidden font-sans pb-40 md:pb-32">
+    <div className="relative min-h-[100dvh] w-full pt-6 pb-40 md:py-12 overflow-x-hidden font-sans">
       <Helmet>
         <title>Finalizar Compra | VetShop</title>
       </Helmet>
 
-      {/* BACKGROUNDS */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0 fixed"></div>
-      <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out fixed ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+      {/* BACKGROUNDS FIX: fixed inset-0 */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-10"></div>
+      <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-10 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
 
-      <div className="relative z-10 container mx-auto max-w-6xl">
+      {/* CONTENEDOR FLUIDO: max-w-6xl + px-4 */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4">
         
         {/* HEADER */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-6">
             <button 
                 onClick={() => navigate(-1)} 
                 className={`p-2 rounded-full border transition-colors ${isDark ? 'bg-gray-800/50 border-gray-700 text-white hover:bg-gray-700' : 'bg-white/50 border-gray-200 text-gray-900 hover:bg-white'}`}
@@ -102,23 +97,24 @@ export default function CheckoutPage() {
             </h1>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             
             {/* --- COLUMN 1: ORDER SUMMARY (Left) --- */}
             <motion.div 
-                initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
-                className="lg:col-span-5 space-y-6"
+                initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}
+                className="lg:col-span-5 space-y-6 order-2 lg:order-1"
             >
                 <div className={`rounded-3xl border overflow-hidden backdrop-blur-xl ${glassContainer}`}>
-                    <div className={`p-6 border-b flex items-center gap-3 ${isDark ? 'border-gray-700/50' : 'border-gray-100'}`}>
-                        <ShoppingBag className="text-purple-500" size={24} />
-                        <h2 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Resumen del Pedido</h2>
+                    <div className={`p-5 border-b flex items-center gap-3 ${isDark ? 'border-gray-700/50' : 'border-gray-100'}`}>
+                        <ShoppingBag className="text-purple-500" size={20} />
+                        <h2 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Resumen</h2>
                         <span className={`ml-auto text-xs font-bold px-3 py-1 rounded-full ${isDark ? 'bg-gray-800 text-gray-300' : 'bg-gray-100 text-gray-600'}`}>
                             {cartItems.length} items
                         </span>
                     </div>
 
-                    <div className="p-6 md:max-h-[500px] overflow-y-auto custom-scrollbar">
+                    {/* Lista de items: Sin scroll interno en móvil para que fluya con la página */}
+                    <div className="p-5 md:max-h-[500px] overflow-y-auto custom-scrollbar">
                         <div className="space-y-4">
                             {cartItems.map((item) => (
                                 <div key={item.id} className="flex gap-4 items-center group">
@@ -126,7 +122,7 @@ export default function CheckoutPage() {
                                         <img 
                                             src={item.product_main_image || item.imagen} 
                                             alt={item.product_name || item.nombre} 
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                            className="w-full h-full object-cover"
                                         />
                                     </div>
                                     <div className="flex-1 min-w-0">
@@ -134,7 +130,7 @@ export default function CheckoutPage() {
                                             {item.product_name || item.nombre}
                                         </h3>
                                         <p className={`text-xs mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                            Cantidad: <span className="font-semibold">{item.quantity || 1}</span>
+                                            x{item.quantity || 1}
                                         </p>
                                     </div>
                                     <div className="text-right">
@@ -147,7 +143,7 @@ export default function CheckoutPage() {
                         </div>
                     </div>
 
-                    <div className={`p-6 border-t ${isDark ? 'bg-gray-800/30 border-gray-700/50' : 'bg-gray-50/50 border-gray-100'}`}>
+                    <div className={`p-5 border-t ${isDark ? 'bg-gray-800/30 border-gray-700/50' : 'bg-gray-50/50 border-gray-100'}`}>
                          <div className="flex justify-between items-center mb-2">
                             <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Subtotal</span>
                             <span className={`font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{formatPrice(cartTotal)}</span>
@@ -165,24 +161,24 @@ export default function CheckoutPage() {
 
                 {/* Security Badge */}
                 <div className={`flex items-center justify-center gap-3 p-4 rounded-2xl border ${isDark ? 'bg-green-900/10 border-green-900/30 text-green-400' : 'bg-green-50 border-green-200 text-green-700'}`}>
-                    <ShieldCheck size={24} />
-                    <span className="text-sm font-bold">Pago 100% Seguro y Encriptado</span>
+                    <ShieldCheck size={20} />
+                    <span className="text-xs sm:text-sm font-bold">Pago 100% Seguro y Encriptado</span>
                 </div>
             </motion.div>
 
             {/* --- COLUMN 2: PAYMENT FORM (Right) --- */}
             <motion.div 
-                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-                className="lg:col-span-7"
+                initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
+                className="lg:col-span-7 order-1 lg:order-2"
             >
-                <div className={`rounded-3xl border backdrop-blur-xl p-6 md:p-8 ${glassContainer}`}>
+                <div className={`rounded-3xl border backdrop-blur-xl p-5 md:p-8 ${glassContainer}`}>
                     <div className="mb-6 flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg">
                             <CreditCard className="text-white" size={20} />
                         </div>
                         <div>
                             <h2 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Detalles de Pago</h2>
-                            <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Complete la transacción con seguridad Stripe</p>
+                            <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Procesado seguramente por Stripe</p>
                         </div>
                     </div>
 
@@ -193,7 +189,7 @@ export default function CheckoutPage() {
                     ) : (
                         <div className="flex flex-col items-center justify-center py-20 gap-4">
                             <LoadingSpinner />
-                            <p className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Iniciando pago seguro...</p>
+                            <p className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Iniciando pasarela de pago...</p>
                         </div>
                     )}
                     
@@ -203,11 +199,9 @@ export default function CheckoutPage() {
                     </div>
                 </div>
             </motion.div>
-
         </div>
         
-        {/* Espacio extra invisible para garantizar scroll en móviles */}
-        <div className="h-24 lg:hidden"></div>
+        <div className="h-12 w-full lg:hidden"></div>
       </div>
     </div>
   );
