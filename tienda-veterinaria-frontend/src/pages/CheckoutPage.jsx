@@ -56,7 +56,7 @@ export default function CheckoutPage() {
   // --- EMPTY CART STATE ---
   if (cartItems.length === 0) {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center overflow-hidden relative font-sans">
+        <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 text-center overflow-hidden relative font-sans">
              <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0"></div>
              <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
              
@@ -78,7 +78,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full py-8 px-4 md:py-12 overflow-x-hidden font-sans pb-32">
+    <div className="relative min-h-[100dvh] w-full py-8 px-4 md:py-12 overflow-x-hidden font-sans pb-40 md:pb-32">
       <Helmet>
         <title>Finalizar Compra | VetShop</title>
       </Helmet>
@@ -205,6 +205,9 @@ export default function CheckoutPage() {
             </motion.div>
 
         </div>
+        
+        {/* Espacio extra invisible para garantizar scroll en móviles */}
+        <div className="h-24 lg:hidden"></div>
       </div>
     </div>
   );

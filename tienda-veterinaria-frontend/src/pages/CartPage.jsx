@@ -25,7 +25,6 @@ export default function CartPage() {
   const isDark = theme === 'dark';
 
   // --- ORDENAR ITEMS PARA EVITAR SALTOS ---
-  // Ordenamos por ID para mantener la consistencia visual al cambiar cantidades
   const sortedItems = [...cartItems].sort((a, b) => a.id - b.id);
 
   // --- STYLES ---
@@ -62,7 +61,7 @@ export default function CartPage() {
 
   if (loadingCart && cartItems.length === 0) {
     return (
-      <div className={`min-h-screen flex justify-center items-center bg-gray-50 dark:bg-gray-900`}>
+      <div className={`min-h-[100dvh] flex justify-center items-center bg-gray-50 dark:bg-gray-900`}>
         <LoadingSpinner />
       </div>
     );
@@ -71,7 +70,7 @@ export default function CartPage() {
   // --- EMPTY CART STATE ---
   if (cartItems.length === 0) {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center overflow-hidden relative font-sans">
+        <div className="min-h-[100dvh] flex flex-col items-center justify-center p-6 text-center overflow-hidden relative font-sans">
              <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0"></div>
              <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
              
@@ -93,7 +92,7 @@ export default function CartPage() {
   }
 
   return (
-    <section className="relative min-h-screen w-full py-8 px-3 md:px-4 md:py-12 overflow-x-hidden font-sans pb-32">
+    <section className="relative min-h-[100dvh] w-full py-8 px-3 md:px-4 md:py-12 overflow-x-hidden font-sans pb-40 md:pb-32">
         <Helmet>
             <title>Mi Carrito | VetShop</title>
         </Helmet>
@@ -129,7 +128,7 @@ export default function CartPage() {
                                 transition={{ duration: 0.2 }}
                                 className={`group relative flex flex-row items-start gap-3 p-3 md:p-4 rounded-2xl border backdrop-blur-sm transition-all shadow-sm ${itemCardClass}`}
                             >
-                                {/* Imagen - Compacta en móvil */}
+                                {/* Imagen */}
                                 <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-white flex-shrink-0 border border-gray-200 dark:border-gray-700">
                                     <img
                                         src={item.product_main_image || '/placeholder.jpg'}
@@ -256,7 +255,10 @@ export default function CartPage() {
                 </motion.div>
 
             </div>
+            
+            {/* Espacio extra invisible para garantizar scroll en móviles */}
+            <div className="h-20 lg:hidden"></div>
         </div>
     </section>
-);
+  );
 }
