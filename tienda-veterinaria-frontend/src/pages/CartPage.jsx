@@ -93,7 +93,7 @@ export default function CartPage() {
   }
 
   return (
-    <section className="relative min-h-screen w-full py-8 px-4 md:py-12 overflow-x-hidden font-sans">
+    <section className="relative min-h-screen w-full py-8 px-3 md:px-4 md:py-12 overflow-x-hidden font-sans pb-32">
         <Helmet>
             <title>Mi Carrito | VetShop</title>
         </Helmet>
@@ -103,18 +103,18 @@ export default function CartPage() {
         <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out fixed ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
 
         <div className="relative z-10 container mx-auto max-w-5xl">
-            <div className="flex items-center justify-between mb-8">
-                <h1 className={`text-3xl md:text-4xl font-black tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
+            <div className="flex items-center justify-between mb-6 md:mb-8">
+                <h1 className={`text-2xl md:text-4xl font-black tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
                     Tu Carrito <span className="text-purple-500">.</span>
                 </h1>
-                <span className={`px-4 py-1.5 rounded-full text-sm font-bold border ${isDark ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-200 text-gray-600'}`}>
+                <span className={`px-3 py-1 md:px-4 md:py-1.5 rounded-full text-xs md:text-sm font-bold border ${isDark ? 'bg-gray-800 border-gray-700 text-gray-300' : 'bg-white border-gray-200 text-gray-600'}`}>
                     {cartItems.length} items
                 </span>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8 items-start">
+            <div className="grid lg:grid-cols-3 gap-6 md:gap-8 items-start">
                 
-                {/* --- CART ITEMS LIST (Left Column Animation) --- */}
+                {/* --- CART ITEMS LIST --- */}
                 <motion.div 
                     initial={{ opacity: 0, x: -20 }} 
                     animate={{ opacity: 1, x: 0 }} 
@@ -127,10 +127,10 @@ export default function CartPage() {
                                 key={item.id}
                                 exit={{ opacity: 0, x: -20 }}
                                 transition={{ duration: 0.2 }}
-                                className={`group relative flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 rounded-2xl border backdrop-blur-sm transition-all shadow-sm ${itemCardClass}`}
+                                className={`group relative flex flex-row items-start gap-3 p-3 md:p-4 rounded-2xl border backdrop-blur-sm transition-all shadow-sm ${itemCardClass}`}
                             >
-                                {/* Imagen */}
-                                <div className="w-full sm:w-24 h-24 rounded-xl overflow-hidden bg-white flex-shrink-0 border border-gray-200 dark:border-gray-700">
+                                {/* Imagen - Compacta en móvil */}
+                                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-white flex-shrink-0 border border-gray-200 dark:border-gray-700">
                                     <img
                                         src={item.product_main_image || '/placeholder.jpg'}
                                         alt={item.product_name}
@@ -139,55 +139,55 @@ export default function CartPage() {
                                 </div>
 
                                 {/* Info */}
-                                <div className="flex-1 w-full">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <h2 className={`text-lg font-bold leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                <div className="flex-1 w-full min-w-0">
+                                    <div className="flex justify-between items-start mb-1">
+                                        <h2 className={`text-base sm:text-lg font-bold leading-tight truncate pr-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                             {item.product_name}
                                         </h2>
                                         <button
                                             onClick={() => handleRemoveItem(item.id)}
-                                            className="text-gray-400 hover:text-red-500 p-1 transition-colors"
+                                            className="text-gray-400 hover:text-red-500 p-1 transition-colors flex-shrink-0"
                                             title="Eliminar"
                                         >
-                                            <Trash2 size={20} />
+                                            <Trash2 size={18} />
                                         </button>
                                     </div>
                                     
-                                    <div className="flex items-center justify-between mt-2">
-                                        <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-1">
+                                        <div className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                                             {formatPrice(item.price)}
                                         </div>
                                         
-                                        {/* Controls - FIXED STYLES */}
-                                        <div className={`flex items-center rounded-lg p-1 border ${isDark ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-200'}`}>
+                                        {/* Controls */}
+                                        <div className={`flex items-center self-start sm:self-auto rounded-lg p-1 border ${isDark ? 'bg-gray-900 border-gray-700' : 'bg-gray-100 border-gray-200'}`}>
                                             <button
                                                 onClick={() => handleUpdateQuantity(item.id, item.quantity, -1)}
-                                                className={`w-8 h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
+                                                className={`w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
                                                     isDark 
                                                     ? 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700' 
                                                     : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                                                 }`}
                                             >
-                                                <Minus size={14} />
+                                                <Minus size={12} />
                                             </button>
-                                            <span className={`w-10 text-center font-bold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                            <span className={`w-8 sm:w-10 text-center font-bold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                                 {item.quantity}
                                             </span>
                                             <button
                                                 onClick={() => handleUpdateQuantity(item.id, item.quantity, 1)}
-                                                className={`w-8 h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
+                                                className={`w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-md shadow-sm border transition-colors ${
                                                     isDark 
                                                     ? 'bg-gray-800 text-purple-400 border-gray-700 hover:bg-gray-700' 
                                                     : 'bg-white text-purple-600 border-gray-300 hover:bg-gray-50'
                                                 }`}
                                             >
-                                                <Plus size={14} />
+                                                <Plus size={12} />
                                             </button>
                                         </div>
                                     </div>
                                     
-                                    <div className="mt-3 pt-3 border-t border-dashed border-gray-200 dark:border-gray-700 flex justify-end">
-                                        <span className={`font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                                    <div className="mt-2 pt-2 border-t border-dashed border-gray-200 dark:border-gray-700 flex justify-end">
+                                        <span className={`text-sm font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                             Subtotal: <span className="text-purple-600 dark:text-purple-400 ml-1">{formatPrice(item.subtotal)}</span>
                                         </span>
                                     </div>
@@ -197,14 +197,14 @@ export default function CartPage() {
                     </AnimatePresence>
                 </motion.div>
 
-                {/* --- SUMMARY CARD (Right Column Animation) --- */}
+                {/* --- SUMMARY CARD --- */}
                 <motion.div 
                     initial={{ opacity: 0, x: 20 }} 
                     animate={{ opacity: 1, x: 0 }} 
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="lg:col-span-1"
                 >
-                    <div className={`sticky top-24 rounded-3xl border backdrop-blur-xl overflow-hidden ${glassContainer}`}>
+                    <div className={`lg:sticky lg:top-24 rounded-3xl border backdrop-blur-xl overflow-hidden ${glassContainer}`}>
                         <div className="p-6">
                             <h3 className={`text-xl font-black mb-6 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                                 <Package size={24} className="text-purple-500" /> Resumen
@@ -258,5 +258,5 @@ export default function CartPage() {
             </div>
         </div>
     </section>
-  );
+);
 }

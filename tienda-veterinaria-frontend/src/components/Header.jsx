@@ -185,10 +185,10 @@ export default function Header() {
           </button>
         </div>
 
-        {/* MOBILE MENU - INMERSIVO */}
+        {/* MOBILE MENU - INMERSIVO Y CORTO */}
         {isMobileMenuOpen && (
           <div
-            className={`absolute top-full left-0 w-full min-h-screen shadow-2xl border-t-2 ${
+            className={`absolute top-full left-0 w-full h-auto rounded-b-3xl shadow-2xl border-t-2 ${
               isDark ? "border-indigo-900" : "border-blue-500"
             } z-50 lg:hidden flex flex-col p-6 space-y-4 ${mobileMenuBg} animate-fadeIn`}
           >
@@ -233,7 +233,7 @@ export default function Header() {
 
                 <button
                   onClick={handleOpenLogoutModal}
-                  className="flex items-center gap-4 py-5 px-4 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-2xl w-full text-left font-bold text-xl transition-colors mt-auto"
+                  className="flex items-center gap-4 py-5 px-4 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-2xl w-full text-left font-bold text-xl transition-colors"
                 >
                   <LogOut className="w-8 h-8" /> Cerrar Sesión
                 </button>
@@ -258,7 +258,7 @@ export default function Header() {
               </div>
             )}
             
-            <div className="text-center text-sm opacity-50 pt-10 pb-20">
+            <div className="text-center text-sm opacity-50 pt-6 pb-6">
                 VetShop v1.0
             </div>
           </div>

@@ -331,20 +331,6 @@ export default function ProductsPage() {
 
       <div className="relative z-10 container mx-auto px-4 flex flex-col lg:flex-row gap-6">
         
-        {/* --- MOBILE TOGGLE BAR --- */}
-        <div className="lg:hidden flex items-center justify-between mb-4">
-             <div className="flex-1">
-                 <h1 className={`text-2xl font-bold ${colors.text}`}>Tienda</h1>
-             </div>
-            <button
-              onClick={() => setSidebarOpen(true)}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-semibold shadow-sm transition-all active:scale-95 ${colors.cardBg} ${colors.text} border ${colors.border}`}
-            >
-              <SlidersHorizontal size={22} className="text-purple-600" />
-              <span className="text-base">Filtros</span>
-            </button>
-        </div>
-
         {/* --- SIDEBAR --- */}
         <AnimatePresence>
             {sidebarOpen && window.innerWidth < 1024 && (

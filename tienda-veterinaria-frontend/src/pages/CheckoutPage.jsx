@@ -78,7 +78,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="relative min-h-screen w-full py-8 px-4 md:py-12 overflow-x-hidden font-sans">
+    <div className="relative min-h-screen w-full py-8 px-4 md:py-12 overflow-x-hidden font-sans pb-32">
       <Helmet>
         <title>Finalizar Compra | VetShop</title>
       </Helmet>
@@ -97,7 +97,7 @@ export default function CheckoutPage() {
             >
                 <ArrowLeft size={24} />
             </button>
-            <h1 className={`text-3xl font-black tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
+            <h1 className={`text-2xl md:text-3xl font-black tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
                 Finalizar Compra
             </h1>
         </div>
@@ -118,7 +118,7 @@ export default function CheckoutPage() {
                         </span>
                     </div>
 
-                    <div className="p-6 max-h-[500px] overflow-y-auto custom-scrollbar">
+                    <div className="p-6 md:max-h-[500px] overflow-y-auto custom-scrollbar">
                         <div className="space-y-4">
                             {cartItems.map((item) => (
                                 <div key={item.id} className="flex gap-4 items-center group">
