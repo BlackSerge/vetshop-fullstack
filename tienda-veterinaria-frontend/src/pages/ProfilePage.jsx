@@ -1,11 +1,11 @@
-// src/pages/ProfilePage.jsx
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { 
     User, Mail, Save, Key, Package, Calendar, ChevronRight, 
-    Trash2, AlertTriangle, ShoppingBag 
+    Trash2, AlertTriangle, ShoppingBag, ChevronDown 
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import authService from '../services/authService';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ConfirmModal from '../components/ConfirmModal';
@@ -35,25 +35,7 @@ export default function ProfilePage() {
   // Modal Eliminar Cuenta
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  // --- ESTILOS MEJORADOS ---
-  const isDark = theme === 'dark';
-  
-  const cardBg = isDark 
-    ? "bg-gray-800 border-gray-700 text-white shadow-2xl" 
-    : "bg-white border-gray-100 text-gray-900 shadow-xl";
-
-  const headerBg = isDark 
-    ? "bg-gray-700/50 border-gray-600" 
-    : "bg-gray-50 border-gray-200";
-
-  const inputBg = isDark 
-    ? "bg-gray-900 border-gray-600 text-white focus:border-purple-500 focus:ring-purple-500" 
-    : "bg-white border-gray-300 text-gray-900 focus:border-purple-500 focus:ring-purple-500";
-  
-  const labelColor = isDark ? "text-gray-300" : "text-gray-700";
-  const btnPrimary = "bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/30 transition-all transform active:scale-95";
-  const dangerZoneBg = isDark ? "bg-red-900/10 border-red-900/30" : "bg-red-50 border-red-100";
-
+  // --- LOGIC ---
   useEffect(() => {
     if (user) {
       setProfileData({
@@ -126,210 +108,296 @@ export default function ProfilePage() {
       }
   };
 
+  // --- STYLES ---
+  const isDark = theme === 'dark';
+
+  // Glassmorphism Container
+  const glassContainer = isDark 
+    ? "bg-gray-900/60 border-gray-700/50 shadow-black/40" 
+    : "bg-white/80 border-white/50 shadow-purple-200/50";
+
+  // Input Styles (Matching Login Page)
+  const inputContainerClass = isDark 
+    ? "bg-gray-800/50 border-gray-600 focus-within:border-purple-400 focus-within:ring-purple-400/30" 
+    : "bg-white/60 border-gray-200 focus-within:border-purple-500 focus-within:ring-purple-200";
+  const inputTextClass = isDark ? "text-white placeholder-gray-500" : "text-gray-900 placeholder-gray-400";
+  const labelColor = isDark ? "text-gray-300" : "text-gray-700";
+
   if (loading) return <div className="min-h-screen flex justify-center items-center"><LoadingSpinner /></div>;
   if (!user) return null;
 
   return (
-    <div className="relative flex flex-col flex-grow w-full items-center justify-start py-12 px-4 overflow-hidden min-h-screen">
+    <div className="relative flex flex-col flex-grow w-full items-center justify-start py-8 px-4 md:py-12 overflow-hidden min-h-screen font-sans">
         <Helmet>
             <title>Mi Perfil | VetShop</title>
         </Helmet>
       
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50 z-0"></div>
-      <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-900 to-black z-0 transition-opacity duration-700 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+      {/* Backgrounds */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0"></div>
+      <div className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black z-0 transition-opacity duration-700 ease-in-out ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
 
-      <div className="relative z-10 container mx-auto max-w-4xl">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 container mx-auto max-w-4xl"
+      >
         
-        <div className={`rounded-3xl border overflow-hidden transition-colors duration-500 ${cardBg}`}>
+        <div className={`rounded-3xl border overflow-hidden backdrop-blur-xl ${glassContainer}`}>
             
             {/* HEADER PERFIL */}
-            <div className={`p-8 flex flex-col md:flex-row items-center gap-6 border-b transition-colors duration-500 ${headerBg}`}>
-                <div className="relative">
-                    <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-indigo-600 text-white rounded-full flex items-center justify-center text-3xl font-bold uppercase shadow-lg ring-4 ring-white dark:ring-gray-800">
+            <div className={`p-8 flex flex-col md:flex-row items-center gap-6 border-b transition-colors duration-500 ${isDark ? 'border-gray-700' : 'border-gray-100'}`}>
+                <div className="relative group">
+                    <div className="w-28 h-28 bg-gradient-to-br from-purple-600 to-indigo-600 text-white rounded-full flex items-center justify-center text-4xl font-bold uppercase shadow-xl ring-4 ring-white/20 dark:ring-black/20 transform transition-transform group-hover:scale-105">
                         {user.username?.charAt(0) || 'U'}
                     </div>
                     {user.is_vip && (
-                        <div className="absolute -bottom-2 -right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full shadow-sm border-2 border-white dark:border-gray-800">
+                        <div className="absolute -bottom-2 right-2 bg-yellow-400 text-yellow-900 text-xs font-black px-3 py-1 rounded-full shadow-lg border-2 border-white dark:border-gray-800 animate-bounce">
                             VIP
                         </div>
                     )}
                 </div>
                 
-                <div className="text-center md:text-left flex-1">
-                    <h1 className="text-3xl font-bold tracking-tight"> {user.username}</h1>
-                    <p className={`text-sm mt-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>{user.email}</p>
+                <div className="text-center md:text-left flex-1 space-y-2">
+                    <h1 className={`text-3xl md:text-4xl font-black tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                        {user.username}
+                    </h1>
+                    <p className={`text-base font-medium ${isDark ? "text-indigo-300" : "text-indigo-600"}`}>{user.email}</p>
                     
-                    <div className="mt-3 flex flex-wrap gap-2 justify-center md:justify-start">
-                        {user.is_staff && <span className="text-xs bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-bold border border-blue-200">🛡️ STAFF</span>}
-                        {user.is_vip && <span className="text-xs bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full font-bold border border-yellow-200">👑 CLIENTE VIP</span>}
-                        {!user.is_vip && !user.is_staff && <span className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full font-bold border border-gray-200">CLIENTE</span>}
+                    <div className="flex flex-wrap gap-2 justify-center md:justify-start pt-1">
+                        {user.is_staff && <span className="text-xs bg-blue-500/20 text-blue-600 dark:text-blue-300 px-3 py-1 rounded-lg font-bold border border-blue-500/30">🛡️ STAFF</span>}
+                        {user.is_vip && <span className="text-xs bg-yellow-500/20 text-yellow-700 dark:text-yellow-300 px-3 py-1 rounded-lg font-bold border border-yellow-500/30">👑 CLIENTE VIP</span>}
+                        {!user.is_vip && !user.is_staff && <span className="text-xs bg-purple-500/10 text-purple-600 dark:text-purple-300 px-3 py-1 rounded-lg font-bold border border-purple-500/20">CLIENTE</span>}
                     </div>
                 </div>
             </div>
 
             {/* CUERPO DE LA TARJETA */}
-            <div className="p-8">
+            <div className="p-6 md:p-8">
                 
-                {/* Tabs */}
-                <div className="flex gap-6 mb-8 border-b border-gray-200 dark:border-gray-700">
+                {/* Tabs Modernas */}
+                <div className="flex p-1 rounded-xl bg-gray-100 dark:bg-gray-800/50 mb-8 max-w-md mx-auto md:mx-0">
                     <button 
                         onClick={() => setActiveTab('profile')} 
-                        className={`pb-3 font-medium transition-all relative ${activeTab === 'profile' ? 'text-purple-600' : 'text-gray-500 hover:text-gray-700'}`}
+                        className={`flex-1 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                            activeTab === 'profile' 
+                            ? 'bg-white dark:bg-gray-700 text-purple-600 dark:text-purple-300 shadow-sm' 
+                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                        }`}
                     >
                         Mis Datos
-                        {activeTab === 'profile' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-600 rounded-t-full"></span>}
                     </button>
                     <button 
                         onClick={() => setActiveTab('orders')} 
-                        className={`pb-3 font-medium transition-all relative ${activeTab === 'orders' ? 'text-purple-600' : 'text-gray-500 hover:text-gray-700'}`}
+                        className={`flex-1 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                            activeTab === 'orders' 
+                            ? 'bg-white dark:bg-gray-700 text-purple-600 dark:text-purple-300 shadow-sm' 
+                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                        }`}
                     >
                         Mis Pedidos
-                        {activeTab === 'orders' && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-600 rounded-t-full"></span>}
                     </button>
                 </div>
 
-                {/* CONTENIDO TAB PERFIL */}
-                {activeTab === 'profile' && (
-                    <div className="animate-fadeIn">
-                        <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className={`block text-sm font-semibold mb-2 ${labelColor}`}>Nombre</label>
-                                    <div className="relative">
-                                        <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                                        <input type="text" name="first_name" value={profileData.first_name} onChange={handleChange} className={`pl-10 block w-full rounded-xl border shadow-sm py-3 transition-colors ${inputBg}`} placeholder="Tu nombre" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label className={`block text-sm font-semibold mb-2 ${labelColor}`}>Apellido</label>
-                                    <div className="relative">
-                                        <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                                        <input type="text" name="last_name" value={profileData.last_name} onChange={handleChange} className={`pl-10 block w-full rounded-xl border shadow-sm py-3 transition-colors ${inputBg}`} placeholder="Tu apellido" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className={`block text-sm font-semibold mb-2 ${labelColor}`}>Correo Electrónico</label>
-                                <div className="relative">
-                                    <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                                    <input type="email" name="email" value={profileData.email} onChange={handleChange} className={`pl-10 block w-full rounded-xl border shadow-sm py-3 transition-colors ${inputBg}`} placeholder="tucorreo@ejemplo.com" />
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                                <button type="submit" className={`flex-1 py-3 px-6 rounded-xl font-bold flex justify-center items-center gap-2 ${btnPrimary}`} disabled={saving}>
-                                    {saving ? <LoadingSpinner /> : <><Save size={20} /> Guardar Cambios</>}
-                                </button>
-                                
-                                <Link to="/change-password" className={`flex-1 py-3 px-6 rounded-xl font-bold flex justify-center items-center gap-2 border transition-colors ${isDark ? 'border-gray-600 hover:bg-gray-700 text-gray-300' : 'border-gray-300 hover:bg-gray-50 text-gray-700'}`}>
-                                    <Key size={20} /> Cambiar Contraseña
-                                </Link>
-                            </div>
-                        </form>
-
-                        {/* --- ZONA DE PELIGRO (MANTENIDA) --- */}
-                        <div className={`mt-12 p-6 rounded-xl border max-w-2xl mx-auto ${dangerZoneBg}`}>
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 bg-red-100 rounded-full text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                                    <AlertTriangle size={24} />
-                                </div>
-                                <h3 className={`text-lg font-bold ${isDark ? "text-red-300" : "text-red-700"}`}>Eliminar Cuenta</h3>
-                            </div>
-                            
-                            <p className={`text-sm mb-6 ${isDark ? "text-red-200/70" : "text-red-600/80"}`}>
-                                Esta acción es permanente. Se eliminarán tus datos personales y tu historial de pedidos. No podrás recuperar tu cuenta.
-                            </p>
-                            
-                            <button 
-                                onClick={() => setIsDeleteModalOpen(true)}
-                                className="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-colors flex items-center gap-2 shadow-sm text-sm"
-                            >
-                                <Trash2 size={18} /> Eliminar mi cuenta permanentemente
-                            </button>
-                        </div>
-                    </div>
-                )}
-
-                {/* CONTENIDO TAB PEDIDOS */}
-                {activeTab === 'orders' && (
-                    <div className="space-y-4 animate-fadeIn">
-                        {loadingOrders ? (
-                            <div className="flex justify-center py-10"><LoadingSpinner /></div>
-                        ) : orders.length === 0 ? (
-                            <div className="text-center py-16 text-gray-500">
-                                <Package size={48} className="mx-auto mb-4 opacity-30"/>
-                                <p className="text-lg font-medium">Aún no tienes pedidos.</p>
-                                <Link to="/products" className="text-purple-600 font-bold hover:underline mt-2 inline-block">¡Ir a comprar!</Link>
-                            </div>
-                        ) : (
-                            orders.map((order, index) => { // <--- AÑADIDO INDEX
-                                
-                                // --- CÁLCULO NÚMERO DE PEDIDO ---
-                                // El más reciente (index 0) es el número más alto.
-                                const orderNumber = orders.length - index;
-                                
-                                return (
-                                    <div key={order.id} className={`rounded-xl border overflow-hidden transition-all ${isDark ? 'border-gray-700 bg-gray-700/20' : 'border-gray-100 bg-gray-50 hover:bg-white hover:shadow-md'}`}>
-                                        
-                                        <div 
-                                          onClick={() => toggleOrder(order.id)}
-                                          className="p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center cursor-pointer select-none"
-                                        >
-                                            <div className="flex-1">
-                                                <div className="flex items-center gap-3 mb-1">
-                                                    <span className="font-bold text-lg text-purple-600 flex items-center gap-2">
-                                                        {/* AHORA MUESTRA EL NÚMERO RELATIVO */}
-                                                        <ShoppingBag size={18}/> Pedido #{orderNumber}
-                                                    </span>
-                                                    <span className={`text-xs px-2.5 py-0.5 rounded-full font-bold border ${order.status === 'PAID' ? 'bg-green-100 text-green-700 border-green-200' : 'bg-yellow-100 text-yellow-700 border-yellow-200'}`}>
-                                                        {order.status}
-                                                    </span>
-                                                </div>
-                                                <div className={`text-sm flex gap-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                                                    <span className="flex items-center gap-1"><Calendar size={14}/> {new Date(order.created_at).toLocaleDateString()}</span>
-                                                    <span>{order.items?.length || 0} productos</span>
-                                                    {/* (Opcional) Mostrar ID real si el usuario lo necesita */}
-                                                    <span className="opacity-50 text-xs mt-0.5">Ref: {order.id}</span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="text-right flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end mt-4 sm:mt-0">
-                                                <p className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-800"}`}>{formatPrice(order.total)}</p>
-                                                <div className={`p-1 rounded-full transition-transform duration-300 ${expandedOrderId === order.id ? 'rotate-90 bg-purple-100 text-purple-600' : 'text-gray-400'}`}>
-                                                    <ChevronRight size={20} />
-                                                </div>
-                                            </div>
+                <AnimatePresence mode="wait">
+                    {/* CONTENIDO TAB PERFIL */}
+                    {activeTab === 'profile' && (
+                        <motion.div 
+                            key="profile"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                    {/* Nombre */}
+                                    <div className={`flex items-center gap-4 px-4 py-3 rounded-2xl border-2 transition-all duration-300 group ${inputContainerClass}`}>
+                                        <User className={`w-5 h-5 ${isDark ? "text-gray-400" : "text-gray-400"}`} />
+                                        <div className="flex-1">
+                                            <label className={`text-xs font-bold uppercase tracking-wide mb-0.5 block ${labelColor}`}>Nombre</label>
+                                            <input 
+                                                type="text" 
+                                                name="first_name" 
+                                                value={profileData.first_name} 
+                                                onChange={handleChange} 
+                                                className={`w-full bg-transparent border-none outline-none text-base font-medium p-0 focus:ring-0 ${inputTextClass}`} 
+                                                placeholder="Tu nombre" 
+                                            />
                                         </div>
-
-                                        {expandedOrderId === order.id && (
-                                          <div className={`border-t px-5 py-4 ${isDark ? 'border-gray-700 bg-gray-800/30' : 'border-gray-200 bg-white'}`}>
-                                              <h4 className="text-xs font-bold uppercase tracking-wider mb-3 opacity-60">Resumen de Productos</h4>
-                                              <ul className="space-y-3">
-                                                  {order.items && order.items.map((item) => (
-                                                      <li key={item.id} className="flex justify-between items-center text-sm">
-                                                          <div className="flex items-center gap-3">
-                                                              <span className={`font-bold px-2 py-1 rounded text-xs ${isDark ? "bg-gray-700 text-gray-300" : "bg-gray-100 text-gray-700"}`}>
-                                                                  {item.quantity}x
-                                                              </span>
-                                                              <span className="font-medium">{item.product_name}</span>
-                                                          </div>
-                                                          <span className="font-mono font-medium opacity-80">{formatPrice(item.price)}</span>
-                                                      </li>
-                                                  ))}
-                                              </ul>
-                                          </div>
-                                        )}
                                     </div>
-                                )
-                            })
-                        )}
-                    </div>
-                )}
+                                    {/* Apellido */}
+                                    <div className={`flex items-center gap-4 px-4 py-3 rounded-2xl border-2 transition-all duration-300 group ${inputContainerClass}`}>
+                                        <User className={`w-5 h-5 ${isDark ? "text-gray-400" : "text-gray-400"}`} />
+                                        <div className="flex-1">
+                                            <label className={`text-xs font-bold uppercase tracking-wide mb-0.5 block ${labelColor}`}>Apellido</label>
+                                            <input 
+                                                type="text" 
+                                                name="last_name" 
+                                                value={profileData.last_name} 
+                                                onChange={handleChange} 
+                                                className={`w-full bg-transparent border-none outline-none text-base font-medium p-0 focus:ring-0 ${inputTextClass}`} 
+                                                placeholder="Tu apellido" 
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Email */}
+                                <div className={`flex items-center gap-4 px-4 py-3 rounded-2xl border-2 transition-all duration-300 group ${inputContainerClass}`}>
+                                    <Mail className={`w-5 h-5 ${isDark ? "text-gray-400" : "text-gray-400"}`} />
+                                    <div className="flex-1">
+                                        <label className={`text-xs font-bold uppercase tracking-wide mb-0.5 block ${labelColor}`}>Email</label>
+                                        <input 
+                                            type="email" 
+                                            name="email" 
+                                            value={profileData.email} 
+                                            onChange={handleChange} 
+                                            className={`w-full bg-transparent border-none outline-none text-base font-medium p-0 focus:ring-0 ${inputTextClass}`} 
+                                            placeholder="tucorreo@ejemplo.com" 
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                                    <button 
+                                        type="submit" 
+                                        className="flex-1 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-lg shadow-lg shadow-purple-500/30 transition-all transform active:scale-95 flex justify-center items-center gap-2" 
+                                        disabled={saving}
+                                    >
+                                        {saving ? <LoadingSpinner /> : <><Save size={20} /> Guardar Cambios</>}
+                                    </button>
+                                    
+                                    <Link 
+                                        to="/change-password" 
+                                        className={`flex-1 py-4 rounded-xl font-bold flex justify-center items-center gap-2 border transition-all active:scale-95 ${isDark ? 'border-gray-600 hover:bg-gray-700 text-gray-300' : 'border-gray-300 hover:bg-gray-50 text-gray-700'}`}
+                                    >
+                                        <Key size={20} /> Cambiar Contraseña
+                                    </Link>
+                                </div>
+                            </form>
+
+                            {/* --- ZONA DE PELIGRO --- */}
+                            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                                <h3 className={`text-sm font-bold uppercase tracking-widest mb-4 flex items-center gap-2 ${isDark ? "text-red-400" : "text-red-600"}`}>
+                                    <AlertTriangle size={16} /> Zona de Peligro
+                                </h3>
+                                <div className={`p-6 rounded-2xl border flex flex-col md:flex-row items-center justify-between gap-4 ${isDark ? "bg-red-900/10 border-red-900/30" : "bg-red-50 border-red-100"}`}>
+                                    <p className={`text-sm text-center md:text-left ${isDark ? "text-red-200/80" : "text-red-800/80"}`}>
+                                        Esta acción eliminará permanentemente tu cuenta y pedidos.
+                                    </p>
+                                    <button 
+                                        onClick={() => setIsDeleteModalOpen(true)}
+                                        className="whitespace-nowrap px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors shadow-lg shadow-red-500/20 active:scale-95 text-sm flex items-center gap-2"
+                                    >
+                                        <Trash2 size={18} /> Eliminar Cuenta
+                                    </button>
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+
+                    {/* CONTENIDO TAB PEDIDOS */}
+                    {activeTab === 'orders' && (
+                        <motion.div 
+                            key="orders"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="space-y-4"
+                        >
+                            {loadingOrders ? (
+                                <div className="flex justify-center py-10"><LoadingSpinner /></div>
+                            ) : orders.length === 0 ? (
+                                <div className="text-center py-16 opacity-60">
+                                    <Package size={64} className="mx-auto mb-4 text-purple-400"/>
+                                    <p className={`text-xl font-bold ${isDark ? "text-white" : "text-gray-900"}`}>Aún no tienes pedidos</p>
+                                    <p className="text-sm mt-1 mb-6">¡Explora nuestra tienda y mima a tu mascota!</p>
+                                    <Link to="/products" className="text-purple-500 font-bold hover:underline">Ir a comprar →</Link>
+                                </div>
+                            ) : (
+                                orders.map((order, index) => {
+                                    const orderNumber = orders.length - index;
+                                    const isExpanded = expandedOrderId === order.id;
+                                    
+                                    return (
+                                        <motion.div 
+                                            key={order.id}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: index * 0.05 }}
+                                            className={`rounded-2xl border overflow-hidden transition-all ${isDark ? 'border-gray-700 bg-gray-800/40' : 'border-gray-200 bg-white shadow-sm hover:shadow-md'}`}
+                                        >
+                                            
+                                            <div 
+                                              onClick={() => toggleOrder(order.id)}
+                                              className="p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center cursor-pointer select-none group"
+                                            >
+                                                <div className="flex-1 w-full sm:w-auto">
+                                                    <div className="flex items-center justify-between sm:justify-start gap-3 mb-2">
+                                                        <span className="font-black text-lg text-purple-600 dark:text-purple-400 flex items-center gap-2">
+                                                            <ShoppingBag size={20}/> #{orderNumber}
+                                                        </span>
+                                                        <span className={`text-xs px-2.5 py-1 rounded-full font-bold border uppercase tracking-wider ${order.status === 'PAID' ? 'bg-green-500/10 text-green-600 border-green-500/20' : 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20'}`}>
+                                                            {order.status}
+                                                        </span>
+                                                    </div>
+                                                    <div className={`text-sm flex gap-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                                                        <span className="flex items-center gap-1.5"><Calendar size={14}/> {new Date(order.created_at).toLocaleDateString()}</span>
+                                                        <span>•</span>
+                                                        <span>{order.items?.length || 0} items</span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div className="flex items-center justify-between w-full sm:w-auto mt-4 sm:mt-0 gap-6">
+                                                    <p className={`text-xl font-black ${isDark ? "text-white" : "text-gray-800"}`}>{formatPrice(order.total)}</p>
+                                                    <div className={`p-2 rounded-full transition-all duration-300 ${isExpanded ? 'bg-purple-600 text-white rotate-180' : 'bg-gray-100 dark:bg-gray-700 text-gray-500'}`}>
+                                                        <ChevronDown size={20} />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <AnimatePresence>
+                                                {isExpanded && (
+                                                  <motion.div 
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: "auto", opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    className={`border-t px-6 py-5 ${isDark ? 'border-gray-700 bg-gray-900/30' : 'border-gray-100 bg-gray-50/50'}`}
+                                                  >
+                                                      <h4 className="text-xs font-bold uppercase tracking-widest mb-4 opacity-50">Detalle del Pedido</h4>
+                                                      <ul className="space-y-4">
+                                                          {order.items && order.items.map((item) => (
+                                                              <li key={item.id} className="flex justify-between items-center text-sm">
+                                                                  <div className="flex items-center gap-4">
+                                                                      <span className={`font-bold px-2.5 py-1 rounded-lg text-xs ${isDark ? "bg-gray-700 text-gray-200" : "bg-white border text-gray-700"}`}>
+                                                                          {item.quantity}x
+                                                                      </span>
+                                                                      <span className="font-medium text-base">{item.product_name}</span>
+                                                                  </div>
+                                                                  <span className="font-mono font-medium opacity-80">{formatPrice(item.price)}</span>
+                                                              </li>
+                                                          ))}
+                                                      </ul>
+                                                      <div className="mt-6 pt-4 border-t border-dashed border-gray-300 dark:border-gray-700 flex justify-between items-center">
+                                                          <span className="text-sm font-medium opacity-60">Total Pagado</span>
+                                                          <span className="text-lg font-black text-purple-600 dark:text-purple-400">{formatPrice(order.total)}</span>
+                                                      </div>
+                                                  </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </motion.div>
+                                    )
+                                })
+                            )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
             </div>
         </div>
-      </div>
+      </motion.div>
 
       <ConfirmModal 
         isOpen={isDeleteModalOpen}

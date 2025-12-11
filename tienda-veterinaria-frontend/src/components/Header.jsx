@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { 
@@ -53,18 +52,19 @@ export default function Header() {
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
+    // PY-4 y px-3 en móvil para pegar iconos a la derecha
     <header
-      className={`${headerBgClass} text-white shadow-lg sticky top-0 z-50 border-b transition-colors duration-500`}
+      className={`${headerBgClass} text-white shadow-2xl sticky top-0 z-50 border-b transition-colors duration-500`}
     >
-      <div className="container mx-auto flex justify-between items-center py-3 px-4 md:py-4 md:px-6 relative">
+      <div className="container mx-auto flex justify-between items-center py-4 px-3 md:py-4 md:px-6 relative">
         
-        {/* LOGO */}
+        {/* LOGO GIGANTE */}
         <Link
           to="/"
-          className="text-xl md:text-2xl font-bold tracking-wide hover:text-yellow-300 transition-all flex items-center gap-2"
+          className="text-3xl md:text-2xl font-black tracking-tighter hover:text-yellow-300 transition-all flex items-center gap-2 transform active:scale-95"
           onClick={closeMenu}
         >
-          <span className="text-2xl">🐾</span>
+          <span className="text-3xl">🐾</span>
           <span>VetShop</span>
         </Link>
 
@@ -95,7 +95,7 @@ export default function Header() {
             >
               <ShoppingCart className="w-5 h-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-bounce shadow-sm border-2 border-white/20">
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-bounce shadow-md">
                   {cartCount}
                 </span>
               )}
@@ -147,58 +147,58 @@ export default function Header() {
           </button>
         </nav>
 
-        {/* MOBILE CONTROLS — MOVIDOS A LA DERECHA */}
-        <div className="flex items-center gap-3 lg:hidden ml-auto">
+        {/* MOBILE CONTROLS — GRANDES Y TOTALMENTE A LA DERECHA */}
+        <div className="flex items-center gap-5 lg:hidden ml-auto">
           
-          {/* TEMA */}
+          {/* TEMA - ICONO GRANDE */}
           <button
             onClick={toggleTheme}
-            className="p-2 text-white/80 hover:text-white"
+            className="text-white/90 hover:text-white transition-transform active:rotate-45"
           >
-            {isDark ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            {isDark ? <Moon className="w-7 h-7" /> : <Sun className="w-7 h-7" />}
           </button>
 
-          {/* CARRITO */}
+          {/* CARRITO - ICONO GRANDE */}
           <Link
             to="/cart"
-            className={`relative p-2 ${isAnimating ? "animate-bounce" : ""}`}
+            className={`relative ${isAnimating ? "animate-bounce" : ""}`}
             onClick={closeMenu}
           >
-            <ShoppingCart className="w-6 h-6" />
+            <ShoppingCart className="w-8 h-8" />
             {cartCount > 0 && (
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full min-w-[18px] flex justify-center border border-white shadow-sm">
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-md animate-bounce">
                 {cartCount}
               </span>
             )}
           </Link>
 
-          {/* HAMBURGUESA */}
+          {/* HAMBURGUESA - ICONO GRANDE */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-1 focus:outline-none hover:bg-white/10 rounded transition-colors"
+            className="focus:outline-none transition-transform active:scale-90"
           >
             {isMobileMenuOpen ? (
-              <X className="w-7 h-7" />
+              <X className="w-9 h-9" />
             ) : (
-              <Menu className="w-7 h-7" />
+              <Menu className="w-9 h-9" />
             )}
           </button>
         </div>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU - INMERSIVO */}
         {isMobileMenuOpen && (
           <div
-            className={`absolute top-full left-0 w-full shadow-2xl border-t ${
-              isDark ? "border-indigo-900" : "border-blue-700"
-            } z-50 lg:hidden flex flex-col p-4 space-y-2 ${mobileMenuBg} animate-fadeIn`}
+            className={`absolute top-full left-0 w-full min-h-screen shadow-2xl border-t-2 ${
+              isDark ? "border-indigo-900" : "border-blue-500"
+            } z-50 lg:hidden flex flex-col p-6 space-y-4 ${mobileMenuBg} animate-fadeIn`}
           >
             <Link
               to="/products"
-              className={`flex items-center gap-3 py-3 px-3 rounded-lg font-bold text-lg transition-colors ${mobileItemClass}`}
+              className={`flex items-center gap-4 py-5 px-4 rounded-2xl font-black text-2xl transition-all active:scale-95 shadow-sm border border-transparent ${mobileItemClass} ${isDark ? 'bg-gray-800' : 'bg-gray-50'}`}
               onClick={closeMenu}
             >
               <ShoppingBag
-                className={`w-5 h-5 ${
+                className={`w-8 h-8 ${
                   isDark ? "text-indigo-400" : "text-blue-600"
                 }`}
               />
@@ -208,41 +208,41 @@ export default function Header() {
             {isStaff && (
               <Link
                 to="/admin-panel"
-                className={`flex items-center gap-3 py-3 px-3 font-bold rounded-lg transition-colors ${
+                className={`flex items-center gap-4 py-5 px-4 font-bold text-xl rounded-2xl transition-colors ${
                   isDark
-                    ? "bg-purple-900/20 text-purple-400"
+                    ? "bg-purple-900/30 text-purple-300"
                     : "bg-purple-50 text-purple-700"
                 }`}
                 onClick={closeMenu}
               >
-                <Settings className="w-5 h-5" /> Panel Admin
+                <Settings className="w-8 h-8" /> Panel Admin
               </Link>
             )}
 
-            <div className="border-t border-gray-200 dark:border-gray-700 my-2"></div>
+            <div className="border-t border-gray-200 dark:border-gray-700 my-4 opacity-50"></div>
 
             {isAuthenticated ? (
               <>
                 <Link
                   to="/profile"
-                  className={`flex items-center gap-3 py-3 px-3 rounded-lg font-medium transition-colors ${mobileItemClass}`}
+                  className={`flex items-center gap-4 py-5 px-4 rounded-2xl font-bold text-xl transition-colors ${mobileItemClass}`}
                   onClick={closeMenu}
                 >
-                  <User className="w-5 h-5" /> Mi Perfil ({user?.username})
+                  <User className="w-8 h-8" /> Mi Perfil
                 </Link>
 
                 <button
                   onClick={handleOpenLogoutModal}
-                  className="flex items-center gap-3 py-3 px-3 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg w-full text-left font-medium transition-colors"
+                  className="flex items-center gap-4 py-5 px-4 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-2xl w-full text-left font-bold text-xl transition-colors mt-auto"
                 >
-                  <LogOut className="w-5 h-5" /> Cerrar Sesión
+                  <LogOut className="w-8 h-8" /> Cerrar Sesión
                 </button>
               </>
             ) : (
-              <div className="grid grid-cols-1 gap-3 pt-2">
+              <div className="flex flex-col gap-4 pt-4">
                 <Link
                   to="/login"
-                  className="py-3 text-center bg-yellow-400 text-blue-900 rounded-lg font-bold shadow-md hover:bg-yellow-300 transition-colors"
+                  className="py-5 text-center bg-yellow-400 text-blue-900 rounded-2xl font-black text-xl shadow-lg active:scale-95 transition-transform"
                   onClick={closeMenu}
                 >
                   Iniciar Sesión
@@ -250,13 +250,17 @@ export default function Header() {
 
                 <Link
                   to="/register"
-                  className="py-3 text-center bg-blue-600 text-white rounded-lg font-bold shadow-md hover:bg-blue-700 transition-colors"
+                  className="py-5 text-center bg-blue-600 text-white rounded-2xl font-black text-xl shadow-lg active:scale-95 transition-transform"
                   onClick={closeMenu}
                 >
                   Registro Gratis
                 </Link>
               </div>
             )}
+            
+            <div className="text-center text-sm opacity-50 pt-10 pb-20">
+                VetShop v1.0
+            </div>
           </div>
         )}
       </div>
