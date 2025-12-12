@@ -18,13 +18,13 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 export default function CheckoutPage() {
   const [clientSecret, setClientSecret] = useState("");
-  const [error, setError] = useState(null); // Nuevo estado para errores de carga
+  const [error, setError] = useState(null); // Estado para errores de red
   const [loading, setLoading] = useState(false);
 
   const cartItems = useCartStore((state) => state.items || []);
   const storeTotal = useCartStore((state) => state.totalPrice);
   
-  // Calcular total si storeTotal viene en 0 por alguna razón de sincronización
+  // Calcular total fallback
   const cartTotal = storeTotal || cartItems.reduce((acc, item) => acc + (Number(item.effective_price || item.price) * (item.quantity || 1)), 0);
 
   const theme = useThemeStore((state) => state.theme);
@@ -43,27 +43,27 @@ export default function CheckoutPage() {
           }
       } catch (err) {
           console.error("Error creating payment intent:", err);
-          setError("No se pudo conectar con el servidor de pagos. Verifica tu conexión a internet.");
+          setError("No se pudo conectar con el servidor de pagos. Verifica que el Backend esté corriendo.");
       } finally {
           setLoading(false);
       }
   };
 
   useEffect(() => {
-    // Solo crear PaymentIntent si hay items y aún no tenemos el secret
+    // Solo llamar al backend si hay items y no tenemos el secret
     if (cartItems.length > 0 && !clientSecret) {
         fetchPaymentIntent();
     }
   }, [cartItems, clientSecret]);
 
-  // --- CONFIGURACIÓN VISUAL DE STRIPE (Appearance API) ---
+  // --- CONFIGURACIÓN VISUAL DE STRIPE ---
   const appearance = { 
     theme: isDark ? 'night' : 'stripe', 
     variables: {
-      colorPrimary: '#9333ea', // Purple-600
+      colorPrimary: '#9333ea', 
       colorBackground: isDark ? '#1f2937' : '#ffffff', 
       colorText: isDark ? '#f3f4f6' : '#111827', 
-      colorDanger: '#dc2626', // ROJO FUERTE (#dc2626) para errores en input
+      colorDanger: '#dc2626',
       fontFamily: '"Inter", system-ui, sans-serif',
       borderRadius: '12px',
       spacingUnit: '4px',
@@ -78,32 +78,12 @@ export default function CheckoutPage() {
         },
         '.Label': {
             color: isDark ? '#d1d5db' : '#374151',
-            fontWeight: '700', // Negrita en labels
+            fontWeight: '700', 
             fontSize: '13px',
             marginBottom: '6px',
             textTransform: 'uppercase',
             letterSpacing: '0.025em'
         },
-        '.Error': {
-            color: '#dc2626', // Rojo puro
-            fontSize: '13px',
-            fontWeight: '700', // Negrita para que resalte
-            marginTop: '4px',
-        },
-        '.Input--invalid': {
-            color: '#dc2626',
-            borderColor: '#dc2626',
-            boxShadow: '0 0 0 1px #dc2626'
-        },
-        '.Tab': {
-            border: isDark ? '1px solid #4b5563' : '1px solid #e5e7eb',
-            backgroundColor: isDark ? '#1f2937' : '#f9fafb',
-        },
-        '.Tab--selected': {
-            borderColor: '#9333ea',
-            backgroundColor: isDark ? '#3b0764' : '#faf5ff', 
-            color: '#9333ea',
-        }
     }
   };
   
@@ -114,6 +94,7 @@ export default function CheckoutPage() {
     ? "bg-gray-900/60 border-gray-700/50 shadow-black/40 backdrop-blur-xl" 
     : "bg-white/80 border-white/60 shadow-purple-200/50 backdrop-blur-xl";
   
+  // CARRITO VACÍO
   if (cartItems.length === 0) {
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 text-center overflow-hidden relative font-sans">
@@ -277,7 +258,7 @@ export default function CheckoutPage() {
                             <CheckoutForm />
                         </Elements>
                     ) : error ? (
-                        // MOSTRAR ERROR SI FALLA LA CARGA
+                        // MOSTRAR ERROR SI FALLA LA CARGA DEL PAYMENT INTENT
                         <div className="flex flex-col items-center justify-center py-12 text-center">
                             <div className="p-4 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-full mb-4">
                                 <WifiOff size={40} />
