@@ -7,8 +7,8 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { motion } from "framer-motion";
-import { Lock, ArrowRight, AlertCircle } from "lucide-react";
-import { useCartStore } from "../store/useCartStore";
+import { Lock, AlertCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom"; 
 import { useThemeStore } from "../store/useThemeStore";
 import SkeletonLoader from "./ProductCardSkeleton";
 import { toast } from "react-toastify";
@@ -16,24 +16,22 @@ import { toast } from "react-toastify";
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const { clearCart, totalPrice } = useCartStore();
+  const navigate = useNavigate(); 
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === "dark";
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Estados de carga individual para cada elemento de Stripe
+  // Estados de carga individual
   const [readyStates, setReadyStates] = useState({
     payment: false,
     address: false,
     auth: false
   });
 
-  // El formulario solo se muestra cuando TODO está listo
   const isFullyReady = readyStates.payment && readyStates.address && readyStates.auth;
 
-  // Handlers para marcar cada elemento como listo
   const handleElementReady = (elementName) => {
     setReadyStates(prev => ({ ...prev, [elementName]: true }));
   };
@@ -44,20 +42,35 @@ export default function CheckoutForm() {
     if (!stripe || !elements) return;
 
     setIsLoading(true);
+    setMessage(null);
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: `${window.location.origin}/#/success`, // Ajustado para HashRouter si es necesario
-      },
-    });
+    try {
+        // Redirección manual: "if_required" evita que Stripe redirija si no es necesario
+        // Usamos return_url como fallback
+        const { error, paymentIntent } = await stripe.confirmPayment({
+          elements,
+          confirmParams: {
+            return_url: `${window.location.origin}/#/success`, 
+          },
+          redirect: "if_required",
+        });
 
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
-      toast.error(error.message);
-    } else {
-      setMessage("Ocurrió un error inesperado.");
-      toast.error("Error inesperado en el pago.");
+        if (error) {
+          if (error.type === "card_error" || error.type === "validation_error") {
+            setMessage(error.message);
+            toast.error(error.message);
+          } else {
+            setMessage("Ocurrió un error inesperado en el pago.");
+            toast.error("Error inesperado.");
+          }
+        } else if (paymentIntent && paymentIntent.status === "succeeded") {
+          // ÉXITO: Navegar manualmente a la Success Page
+          navigate(`/success?payment_intent=${paymentIntent.id}&redirect_status=succeeded`);
+        }
+    } catch (err) {
+        console.error(err);
+        setMessage("Error de conexión con la pasarela de pago.");
+        toast.error("Error de conexión.");
     }
 
     setIsLoading(false);
@@ -71,16 +84,11 @@ export default function CheckoutForm() {
   return (
     <form id="payment-form" onSubmit={handleSubmit} className="w-full relative min-h-[400px]">
       
-      {/* --- SKELETON LOADING (Visible mientras Stripe carga) --- */}
+      {/* SKELETON LOADING */}
       {!isFullyReady && (
         <div className="absolute inset-0 z-20 space-y-6 bg-transparent">
-            {/* Simula Email */}
             <SkeletonLoader type="text" className="h-12 w-full rounded-xl" />
-            
-            {/* Simula Dirección (más grande) */}
             <SkeletonLoader type="text" className="h-24 w-full rounded-xl" />
-            
-            {/* Simula Tarjeta */}
             <div className="space-y-3 pt-2">
                 <SkeletonLoader type="text" className="h-12 w-full rounded-xl" />
                 <div className="grid grid-cols-2 gap-4">
@@ -88,21 +96,15 @@ export default function CheckoutForm() {
                     <SkeletonLoader type="text" className="h-12 w-full rounded-xl" />
                 </div>
             </div>
-            
-            {/* Simula Botón */}
             <SkeletonLoader type="text" className="h-14 w-full rounded-xl mt-8" />
         </div>
       )}
 
-      {/* --- CONTENIDO REAL (Oculto hasta estar listo) --- */}
+      {/* CONTENIDO REAL */}
       <div className={`transition-opacity duration-500 ${isFullyReady ? 'opacity-100 relative z-10' : 'opacity-0 absolute top-0 left-0 w-full pointer-events-none'}`}>
         
-        <div className="space-y-5">
-            {/* 1. Email (Link Authentication) */}
+        <div className="space-y-6">
             <div className="space-y-2">
-                <label className={`text-xs font-bold uppercase tracking-wider ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                    Contacto
-                </label>
                 <LinkAuthenticationElement
                     id="link-authentication-element"
                     onReady={() => handleElementReady('auth')}
@@ -110,22 +112,14 @@ export default function CheckoutForm() {
                 />
             </div>
 
-            {/* 2. Dirección de Envío */}
             <div className="space-y-2">
-                <label className={`text-xs font-bold uppercase tracking-wider ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                    Dirección de Envío
-                </label>
                 <AddressElement 
                     options={{ mode: 'shipping' }} 
                     onReady={() => handleElementReady('address')}
                 />
             </div>
 
-            {/* 3. Método de Pago */}
             <div className="space-y-2 pt-2">
-                <label className={`text-xs font-bold uppercase tracking-wider ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                    Detalles de Tarjeta
-                </label>
                 <PaymentElement 
                     id="payment-element" 
                     options={{ layout: "tabs" }} 
@@ -134,13 +128,18 @@ export default function CheckoutForm() {
             </div>
         </div>
 
-        {/* Mensajes de Error de Stripe */}
+        {/* MENSAJE DE ERROR CON ALTO CONTRASTE EN LIGHT MODE */}
         {message && (
             <motion.div 
                 initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
-                className="mt-4 p-4 rounded-xl bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 text-sm flex items-center gap-2 border border-red-200 dark:border-red-800"
+                className={`mt-6 p-4 rounded-xl text-sm flex items-center gap-3 border-2 font-bold shadow-sm ${
+                    isDark 
+                    ? "bg-red-900/40 text-red-200 border-red-800" 
+                    : "bg-red-100 text-red-800 border-red-200"
+                }`}
             >
-                <AlertCircle size={18} /> {message}
+                <AlertCircle size={24} className="flex-shrink-0" /> 
+                <span>{message}</span>
             </motion.div>
         )}
 

@@ -11,9 +11,10 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import CheckoutPage from './pages/CheckoutPage';
+import SuccessPage from './pages/SuccessPage'; // <--- IMPORTACIÓN AÑADIDA
 import ResetPasswordRequestPage from './pages/ResetPasswordRequestPage';
 import ResetPasswordConfirmPage from './pages/ResetPasswordConfirmPage';
-
+import ChangePasswordPage from './pages/ChangePasswordPage';
 // Pages Admin (Dashboard)
 import AdminPanelPage from './pages/AdminPanelPage';
 
@@ -35,6 +36,7 @@ import { useThemeStore } from './store/useThemeStore';
 import { useAuthStore } from './store/useAuthStore';
 import { useCartStore } from './store/useCartStore';
 
+
 const LayoutWithHeader = ({ children }) => (
   <>
     <Header />
@@ -55,7 +57,6 @@ const App = () => {
     fetchCart();
   }, [checkAuth, fetchCart]);
 
-  // NOTA: Se eliminó 'transition-colors duration-300' para evitar parpadeos en móviles con gradientes.
   return (
     <div className={`min-h-screen flex flex-col w-full font-sans ${isDark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
       <ToastContainer 
@@ -71,7 +72,11 @@ const App = () => {
         <Route path="/login" element={<LayoutWithHeader><LoginPage /></LayoutWithHeader>} />
         <Route path="/register" element={<LayoutWithHeader><RegisterPage /></LayoutWithHeader>} />
         <Route path="/profile" element={<LayoutWithHeader><ProfilePage /></LayoutWithHeader>} />
+        
+        {/* Rutas de Pago (Sin Header para evitar distracciones) */}
         <Route path="/checkout" element={<CheckoutPage />} /> 
+        <Route path="/success" element={<SuccessPage />} /> {/* <--- RUTA AÑADIDA */}
+        <Route path="/change-password" element={<LayoutWithHeader><ChangePasswordPage /></LayoutWithHeader>} />
         <Route path="/request-password-reset" element={<LayoutWithHeader><ResetPasswordRequestPage /></LayoutWithHeader>} />
         <Route path="/reset-password-confirm" element={<LayoutWithHeader><ResetPasswordConfirmPage /></LayoutWithHeader>} />
 
@@ -81,20 +86,20 @@ const App = () => {
             
             {/* Productos */}
             <Route path="products" element={<AdminProductListPage />} />
-            <Route path="productos" element={<AdminProductListPage />} /> {/* Alias español */}
+            <Route path="productos" element={<AdminProductListPage />} />
             <Route path="productos/new" element={<AdminProductFormPage />} />
             <Route path="productos/edit/:slug" element={<AdminProductFormPage />} />
             <Route path="productos/:slug/imagenes" element={<AdminProductImageManagerPage />} />
 
             {/* Categorías */}
             <Route path="categories" element={<AdminCategoryListPage />} />
-            <Route path="categorias" element={<AdminCategoryListPage />} /> {/* Alias español */}
+            <Route path="categorias" element={<AdminCategoryListPage />} />
             <Route path="categorias/new" element={<AdminCategoryFormPage />} />
             <Route path="categorias/edit/:slug" element={<AdminCategoryFormPage />} />
 
             {/* Usuarios */}
             <Route path="users" element={<AdminUserListPage />} />
-            <Route path="usuarios" element={<AdminUserListPage />} /> {/* Alias español */}
+            <Route path="usuarios" element={<AdminUserListPage />} />
             <Route path="usuarios/:id" element={<AdminUserDetailPage />} />
 
             {/* Fallback */}

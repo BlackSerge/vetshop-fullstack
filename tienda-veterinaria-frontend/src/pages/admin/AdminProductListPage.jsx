@@ -28,17 +28,17 @@ export default function AdminProductListPage() {
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
 
-  // --- GLASSMORPHISM STYLES ---
-  const glassContainer = isDark 
-    ? "bg-gray-900/40 border-gray-700/50 backdrop-blur-xl shadow-black/20" 
-    : "bg-white/60 border-white/60 backdrop-blur-xl shadow-purple-100/50";
+  // --- ESTILOS SÓLIDOS (Sin Blur) ---
+  const cardContainer = isDark 
+    ? "bg-gray-900 border-gray-700 shadow-lg shadow-black/20" 
+    : "bg-white border-gray-200 shadow-lg shadow-purple-100/50";
     
   const inputClass = isDark 
-    ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-500 focus:border-purple-500' 
-    : 'bg-white/50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-purple-500';
+    ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-500 focus:border-purple-500' 
+    : 'bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:bg-white';
 
   const btnPrimary = "bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/30";
-  const btnAction = isDark ? "bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 border border-gray-600" : "bg-white hover:bg-gray-50 text-gray-600 border border-gray-200";
+  const btnAction = isDark ? "bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-600" : "bg-white hover:bg-gray-50 text-gray-600 border border-gray-200";
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
@@ -187,8 +187,8 @@ export default function AdminProductListPage() {
 
       {error && <div className="p-4 mb-6 bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-xl">{error}</div>}
 
-      {/* Filters Bar - Glassmorphism */}
-      <div className={`p-4 rounded-3xl mb-8 border ${glassContainer}`}>
+      {/* Filters Bar - Solid Card */}
+      <div className={`p-4 rounded-3xl mb-8 border ${cardContainer}`}>
         <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1 group">
                 <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-500' : 'text-gray-400'} group-focus-within:text-purple-500 transition-colors`} size={20} />
@@ -226,7 +226,7 @@ export default function AdminProductListPage() {
                 <div className="font-bold text-base">{prod.nombre}</div>
             ),
             categoria_display_name: (
-                <span className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wide border ${isDark ? 'bg-gray-800/50 border-gray-600 text-gray-300' : 'bg-gray-100 border-gray-200 text-gray-600'}`}>
+                <span className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wide border ${isDark ? 'bg-gray-800 border-gray-600 text-gray-300' : 'bg-gray-100 border-gray-200 text-gray-600'}`}>
                     {prod.categoria_info?.nombre || '—'}
                 </span>
             ),

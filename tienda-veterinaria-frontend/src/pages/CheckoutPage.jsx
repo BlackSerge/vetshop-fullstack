@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
 import { ShoppingBag, CreditCard, ShieldCheck, ArrowLeft, Lock, Truck, PawPrint } from 'lucide-react';
@@ -13,13 +13,14 @@ import { useCartStore } from "../store/useCartStore";
 import { useThemeStore } from "../store/useThemeStore";
 import { formatPrice } from "../utils/format";
 
-// Inicializar Stripe fuera del render para evitar re-creación
+// Inicializar Stripe
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 export default function CheckoutPage() {
   const [clientSecret, setClientSecret] = useState("");
   const cartItems = useCartStore((state) => state.items || []);
   const storeTotal = useCartStore((state) => state.totalPrice);
+  // Calcular total si storeTotal viene en 0 por alguna razón de sincronización
   const cartTotal = storeTotal || cartItems.reduce((acc, item) => acc + (Number(item.effective_price || item.price) * (item.quantity || 1)), 0);
 
   const theme = useThemeStore((state) => state.theme);
@@ -39,33 +40,64 @@ export default function CheckoutPage() {
     }
   }, [cartItems, clientSecret]);
 
-  // Stripe Appearance API para coincidir con Glassmorphism
+  // --- CONFIGURACIÓN VISUAL DE STRIPE (Appearance API) ---
   const appearance = { 
     theme: isDark ? 'night' : 'stripe', 
     variables: {
-      colorPrimary: '#9333ea', // purple-600
-      colorBackground: isDark ? '#1f2937' : '#ffffff', // bg-gray-800 : white
-      colorText: isDark ? '#f3f4f6' : '#1f2937',
-      fontFamily: '"Inter", sans-serif',
-      borderRadius: '16px',
-      spacingUnit: '5px',
+      colorPrimary: '#9333ea', // Purple-600
+      colorBackground: isDark ? '#1f2937' : '#ffffff', 
+      colorText: isDark ? '#f3f4f6' : '#111827', 
+      colorDanger: '#dc2626', // ROJO FUERTE para errores (Importante)
+      fontFamily: '"Inter", system-ui, sans-serif',
+      borderRadius: '12px',
+      spacingUnit: '4px',
     },
     rules: {
         '.Input': {
+            border: isDark ? '1px solid #4b5563' : '1px solid #d1d5db',
+            backgroundColor: isDark ? 'rgba(31, 41, 55, 0.5)' : '#ffffff',
+            color: isDark ? '#f3f4f6' : '#111827',
+            paddingTop: '12px',
+            paddingBottom: '12px',
+        },
+        '.Label': {
+            color: isDark ? '#d1d5db' : '#374151',
+            fontWeight: '600',
+            fontSize: '13px',
+            marginBottom: '6px',
+            textTransform: 'uppercase',
+            letterSpacing: '0.025em'
+        },
+        // ESTILOS ESPECÍFICOS PARA ERRORES EN MODO CLARO
+        '.Error': {
+            color: '#dc2626', // Rojo puro
+            fontSize: '13px',
+            fontWeight: '700', // Negrita para que resalte
+            marginTop: '4px',
+        },
+        '.Input--invalid': {
+            color: '#dc2626',
+            borderColor: '#dc2626',
+            boxShadow: '0 0 0 1px #dc2626'
+        },
+        '.Tab': {
             border: isDark ? '1px solid #4b5563' : '1px solid #e5e7eb',
-            backgroundColor: isDark ? 'rgba(31, 41, 55, 0.5)' : 'rgba(255, 255, 255, 0.8)',
-            backdropFilter: 'blur(10px)',
+            backgroundColor: isDark ? '#1f2937' : '#f9fafb',
+        },
+        '.Tab--selected': {
+            borderColor: '#9333ea',
+            backgroundColor: isDark ? '#3b0764' : '#faf5ff', // Purple background muy suave
+            color: '#9333ea',
         }
     }
   };
   
-  // Options memoization
   const options = { clientSecret, appearance };
 
-  // --- STYLES (More Transparent for Glass Effect) ---
+  // --- STYLES ---
   const glassContainer = isDark 
     ? "bg-gray-900/60 border-gray-700/50 shadow-black/40 backdrop-blur-xl" 
-    : "bg-white/60 border-white/60 shadow-purple-200/50 backdrop-blur-xl";
+    : "bg-white/80 border-white/60 shadow-purple-200/50 backdrop-blur-xl";
   
   if (cartItems.length === 0) {
     return (
@@ -73,17 +105,6 @@ export default function CheckoutPage() {
              <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-50"></div>
              <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-50 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
              
-             {/* Decoración Flotante */}
-             <div className="fixed inset-0 overflow-hidden pointer-events-none -z-40">
-                <motion.div 
-                    animate={{ y: [0, -20, 0], opacity: [0.1, 0.3, 0.1] }} 
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className={`absolute top-10 left-10 ${isDark ? 'text-white' : 'text-purple-900'}`}
-                >
-                    <PawPrint size={120} className="opacity-10 rotate-12" />
-                </motion.div>
-             </div>
-
              <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                 className={`relative z-10 p-10 rounded-3xl border w-full max-w-sm mx-auto ${glassContainer}`}
@@ -106,11 +127,11 @@ export default function CheckoutPage() {
         <title>Finalizar Compra | VetShop</title>
       </Helmet>
 
-      {/* BACKGROUNDS - FIXED (z-50 negative to sit behind everything but allow App bg to be covered) */}
+      {/* BACKGROUNDS */}
       <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-50"></div>
       <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-50 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
 
-      {/* Elementos Decorativos Flotantes (Background) */}
+      {/* DECORACIÓN FONDO */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-40">
             <motion.div 
                 animate={{ y: [0, -30, 0], opacity: [0.05, 0.15, 0.05] }} 
@@ -155,7 +176,6 @@ export default function CheckoutPage() {
             >
                 <div className={`rounded-3xl border overflow-hidden ${glassContainer}`}>
                     <div className={`p-6 border-b flex items-center gap-3 ${isDark ? 'border-gray-700/50' : 'border-gray-100'}`}>
-                        {/* ICONO CON ALTO CONTRASTE EN MODO CLARO */}
                         <div className={`p-2.5 rounded-xl shadow-sm ${isDark ? 'bg-purple-900/30 text-purple-300' : 'bg-purple-600 text-white'}`}>
                             <ShoppingBag size={22} />
                         </div>
@@ -226,8 +246,7 @@ export default function CheckoutPage() {
                 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
                 className="lg:col-span-7 order-1 lg:order-2"
             >
-                {/* PADDING REDUCIDO EN MOBILE PARA QUE STRIPE QUEPA (p-4 en vez de p-6) */}
-                <div className={`rounded-3xl border p-4 md:p-10 ${glassContainer}`}>
+                <div className={`rounded-3xl border p-5 md:p-10 ${glassContainer}`}>
                     <div className="mb-8 flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg text-white">
                             <CreditCard size={24} />

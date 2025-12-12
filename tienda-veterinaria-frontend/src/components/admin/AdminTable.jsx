@@ -6,28 +6,28 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
 
-  // --- GLASSMORPHISM STYLES ---
-  // Background debe ser semi-transparente (opacity /60 o /70) para ver el fondo
-  // Backdrop-blur crea el efecto de cristal esmerilado
+  // --- ESTILOS SÓLIDOS (SIN BLUR) ---
+  // Usamos colores sólidos para evitar repintado constante al hacer scroll
   const tableContainerClass = isDark 
-    ? 'bg-gray-900/40 backdrop-blur-xl border-gray-700/50 shadow-black/20' 
-    : 'bg-white/60 backdrop-blur-xl border-white/60 shadow-purple-100/50';
+    ? 'bg-gray-900 border-gray-700 shadow-xl shadow-black/20' 
+    : 'bg-white border-gray-200 shadow-xl shadow-purple-100/50';
     
+  // Gradiente sutil solo en el encabezado
   const headerBgClass = isDark 
-    ? 'bg-gray-800/50 text-gray-300' 
-    : 'bg-white/50 text-gray-500';
+    ? 'bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300' 
+    : 'bg-gradient-to-r from-gray-50 to-gray-100 text-gray-600';
     
   const rowHoverClass = isDark 
-    ? 'hover:bg-white/5' 
-    : 'hover:bg-white/40';
+    ? 'hover:bg-gray-800/80' 
+    : 'hover:bg-purple-50/50';
     
-  const dividerColor = isDark ? 'divide-gray-700/50' : 'divide-gray-200/50';
+  const dividerColor = isDark ? 'divide-gray-800' : 'divide-gray-100';
   const textPrimary = isDark ? 'text-gray-100' : 'text-gray-800';
 
   if (isLoading) {
     return (
-      <div className={`rounded-3xl shadow-lg overflow-hidden border ${tableContainerClass}`}>
-        <div className={`p-6 border-b ${isDark ? 'border-gray-700/50' : 'border-gray-200/50'}`}>
+      <div className={`rounded-3xl overflow-hidden border ${tableContainerClass}`}>
+        <div className={`p-6 border-b ${isDark ? 'border-gray-800' : 'border-gray-100'}`}>
              <div className="h-6 w-1/3 bg-gray-400/20 rounded animate-pulse"></div>
         </div>
         <div className="p-4">
@@ -39,7 +39,7 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
 
   if (!data || data.length === 0) {
     return (
-      <div className={`p-16 text-center rounded-3xl shadow-lg border flex flex-col items-center justify-center ${tableContainerClass}`}>
+      <div className={`p-16 text-center rounded-3xl border flex flex-col items-center justify-center ${tableContainerClass}`}>
         <div className="text-4xl mb-4 opacity-50">📂</div>
         <p className={`text-lg font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>No hay datos disponibles.</p>
       </div>
@@ -47,7 +47,7 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
   }
 
   return (
-    <div className={`rounded-3xl shadow-lg overflow-hidden border transition-all duration-300 ${tableContainerClass}`}>
+    <div className={`rounded-3xl overflow-hidden border transition-all duration-300 ${tableContainerClass}`}>
       
       {/* Wrapper para scroll horizontal fluido en móviles */}
       <div className="overflow-x-auto w-full scrollbar-thin">
@@ -71,7 +71,7 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
                 )}
               </tr>
             </thead>
-            <tbody className={`divide-y ${dividerColor}`}>
+            <tbody className={`divide-y ${dividerColor} ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
               {data.map((row, rowIndex) => (
                 <tr key={row.id || rowIndex} className={`transition-colors duration-150 ${rowHoverClass}`}>
                   {headers.map((headerConfig, colIndex) => {

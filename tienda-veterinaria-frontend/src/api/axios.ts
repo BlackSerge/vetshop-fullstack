@@ -1,16 +1,15 @@
-// src/api/axios.ts
-import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// Definimos la URL base
+// Definimos la URL base (Apunta a tu backend Django)
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
 
-// --- CONSTANTES PARA CONTROLAR EL SPAM DE TOASTS (NUEVO) ---
+// --- CONSTANTES PARA CONTROLAR EL SPAM DE TOASTS ---
 const TOAST_ID_NETWORK = "network-error";
 const TOAST_ID_SERVER = "server-error";
 
 // 1. Crear instancia
-const api: AxiosInstance = axios.create({
+const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
@@ -19,14 +18,14 @@ const api: AxiosInstance = axios.create({
 
 // --- INTERCEPTOR DE REQUEST ---
 api.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
+  (config) => {
     // A. Inyectar Token JWT
     const token = localStorage.getItem('access_token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    // B. Inyectar X-Cart-Session
+    // B. Inyectar X-Cart-Session (Para carritos anónimos)
     const cartSessionKey = localStorage.getItem('cart_session_key');
     if (cartSessionKey && config.headers) {
       config.headers['X-Cart-Session'] = cartSessionKey;
@@ -39,7 +38,7 @@ api.interceptors.request.use(
 
 // --- INTERCEPTOR DE RESPONSE ---
 api.interceptors.response.use(
-  (response: AxiosResponse) => {
+  (response) => {
     // A. Capturar y guardar X-Cart-Session si el backend lo envía/actualiza
     const incomingSessionKey = response.headers['x-cart-session'];
     if (incomingSessionKey) {
@@ -59,27 +58,14 @@ api.interceptors.response.use(
         localStorage.setItem('cart_session_key', incomingErrorKey);
     }
 
-    // C. Manejo de Errores Globales (Toast Mejorado - Anti Spam)
+    // C. Manejo de Errores Globales
     
     // 1. Error de Red (Backend apagado)
     if (!error.response) {
-        // Solo mostramos si NO está activo ya
         if (!toast.isActive(TOAST_ID_NETWORK)) {
-            toast.error("No se puede conectar con el servidor. Intenta más tarde.", {
-                toastId: TOAST_ID_NETWORK // ID único
-            });
+            toast.error("No se puede conectar con el servidor.", { toastId: TOAST_ID_NETWORK });
         }
         return Promise.reject(error);
-    }
-
-    // 2. Error de Servidor (500)
-    if (error.response.status >= 500) {
-        // Solo mostramos si NO está activo ya
-        if (!toast.isActive(TOAST_ID_SERVER)) {
-            toast.error("Error interno del servidor. Estamos trabajando en ello.", {
-                toastId: TOAST_ID_SERVER // ID único
-            });
-        }
     }
 
     // D. Lógica de Refresh Token (401)
@@ -98,22 +84,18 @@ api.interceptors.response.use(
           originalRequest.headers.Authorization = `Bearer ${data.access}`;
           return api(originalRequest);
         } catch (refreshError) {
-          // Evitar redirigir múltiples veces si fallan varias peticiones a la vez
+          // Sesión caducada real
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          localStorage.removeItem('user');
           if (window.location.pathname !== '/login') {
-              console.error("Sesión caducada");
-              localStorage.removeItem('access_token');
-              localStorage.removeItem('refresh_token');
-              localStorage.removeItem('user');
-              window.location.href = '/login';
+             window.location.href = '/login';
           }
           return Promise.reject(refreshError);
         }
       } else {
         localStorage.removeItem('access_token');
         localStorage.removeItem('user');
-        if (window.location.pathname !== '/login') {
-            window.location.href = '/login';
-        }
       }
     }
 

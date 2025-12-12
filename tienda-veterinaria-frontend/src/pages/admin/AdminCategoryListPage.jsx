@@ -1,127 +1,71 @@
-// src/pages/admin/AdminCategoryListPage.jsx
-import  { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Edit, Trash2, PlusCircle } from 'lucide-react';
-import { toast } from 'react-toastify';
-import adminService from '../../services/adminService';
+import React, { useState, useEffect } from 'react';
+import { Plus, Edit, Trash2 } from 'lucide-react';
+import api from '../../api/axios';
 import AdminTable from '../../components/admin/AdminTable';
-import ConfirmModal from '../../components/ConfirmModal';
 import { useThemeStore } from '../../store/useThemeStore';
 
-
-export default function AdminCategoryListPage() {
+export default function AdminCategoriesPage() {
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [categoryToDelete, setCategoryToDelete] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(true);
+  
   const theme = useThemeStore((state) => state.theme);
-  const isDark = theme === 'dark';
+  const isDark = theme === "dark";
 
-  const btnPrimary = isDark ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-purple-700 hover:bg-purple-800 text-white';
-  const btnEdit = 'bg-blue-500 hover:bg-blue-600 text-white';
-  const btnDelete = 'bg-red-500 hover:bg-red-600 text-white';
-
-  const fetchCategories = async () => {
-    setLoading(true);
-    try {
-    const response = await adminService.getCategories(); // Endpoint de categorías
-    const categoriesData = response.results || response; // <--- CAMBIO CLAVE AQUÍ: Extraer 'results' o usar la respuesta completa
-    setCategories(categoriesData); // Establecer el array de categorías
-    } catch (err) {
-      console.error("Error fetching categories:", err);
-      setError("No se pudieron cargar las categorías.");
-      toast.error("Error al cargar categorías.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const btnPrimary = "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30";
 
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  const handleDeleteClick = (category) => {
-    setCategoryToDelete(category);
-    setIsModalOpen(true);
-  };
-
-  const confirmDelete = async () => {
-    if (categoryToDelete) {
-      try {
-        await adminService.deleteCategory(categoryToDelete.slug);
-        toast.success(`Categoría "${categoryToDelete.nombre}" eliminada.`);
-        fetchCategories(); // Recargar la lista
-      } catch (err) {
-        console.error("Error deleting category:", err.response?.data || err.message);
-        toast.error(`Error al eliminar categoría: ${err.response?.data?.detail || err.message}`);
-      } finally {
-        setIsModalOpen(false);
-        setCategoryToDelete(null);
-      }
+  const fetchCategories = async () => {
+    setIsLoading(true);
+    try {
+      const response = await api.get('/productos/categorias/');
+      // Manejar respuesta paginada o lista directa
+      const data = response.data.results || response.data;
+      setCategories(data);
+    } catch (error) {
+      console.error("Error fetching categories", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-const categoryHeaders = [
-    { field: 'id', label: 'ID' },
-    { field: 'nombre', label: 'Nombre' },
-    { field: 'slug', label: 'Slug' },
-    { field: 'is_active', label: 'Activa' },
+  const headers = [
+    { label: "ID", field: "id" },
+    { label: "Nombre", field: "nombre" },
+    { label: "Slug", field: "slug" },
   ];
 
-
-  const renderCategoryActions = (category) => (
-    <>
-      <Link
-        to={`/admin-panel/categorias/edit/${category.slug}`}
-        className={`inline-flex items-center p-2 rounded-md ${btnEdit} text-sm`}
-      >
-        <Edit size={16} />
-      </Link>
-      <button
-        onClick={() => handleDeleteClick(category)}
-        className={`inline-flex items-center p-2 rounded-md ${btnDelete} text-sm ml-2`}
-      >
-        <Trash2 size={16} />
-      </button>
-    </>
+  const renderActions = (row) => (
+      <div className="flex gap-2 justify-end">
+          <button className={`p-2 rounded-xl transition-colors ${isDark ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'}`}>
+              <Edit size={16} />
+          </button>
+          <button className={`p-2 rounded-xl transition-colors ${isDark ? 'bg-red-500/10 text-red-400 hover:bg-red-500/20' : 'bg-red-50 text-red-600 hover:bg-red-100'}`}>
+              <Trash2 size={16} />
+          </button>
+      </div>
   );
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Gestión de Categorías</h1>
+    <div className="w-full space-y-8 animate-fadeIn">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+                <h1 className={`text-2xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>Categorías</h1>
+                <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Organiza los departamentos de la tienda</p>
+            </div>
+            <button className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold transition-all active:scale-95 ${btnPrimary}`}>
+                <Plus size={20} /> Nueva Categoría
+            </button>
+        </div>
 
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-
-      <div className="flex justify-end mb-6">
-        <Link
-          to="/admin-panel/categorias/new"
-          className={`inline-flex items-center px-4 py-2 rounded-md font-semibold ${btnPrimary} transition-colors`}
-        >
-          <PlusCircle size={20} className="mr-2" />
-          Nueva Categoría
-        </Link>
-      </div>
-
-      <AdminTable
-        headers={categoryHeaders}
-        data={categories.map(cat => ({
-            id: cat.id,
-            nombre: cat.nombre,
-            slug: cat.slug,
-            is_active: cat.is_active,
-        }))} // Adaptar data para la tabla
-        renderRowActions={renderCategoryActions}
-        isLoading={loading}
-      />
-
-      <ConfirmModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={confirmDelete}
-        message={`¿Estás seguro de que quieres eliminar la categoría "${categoryToDelete?.nombre}"? Esta acción no se puede deshacer.`}
-      />
+        <AdminTable 
+            headers={headers} 
+            data={categories} 
+            renderRowActions={renderActions}
+            isLoading={isLoading}
+        />
     </div>
   );
 }

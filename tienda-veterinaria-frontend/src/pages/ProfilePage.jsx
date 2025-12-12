@@ -176,13 +176,13 @@ export default function ProfilePage() {
             <div className="p-6 md:p-8">
                 
                 {/* Tabs Modernas */}
-                <div className="flex p-1 rounded-xl bg-gray-100 dark:bg-gray-800/50 mb-8 max-w-md mx-auto md:mx-0">
+                <div className={`flex p-1 rounded-xl mb-8 max-w-md mx-auto md:mx-0 ${isDark ? 'bg-gray-800/50' : 'bg-white border border-gray-200 shadow-sm'}`}>
                     <button 
                         onClick={() => setActiveTab('profile')} 
                         className={`flex-1 py-2.5 rounded-lg text-sm font-bold transition-all ${
                             activeTab === 'profile' 
-                            ? 'bg-white dark:bg-gray-700 text-purple-600 dark:text-purple-300 shadow-sm' 
-                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                            ? isDark ? 'bg-gray-700 text-purple-300 shadow-sm' : 'bg-purple-50 text-purple-700 shadow-none'
+                            : isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'
                         }`}
                     >
                         Mis Datos
@@ -191,8 +191,8 @@ export default function ProfilePage() {
                         onClick={() => setActiveTab('orders')} 
                         className={`flex-1 py-2.5 rounded-lg text-sm font-bold transition-all ${
                             activeTab === 'orders' 
-                            ? 'bg-white dark:bg-gray-700 text-purple-600 dark:text-purple-300 shadow-sm' 
-                            : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200'
+                            ? isDark ? 'bg-gray-700 text-purple-300 shadow-sm' : 'bg-purple-50 text-purple-700 shadow-none'
+                            : isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'
                         }`}
                     >
                         Mis Pedidos
@@ -270,7 +270,7 @@ export default function ProfilePage() {
                                     
                                     <Link 
                                         to="/change-password" 
-                                        className={`flex-1 py-4 rounded-xl font-bold flex justify-center items-center gap-2 border transition-all active:scale-95 ${isDark ? 'border-gray-600 hover:bg-gray-700 text-gray-300' : 'border-gray-300 hover:bg-gray-50 text-gray-700'}`}
+                                        className={`flex-1 py-4 rounded-xl font-bold flex justify-center items-center gap-2 border transition-all active:scale-95 ${isDark ? 'border-gray-600 hover:bg-gray-700 text-gray-300' : 'bg-white border-gray-200 hover:bg-gray-50 text-gray-700 shadow-sm'}`}
                                     >
                                         <Key size={20} /> Cambiar Contraseña
                                     </Link>
@@ -352,7 +352,7 @@ export default function ProfilePage() {
                                                 
                                                 <div className="flex items-center justify-between w-full sm:w-auto mt-4 sm:mt-0 gap-6">
                                                     <p className={`text-xl font-black ${isDark ? "text-white" : "text-gray-800"}`}>{formatPrice(order.total)}</p>
-                                                    <div className={`p-2 rounded-full transition-all duration-300 ${isExpanded ? 'bg-purple-600 text-white rotate-180' : 'bg-gray-100 dark:bg-gray-700 text-gray-500'}`}>
+                                                    <div className={`p-2 rounded-full transition-all duration-300 border ${isExpanded ? 'bg-purple-600 text-white border-purple-600 rotate-180' : isDark ? 'bg-gray-700 border-gray-600 text-gray-300' : 'bg-white border-gray-200 text-gray-600 shadow-sm'}`}>
                                                         <ChevronDown size={20} />
                                                     </div>
                                                 </div>
