@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet-async';
-import { ShoppingBag, CreditCard, ShieldCheck, ArrowLeft, Lock, Truck, PawPrint } from 'lucide-react';
+import { ShoppingBag, CreditCard, ShieldCheck, ArrowLeft, Lock, Truck, PawPrint, WifiOff, RefreshCw } from 'lucide-react';
 
 import api from "../api/axios";
 import CheckoutForm from "../components/CheckoutForm";
@@ -18,8 +18,12 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 export default function CheckoutPage() {
   const [clientSecret, setClientSecret] = useState("");
+  const [error, setError] = useState(null); // Nuevo estado para errores de carga
+  const [loading, setLoading] = useState(false);
+
   const cartItems = useCartStore((state) => state.items || []);
   const storeTotal = useCartStore((state) => state.totalPrice);
+  
   // Calcular total si storeTotal viene en 0 por alguna razón de sincronización
   const cartTotal = storeTotal || cartItems.reduce((acc, item) => acc + (Number(item.effective_price || item.price) * (item.quantity || 1)), 0);
 
@@ -27,16 +31,28 @@ export default function CheckoutPage() {
   const isDark = theme === "dark";
   const navigate = useNavigate();
 
+  const fetchPaymentIntent = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+          const res = await api.post("/pedidos/create-payment-intent/");
+          if (res.data.clientSecret) {
+              setClientSecret(res.data.clientSecret);
+          } else {
+              setError("El servidor no devolvió una clave de pago válida.");
+          }
+      } catch (err) {
+          console.error("Error creating payment intent:", err);
+          setError("No se pudo conectar con el servidor de pagos. Verifica tu conexión a internet.");
+      } finally {
+          setLoading(false);
+      }
+  };
+
   useEffect(() => {
     // Solo crear PaymentIntent si hay items y aún no tenemos el secret
     if (cartItems.length > 0 && !clientSecret) {
-      api.post("/pedidos/create-payment-intent/")
-        .then((res) => {
-            if (res.data.clientSecret) {
-                setClientSecret(res.data.clientSecret);
-            }
-        })
-        .catch((err) => console.error("Error creating payment intent:", err));
+        fetchPaymentIntent();
     }
   }, [cartItems, clientSecret]);
 
@@ -47,7 +63,7 @@ export default function CheckoutPage() {
       colorPrimary: '#9333ea', // Purple-600
       colorBackground: isDark ? '#1f2937' : '#ffffff', 
       colorText: isDark ? '#f3f4f6' : '#111827', 
-      colorDanger: '#dc2626', // ROJO FUERTE para errores (Importante)
+      colorDanger: '#dc2626', // ROJO FUERTE (#dc2626) para errores en input
       fontFamily: '"Inter", system-ui, sans-serif',
       borderRadius: '12px',
       spacingUnit: '4px',
@@ -62,13 +78,12 @@ export default function CheckoutPage() {
         },
         '.Label': {
             color: isDark ? '#d1d5db' : '#374151',
-            fontWeight: '600',
+            fontWeight: '700', // Negrita en labels
             fontSize: '13px',
             marginBottom: '6px',
             textTransform: 'uppercase',
             letterSpacing: '0.025em'
         },
-        // ESTILOS ESPECÍFICOS PARA ERRORES EN MODO CLARO
         '.Error': {
             color: '#dc2626', // Rojo puro
             fontSize: '13px',
@@ -86,7 +101,7 @@ export default function CheckoutPage() {
         },
         '.Tab--selected': {
             borderColor: '#9333ea',
-            backgroundColor: isDark ? '#3b0764' : '#faf5ff', // Purple background muy suave
+            backgroundColor: isDark ? '#3b0764' : '#faf5ff', 
             color: '#9333ea',
         }
     }
@@ -261,7 +276,25 @@ export default function CheckoutPage() {
                         <Elements options={options} stripe={stripePromise}>
                             <CheckoutForm />
                         </Elements>
+                    ) : error ? (
+                        // MOSTRAR ERROR SI FALLA LA CARGA
+                        <div className="flex flex-col items-center justify-center py-12 text-center">
+                            <div className="p-4 bg-red-100 dark:bg-red-900/30 text-red-500 rounded-full mb-4">
+                                <WifiOff size={40} />
+                            </div>
+                            <h3 className={`text-lg font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>Error de Conexión</h3>
+                            <p className={`text-sm mb-6 max-w-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                                {error}
+                            </p>
+                            <button 
+                                onClick={fetchPaymentIntent}
+                                className="px-6 py-3 bg-purple-600 text-white rounded-xl font-bold flex items-center gap-2 hover:bg-purple-700 transition-colors"
+                            >
+                                <RefreshCw size={18} /> Reintentar
+                            </button>
+                        </div>
                     ) : (
+                        // SKELETON LOADER
                         <div className="flex flex-col gap-6 py-8">
                             <SkeletonLoader type="text" className="h-12 w-full rounded-xl" />
                             <SkeletonLoader type="text" className="h-24 w-full rounded-xl" />

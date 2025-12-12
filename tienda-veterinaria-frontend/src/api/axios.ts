@@ -1,12 +1,32 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// Definimos la URL base (Apunta a tu backend Django)
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
+// --- CONFIGURACIÓN DINÁMICA DE URL ---
+// Esto permite probar en móvil dentro de la misma red Wifi.
+// Si estás en localhost, usa 127.0.0.1. Si estás en 192.168.1.X, usa esa IP para el backend.
+const getBaseUrl = () => {
+    // 1. Si existe variable de entorno, tiene prioridad
+    if (import.meta.env.VITE_API_BASE_URL) {
+        return import.meta.env.VITE_API_BASE_URL;
+    }
+    
+    // 2. Detección automática para desarrollo en red local (Móvil)
+    const { hostname } = window.location;
+    
+    // Si no es localhost, asumimos que estamos accediendo por IP (ej: 192.168.1.50)
+    // y que el backend corre en la misma IP en el puerto 8000.
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+        return `http://${hostname}:8000/api`;
+    }
+
+    // 3. Fallback por defecto (PC Local)
+    return 'http://127.0.0.1:8000/api';
+};
+
+const BASE_URL = getBaseUrl();
 
 // --- CONSTANTES PARA CONTROLAR EL SPAM DE TOASTS ---
 const TOAST_ID_NETWORK = "network-error";
-const TOAST_ID_SERVER = "server-error";
 
 // 1. Crear instancia
 const api = axios.create({
@@ -60,10 +80,15 @@ api.interceptors.response.use(
 
     // C. Manejo de Errores Globales
     
-    // 1. Error de Red (Backend apagado)
+    // 1. Error de Red (Backend apagado o IP incorrecta en móvil)
     if (!error.response) {
+        // Evitamos spammear toasts si ya hay uno activo
         if (!toast.isActive(TOAST_ID_NETWORK)) {
-            toast.error("No se puede conectar con el servidor.", { toastId: TOAST_ID_NETWORK });
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const msg = isMobile 
+                ? "Error de conexión. Asegúrate de que el backend corre en 0.0.0.0:8000" 
+                : "No se puede conectar con el servidor.";
+            toast.error(msg, { toastId: TOAST_ID_NETWORK });
         }
         return Promise.reject(error);
     }
