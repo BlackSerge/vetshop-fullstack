@@ -1,165 +1,109 @@
-// src/App.jsx
-import { Routes, Route, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect,useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-// Stores
-import { useAuthStore } from './store/useAuthStore';
-import { useCartStore } from './store/useCartStore';
-import { useThemeStore } from './store/useThemeStore';
 
-// Layouts
-import MainLayout from './layouts/MainLayout';
-import AdminLayout from './layouts/AdminLayout';
-
-// Protección de Rutas
-import PrivateRoute from './components/PrivateRoute';
-
-// Páginas Públicas
-import Home from './pages/Home';
+// Pages Client
 import ProductsPage from './pages/ProductsPage';
-import ProductDetailPage from './pages/ProductDetailPage';
+import Home from './pages/Home';
 import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
-import SuccessPage from './pages/SuccessPage';
-
-
-// Páginas Auth
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
-import ChangePasswordPage from './pages/ChangePasswordPage';
+import CheckoutPage from './pages/CheckoutPage';
 import ResetPasswordRequestPage from './pages/ResetPasswordRequestPage';
 import ResetPasswordConfirmPage from './pages/ResetPasswordConfirmPage';
 
-// Páginas Admin
-import AdminDashboardPage from './pages/admin/AdminDashboardPage';
-import AdminCategoryListPage from './pages/admin/AdminCategoryListPage';
-import AdminCategoryFormPage from './pages/admin/AdminCategoryFormPage';
+// Pages Admin (Dashboard)
+import AdminPanelPage from './pages/AdminPanelPage';
+
+// Pages Admin (Lists & Forms)
 import AdminProductListPage from './pages/admin/AdminProductListPage';
 import AdminProductFormPage from './pages/admin/AdminProductFormPage';
 import AdminProductImageManagerPage from './pages/admin/AdminProductImageManagerPage';
-import AdminUserListPage from './pages/admin/AdminUserListPage'; 
+import AdminCategoryListPage from './pages/admin/AdminCategoryListPage';
+import AdminCategoryFormPage from './pages/admin/AdminCategoryFormPage';
+import AdminUserListPage from './pages/admin/AdminUserListPage';
 import AdminUserDetailPage from './pages/admin/AdminUserDetailPage';
-import NotFoundPage from './pages/NotFoundPage';
 
+// Layouts & Components
+import Header from './components/Header';
+import AdminLayout from './layouts/AdminLayout';
 
+// Stores
+import { useThemeStore } from './store/useThemeStore';
+import { useAuthStore } from './store/useAuthStore';
+import { useCartStore } from './store/useCartStore';
 
-// Agrupador de rutas MainLayout
-const MainAppRoutes = () => {
-  return (
-    <MainLayout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:slug" element={<ProductDetailPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/success" element={<SuccessPage />} />
-        
+const LayoutWithHeader = ({ children }) => (
+  <>
+    <Header />
+    <main className="flex-grow w-full">{children}</main>
+  </>
+);
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/request-password-reset" element={<ResetPasswordRequestPage />} />
-        <Route path="/reset-password" element={<ResetPasswordConfirmPage />} />
-
-        <Route element={<PrivateRoute />}>
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/change-password" element={<ChangePasswordPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-        </Route>
-
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </MainLayout>
-  );
-};
-
-function App() {
-
-
-  // Hooks
+const App = () => {
   const theme = useThemeStore((state) => state.theme);
   const checkAuth = useAuthStore((state) => state.checkAuth);
-  const fetchCart = useCartStore((state) => state.fetchCart)
+  const fetchCart = useCartStore((state) => state.fetchCart);
   
-  // EFECTO DE INICIALIZACIÓN GLOBAL
+  const isDark = theme === 'dark';
+
+  // INICIALIZACIÓN DE LA APP
   useEffect(() => {
-    // 1. Auth: Verificar token
     checkAuth();
-    
-    // 2. Carrito: Hidratar
     fetchCart();
-    
-    // 3. Tema: Aplicar clase al HTML
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [checkAuth, fetchCart, theme]); // Dependencias correctas
+  }, [checkAuth, fetchCart]);
 
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-
-
+  // NOTA: Se eliminó 'transition-colors duration-300' para evitar parpadeos en móviles con gradientes.
   return (
-    <>
-    <Helmet>
-         <title>VetShop</title> {/* Título base por si acaso */}
-      </Helmet>
+    <div className={`min-h-screen flex flex-col w-full font-sans ${isDark ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
+      <ToastContainer 
+        position="top-right" 
+        autoClose={3000} 
+        theme={isDark ? "dark" : "light"}
+      />
       <Routes>
+        {/* Rutas Públicas / Cliente */}
+        <Route path="/" element={<LayoutWithHeader><Home /></LayoutWithHeader>} />
+        <Route path="/products" element={<LayoutWithHeader><ProductsPage /></LayoutWithHeader>} />
+        <Route path="/cart" element={<LayoutWithHeader><CartPage /></LayoutWithHeader>} />
+        <Route path="/login" element={<LayoutWithHeader><LoginPage /></LayoutWithHeader>} />
+        <Route path="/register" element={<LayoutWithHeader><RegisterPage /></LayoutWithHeader>} />
+        <Route path="/profile" element={<LayoutWithHeader><ProfilePage /></LayoutWithHeader>} />
+        <Route path="/checkout" element={<CheckoutPage />} /> 
+        <Route path="/request-password-reset" element={<LayoutWithHeader><ResetPasswordRequestPage /></LayoutWithHeader>} />
+        <Route path="/reset-password-confirm" element={<LayoutWithHeader><ResetPasswordConfirmPage /></LayoutWithHeader>} />
+
         {/* Rutas Admin */}
-        <Route element={<PrivateRoute requireStaff={true} />}>
-          <Route path="/admin-panel/*" element={<AdminLayout />}>
-            <Route index element={<AdminDashboardPage />} />
-            <Route path="categorias" element={<AdminCategoryListPage />} />
-            <Route path="categorias/new" element={<AdminCategoryFormPage />} />
-            <Route path="categorias/edit/:slug" element={<AdminCategoryFormPage />} />
-            <Route path="productos" element={<AdminProductListPage />} />
+        <Route path="/admin-panel" element={<AdminLayout />}>
+            <Route index element={<AdminPanelPage />} />
+            
+            {/* Productos */}
+            <Route path="products" element={<AdminProductListPage />} />
+            <Route path="productos" element={<AdminProductListPage />} /> {/* Alias español */}
             <Route path="productos/new" element={<AdminProductFormPage />} />
             <Route path="productos/edit/:slug" element={<AdminProductFormPage />} />
             <Route path="productos/:slug/imagenes" element={<AdminProductImageManagerPage />} />
-            <Route path="usuarios" element={<AdminUserListPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+
+            {/* Categorías */}
+            <Route path="categories" element={<AdminCategoryListPage />} />
+            <Route path="categorias" element={<AdminCategoryListPage />} /> {/* Alias español */}
+            <Route path="categorias/new" element={<AdminCategoryFormPage />} />
+            <Route path="categorias/edit/:slug" element={<AdminCategoryFormPage />} />
+
+            {/* Usuarios */}
+            <Route path="users" element={<AdminUserListPage />} />
+            <Route path="usuarios" element={<AdminUserListPage />} /> {/* Alias español */}
             <Route path="usuarios/:id" element={<AdminUserDetailPage />} />
-          </Route>
+
+            {/* Fallback */}
+            <Route path="*" element={<AdminPanelPage />} />
         </Route>
-
-        {/* Rutas App Principal */}
-        <Route path="/*" element={<MainAppRoutes />} />
+        
       </Routes>
-
-      {/* Toast Global */}
-            <ToastContainer 
-        position={isMobile ? "top-center" : "top-right"}
-        autoClose={3000} 
-        hideProgressBar={false} 
-        newestOnTop 
-        closeOnClick 
-        rtl={false} 
-        pauseOnFocusLoss 
-        draggable 
-        pauseOnHover 
-        theme={theme}
-        // 👇 AQUÍ ESTÁ LA MAGIA DEL DISEÑO COMPACTO 👇
-        toastClassName={() => 
-            `relative flex p-3 rounded-lg justify-between overflow-hidden cursor-pointer shadow-2xl mb-3 transition-all
-            ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'} 
-            font-sans text-sm 
-             w-fit max-w-[90vw] md:max-w-md mx-auto md:mx-0 md:ml-auto` // w-fit ajusta al contenido
-        }
-        bodyClassName={() => "flex items-center gap-2"} // Flex para icono y texto juntos
-      />
-    </>
+    </div>
   );
-}
+};
 
 export default App;

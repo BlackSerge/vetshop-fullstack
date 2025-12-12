@@ -70,11 +70,11 @@ export default function CheckoutPage() {
   if (cartItems.length === 0) {
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center p-4 text-center overflow-hidden relative font-sans">
-             <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0"></div>
-             <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out z-0 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+             <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-50"></div>
+             <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-50 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
              
              {/* Decoración Flotante */}
-             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+             <div className="fixed inset-0 overflow-hidden pointer-events-none -z-40">
                 <motion.div 
                     animate={{ y: [0, -20, 0], opacity: [0.1, 0.3, 0.1] }} 
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -106,12 +106,12 @@ export default function CheckoutPage() {
         <title>Finalizar Compra | VetShop</title>
       </Helmet>
 
-      {/* BACKGROUNDS - FIXED (z-0 para que se vean) */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 z-0"></div>
-      <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out z-0 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+      {/* BACKGROUNDS - FIXED (z-50 negative to sit behind everything but allow App bg to be covered) */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-50"></div>
+      <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-50 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
 
       {/* Elementos Decorativos Flotantes (Background) */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="fixed inset-0 overflow-hidden pointer-events-none -z-40">
             <motion.div 
                 animate={{ y: [0, -30, 0], opacity: [0.05, 0.15, 0.05] }} 
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -226,7 +226,8 @@ export default function CheckoutPage() {
                 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
                 className="lg:col-span-7 order-1 lg:order-2"
             >
-                <div className={`rounded-3xl border p-6 md:p-10 ${glassContainer}`}>
+                {/* PADDING REDUCIDO EN MOBILE PARA QUE STRIPE QUEPA (p-4 en vez de p-6) */}
+                <div className={`rounded-3xl border p-4 md:p-10 ${glassContainer}`}>
                     <div className="mb-8 flex items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shadow-lg text-white">
                             <CreditCard size={24} />
@@ -244,6 +245,7 @@ export default function CheckoutPage() {
                     ) : (
                         <div className="flex flex-col gap-6 py-8">
                             <SkeletonLoader type="text" className="h-12 w-full rounded-xl" />
+                            <SkeletonLoader type="text" className="h-24 w-full rounded-xl" />
                             <div className="grid grid-cols-2 gap-4">
                                 <SkeletonLoader type="text" className="h-12 w-full rounded-xl" />
                                 <SkeletonLoader type="text" className="h-12 w-full rounded-xl" />

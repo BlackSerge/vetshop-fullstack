@@ -20,7 +20,7 @@ export default function AdminLayout() {
 
   const isDark = theme === 'dark';
   
-  // Header Admin (Glassmorphism effect heavy)
+  // Header Admin (Glassmorphism Restored)
   const headerClass = isDark 
     ? 'bg-gray-900/60 border-gray-700/50 text-white backdrop-blur-xl' 
     : 'bg-white/60 border-gray-200/50 text-gray-900 backdrop-blur-xl';
@@ -31,13 +31,11 @@ export default function AdminLayout() {
   if (!isAuthenticated || !isStaff) return <Navigate to="/login" replace />;
 
   return (
-    <div className={`min-h-screen font-sans relative overflow-x-hidden transition-colors duration-300 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+    <div className={`min-h-screen font-sans relative overflow-x-hidden ${isDark ? 'text-white' : 'text-gray-900'}`}>
       
-      {/* --- FONDOS GLOBALES (CRUCIAL PARA GLASSMORPHISM) --- */}
-      {/* Capa 1: Gradiente base fijo */}
-      <div className="fixed inset-0 bg-gradient-to-br from-purple-100 via-blue-50 to-indigo-100 -z-30"></div>
-      {/* Capa 2: Oscura para Dark Mode (transición suave) */}
-      <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-20 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
+      {/* --- FONDOS GLOBALES (FIXED PARA EVITAR CORTE AL SCROLL) --- */}
+      <div className="fixed inset-0 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 -z-50"></div>
+      <div className={`fixed inset-0 bg-gradient-to-br from-gray-900 via-indigo-950 to-black transition-opacity duration-700 ease-in-out -z-50 ${isDark ? 'opacity-100' : 'opacity-0'}`}></div>
 
       {/* --- OVERLAY PARA CERRAR SIDEBAR (Móvil) --- */}
       {sidebarOpen && (
@@ -54,7 +52,7 @@ export default function AdminLayout() {
       />
 
       {/* CONTENEDOR PRINCIPAL - Margen izquierdo en desktop para el sidebar */}
-      <div className={`flex flex-col min-h-screen transition-all duration-300 lg:pl-64`}>
+      <div className={`flex flex-col min-h-screen transition-all duration-300 lg:pl-64 relative z-10`}>
         
         {/* HEADER SUPERIOR ADMIN */}
         <header className={`sticky top-0 z-30 flex items-center justify-between px-4 sm:px-6 py-3 border-b shadow-sm transition-all ${headerClass}`}>
@@ -97,7 +95,7 @@ export default function AdminLayout() {
         </header>
 
         {/* CONTENIDO - Padding bottom extra para móviles */}
-        <main className="flex-1 p-4 sm:p-6 overflow-x-hidden w-full pb-32 md:pb-10 relative z-10">
+        <main className="flex-1 p-4 sm:p-6 overflow-x-hidden w-full pb-32 md:pb-10">
            <Outlet />
         </main>
       </div>
