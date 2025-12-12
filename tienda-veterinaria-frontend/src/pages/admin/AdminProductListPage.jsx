@@ -1,7 +1,6 @@
-// src/pages/admin/AdminProductListPage.jsx
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Edit, Trash2, PlusCircle, Image as ImageIcon } from 'lucide-react';
+import { Edit, Trash2, PlusCircle, Image as ImageIcon, Search, Filter } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { useThemeStore } from '../../store/useThemeStore';
 import adminService from '../../services/adminService';
@@ -29,13 +28,17 @@ export default function AdminProductListPage() {
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
 
-  const btnPrimary = isDark ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-purple-700 hover:bg-purple-800 text-white';
-  const btnEdit = 'bg-blue-500 hover:bg-blue-600 text-white';
-  const btnDelete = 'bg-red-500 hover:bg-red-600 text-white';
-  const btnImage = 'bg-green-500 hover:bg-green-600 text-white';
-  const inputClass = isDark ? 'bg-gray-700 text-white border-gray-600' : 'bg-white text-gray-900 border-gray-300';
-  const paginationBtn = isDark ? "bg-gray-700 hover:bg-purple-500 text-gray-200" : "bg-gray-200 hover:bg-purple-300 text-gray-800";
-  const paginationBtnActive = isDark ? "bg-purple-600 text-white" : "bg-purple-700 text-white";
+  // --- GLASSMORPHISM STYLES ---
+  const glassContainer = isDark 
+    ? "bg-gray-900/40 border-gray-700/50 backdrop-blur-xl shadow-black/20" 
+    : "bg-white/60 border-white/60 backdrop-blur-xl shadow-purple-100/50";
+    
+  const inputClass = isDark 
+    ? 'bg-gray-800/50 border-gray-600 text-white placeholder-gray-500 focus:border-purple-500' 
+    : 'bg-white/50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-purple-500';
+
+  const btnPrimary = "bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/30";
+  const btnAction = isDark ? "bg-gray-700/50 hover:bg-gray-600/50 text-gray-300 border border-gray-600" : "bg-white hover:bg-gray-50 text-gray-600 border border-gray-200";
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
@@ -49,7 +52,6 @@ export default function AdminProductListPage() {
 
       const data = await adminService.getProducts(params);
       
-      
       let productsArray = [];
       let totalCount = 0;
 
@@ -62,7 +64,6 @@ export default function AdminProductListPage() {
         totalCount = data.length;
         setTotalPages(1);
       } else {
-        console.error("DEBUG: Formato de respuesta desconocido:", data);
         productsArray = [];
       }
 
@@ -108,7 +109,7 @@ export default function AdminProductListPage() {
     if (!productToDelete) return;
     try {
       await adminService.deleteProduct(productToDelete.slug);
-      toast.success(`Producto "${productToDelete.nombre}" eliminado.`);
+      toast.success(`Producto eliminado correctamente.`);
       fetchProducts();
     } catch (err) {
       console.error("Error deleting product:", err);
@@ -127,90 +128,93 @@ export default function AdminProductListPage() {
 
   const productHeaders = [
     { field: 'id', label: 'ID' },
-    { field: 'nombre', label: 'Nombre' },
+    { field: 'nombre', label: 'Producto' },
     { field: 'categoria_display_name', label: 'Categoría' },
     { field: 'precio_formateado', label: 'Precio' },
     { field: 'stock', label: 'Stock' },
-    { field: 'is_active', label: 'Activo' },
-    { field: 'is_featured', label: 'Destacado' },
+    { field: 'is_active', label: 'Estado' },
   ];
 
   const renderProductActions = (product) => {
-    
     const editLink = `/admin-panel/productos/edit/${product.slug}`;
     const imagesLink = `/admin-panel/productos/${product.slug}/imagenes`;
-    
-    
-    
-    if (!product.slug) {
-        console.error("   ⚠️ ALERTA: El slug es undefined o vacío. El enlace fallará.");
-    }
-    // ----------------------------------------
 
     return (
-        <>
-        <Link
-            to={editLink}
-            className={`inline-flex items-center p-2 rounded-md ${btnEdit} text-sm`}
-            title="Editar"
-        >
-            <Edit size={16} />
-        </Link>
-        <Link
-            to={imagesLink}
-            className={`inline-flex items-center p-2 rounded-md ${btnImage} text-sm ml-2`}
-            title="Gestionar Imágenes"
-        >
-            <ImageIcon size={16} />
-        </Link>
-        <button
-            onClick={() => handleDeleteClick(product)}
-            className={`inline-flex items-center p-2 rounded-md ${btnDelete} text-sm ml-2`}
-            title="Eliminar"
-        >
-            <Trash2 size={16} />
-        </button>
-        </>
+        <div className="flex gap-2 justify-end">
+            <Link
+                to={editLink}
+                className={`p-2 rounded-xl transition-colors ${isDark ? 'bg-blue-500/10 text-blue-400 hover:bg-blue-500/20' : 'bg-blue-50 text-blue-600 hover:bg-blue-100'}`}
+                title="Editar"
+            >
+                <Edit size={18} />
+            </Link>
+            <Link
+                to={imagesLink}
+                className={`p-2 rounded-xl transition-colors ${isDark ? 'bg-green-500/10 text-green-400 hover:bg-green-500/20' : 'bg-green-50 text-green-600 hover:bg-green-100'}`}
+                title="Imágenes"
+            >
+                <ImageIcon size={18} />
+            </Link>
+            <button
+                onClick={() => handleDeleteClick(product)}
+                className={`p-2 rounded-xl transition-colors ${isDark ? 'bg-red-500/10 text-red-400 hover:bg-red-500/20' : 'bg-red-50 text-red-600 hover:bg-red-100'}`}
+                title="Eliminar"
+            >
+                <Trash2 size={18} />
+            </button>
+        </div>
     );
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Gestión de Productos</h1>
+    <div className="w-full pb-32 animate-fadeIn">
+      
+      {/* Header Mobile-First */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h1 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>Productos</h1>
+            <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Gestiona el inventario de tu tienda</p>
+          </div>
+          
+          <Link
+            to="/admin-panel/productos/new"
+            className={`w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-2xl font-bold transition-transform active:scale-95 ${btnPrimary}`}
+          >
+            <PlusCircle size={20} className="mr-2" />
+            Nuevo Producto
+          </Link>
+      </div>
 
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+      {error && <div className="p-4 mb-6 bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-xl">{error}</div>}
 
-      <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
-        <Link
-          to="/admin-panel/productos/new"
-          className={`inline-flex items-center px-4 py-2 rounded-md font-semibold ${btnPrimary} transition-colors`}
-        >
-          <PlusCircle size={20} className="mr-2" />
-          Nuevo Producto
-        </Link>
-        <div className="flex gap-4">
-            <input
-                type="text"
-                placeholder="Buscar por nombre o SKU..."
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setCurrentPage(1); 
-                }}
-                className={`w-full p-2 rounded-lg border ${inputClass} focus:ring-2 focus:ring-purple-500 transition-all`}
-            />
-            <select
-                value={filterCategory}
-                onChange={(e) => {
-                  setFilterCategory(e.target.value);
-                  setCurrentPage(1);
-                }}
-                className={`w-full p-2 rounded-lg border ${inputClass} focus:ring-2 focus:ring-purple-500 transition-all`}
-            >
-                {categoriesOptions.map(option => (
-                    <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-            </select>
+      {/* Filters Bar - Glassmorphism */}
+      <div className={`p-4 rounded-3xl mb-8 border ${glassContainer}`}>
+        <div className="flex flex-col md:flex-row gap-4">
+            <div className="relative flex-1 group">
+                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-500' : 'text-gray-400'} group-focus-within:text-purple-500 transition-colors`} size={20} />
+                <input
+                    type="text"
+                    placeholder="Buscar por nombre, SKU..."
+                    value={searchQuery}
+                    onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl border outline-none transition-all ${inputClass}`}
+                />
+            </div>
+            <div className="relative md:w-72">
+                <Filter className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} size={18} />
+                <select
+                    value={filterCategory}
+                    onChange={(e) => { setFilterCategory(e.target.value); setCurrentPage(1); }}
+                    className={`w-full pl-10 pr-10 py-3 rounded-xl border outline-none appearance-none transition-all cursor-pointer ${inputClass}`}
+                >
+                    {categoriesOptions.map(option => (
+                        <option key={option.value} value={option.value} className={isDark ? "bg-gray-800" : "bg-white"}>{option.label}</option>
+                    ))}
+                </select>
+                <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
+                </div>
+            </div>
         </div>
       </div>
 
@@ -218,49 +222,68 @@ export default function AdminProductListPage() {
         headers={productHeaders}
         data={products.map(prod => ({
             id: prod.id,
-            nombre: prod.nombre,
-            categoria_display_name: prod.categoria_info?.nombre || 'Sin categoría',
-            precio_formateado: `$${(parseFloat(prod.precio_oferta) || parseFloat(prod.precio)).toFixed(2)}`,
-            stock: prod.stock,
-            is_active: prod.is_active,
+            nombre: (
+                <div className="font-bold text-base">{prod.nombre}</div>
+            ),
+            categoria_display_name: (
+                <span className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wide border ${isDark ? 'bg-gray-800/50 border-gray-600 text-gray-300' : 'bg-gray-100 border-gray-200 text-gray-600'}`}>
+                    {prod.categoria_info?.nombre || '—'}
+                </span>
+            ),
+            precio_formateado: <span className="font-mono font-bold text-purple-500">{`$${(parseFloat(prod.precio_oferta) || parseFloat(prod.precio)).toFixed(2)}`}</span>,
+            stock: (
+                <span className={`font-bold ${prod.stock < 5 ? 'text-red-500' : isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+                    {prod.stock || 0}
+                </span>
+            ),
+            is_active: prod.is_active, 
             is_featured: prod.is_featured,
-            slug: prod.slug  // Asegurarse de pasar el slug aquí
+            slug: prod.slug
         }))}
         renderRowActions={renderProductActions}
         isLoading={loading}
       />
 
+      {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center mt-8 gap-2">
+        <div className="flex justify-center items-center mt-8 gap-3">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className={`py-2 px-4 rounded-lg ${paginationBtn} ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`px-4 py-2 rounded-xl font-bold transition-colors ${currentPage === 1 ? 'opacity-30 cursor-not-allowed' : ''} ${btnAction}`}
           >
-            Anterior
+            ←
           </button>
-          {[...Array(totalPages)].map((_, i) => (
-            <button
-              key={i + 1}
-              onClick={() => handlePageChange(i + 1)}
-              className={`py-2 px-4 rounded-lg ${currentPage === i + 1 ? paginationBtnActive : paginationBtn}`}
-            >
-              {i + 1}
-            </button>
-          ))}
+          
+          <div className="flex gap-2 overflow-x-auto max-w-[200px] sm:max-w-none scrollbar-hide p-1">
+            {[...Array(totalPages)].map((_, i) => (
+                <button
+                key={i + 1}
+                onClick={() => handlePageChange(i + 1)}
+                className={`w-10 h-10 rounded-xl font-bold flex-shrink-0 transition-colors shadow-sm ${
+                    currentPage === i + 1 
+                    ? 'bg-purple-600 text-white shadow-purple-500/30' 
+                    : btnAction
+                }`}
+                >
+                {i + 1}
+                </button>
+            ))}
+          </div>
+
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className={`py-2 px-4 rounded-lg ${paginationBtn} ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`px-4 py-2 rounded-xl font-bold transition-colors ${currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : ''} ${btnAction}`}
           >
-            Siguiente
+            →
           </button>
         </div>
       )}
        
        {productsCount > 0 && (
-          <p className="text-center mt-4 text-sm text-gray-500 dark:text-gray-400">
-              Mostrando {products.length} de {productsCount} productos.
+          <p className={`text-center mt-6 text-xs font-bold uppercase tracking-widest opacity-50 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              {products.length} de {productsCount} productos
           </p>
       )}
 
@@ -268,7 +291,7 @@ export default function AdminProductListPage() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={confirmDelete}
-        message={`¿Estás seguro de que quieres eliminar el producto "${productToDelete?.nombre}"? Esta acción no se puede deshacer.`}
+        message={`¿Eliminar "${productToDelete?.nombre}"? Esta acción es irreversible.`}
       />
     </div>
   );
