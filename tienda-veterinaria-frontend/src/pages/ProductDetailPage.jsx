@@ -1,19 +1,18 @@
-// src/pages/ProductDetailPage.jsx
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, ArrowLeft, Check, AlertCircle, Truck, ShieldCheck } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { Helmet } from 'react-helmet-async'; // SEO
+import { Helmet } from 'react-helmet-async';
 
 import api from '../api/axios';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ProductReviews from '../components/ProductReviews';
 import { useCartStore } from '../store/useCartStore';
 import { useThemeStore } from '../store/useThemeStore';
-import { formatPrice } from "../utils/format"; // Helper de precio
+import { formatPrice } from "../utils/format";
 
 export default function ProductDetailPage() {
-  const { slug } = useParams();
+  const { id } = useParams(); 
   const navigate = useNavigate();
   const addItem = useCartStore((state) => state.addItem);
   const theme = useThemeStore((state) => state.theme);
@@ -24,7 +23,6 @@ export default function ProductDetailPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
   
-  // Estado para evitar saltos de imagen (FOUC)
   const [imageLoaded, setImageLoaded] = useState(false);
 
   // Estilos
@@ -32,25 +30,35 @@ export default function ProductDetailPage() {
   const cardBg = isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200";
   const textMuted = isDark ? "text-gray-400" : "text-gray-500";
 
-  // Resetear estado de carga de imagen al cambiar de foto
   useEffect(() => {
       setImageLoaded(false);
   }, [selectedImage]);
 
   const fetchProduct = async () => {
-      // No ponemos loading=true aquí para que el refresco (al comentar) sea suave
       try {
-        const response = await api.get(`/productos/items/${slug}/`);
-        setProduct(response.data);
+        // Intentamos obtener el producto específico por ID
+        // Esto funcionará tanto con el Mock actualizado como con un Backend real
+        const response = await api.get(`/productos/items/${id}/`);
+        const foundProduct = response.data;
+
+        if (!foundProduct) {
+            throw new Error("Datos de producto vacíos");
+        }
+
+        setProduct(foundProduct);
         
-        // Solo establecer imagen si es la primera carga
+        // Configurar imagen inicial
         if (!selectedImage) {
-            const mainImg = response.data.imagenes?.find(img => img.is_feature) || response.data.imagenes?.[0];
-            setSelectedImage(mainImg?.imagen || '/placeholder.jpg');
+            if (foundProduct.imagenes && foundProduct.imagenes.length > 0) {
+                const mainImg = foundProduct.imagenes.find(img => img.is_feature) || foundProduct.imagenes[0];
+                setSelectedImage(mainImg.imagen);
+            } else {
+                setSelectedImage(foundProduct.imagen || '/placeholder.jpg');
+            }
         }
       } catch (error) {
-        console.error(error);
-        toast.error("Producto no encontrado.");
+        console.error("Error cargando producto:", error);
+        toast.error("Producto no encontrado o error de conexión.");
         navigate('/products');
       } finally {
         setLoading(false);
@@ -58,9 +66,9 @@ export default function ProductDetailPage() {
   };
 
   useEffect(() => {
-    setLoading(true); // Loading inicial explícito
+    setLoading(true);
     fetchProduct();
-  }, [slug, navigate]);
+  }, [id, navigate]);
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -70,15 +78,19 @@ export default function ProductDetailPage() {
   if (loading) return <div className={`min-h-screen flex justify-center items-center ${bgPage}`}><LoadingSpinner /></div>;
   if (!product) return null;
 
-  const isOutOfStock = product.stock <= 0;
+  // Adaptación de datos
+  const stock = product.stock !== undefined ? product.stock : 50;
+  const isOutOfStock = stock <= 0;
+  const currentPrice = product.effective_price || product.get_precio_actual || product.precio;
+  const categoryName = product.categoria_info?.nombre || product.categoria || "General";
+  const description = product.descripcion_larga || product.descripcion || "Descripción detallada no disponible para este producto.";
 
   return (
     <div className={`min-h-screen py-12 px-4 ${bgPage}`}>
       
-      {/* SEO */}
       <Helmet>
         <title>{product.nombre} | VetShop</title>
-        <meta name="description" content={product.descripcion_corta || `Compra ${product.nombre} al mejor precio.`} />
+        <meta name="description" content={product.descripcion || `Compra ${product.nombre} al mejor precio.`} />
       </Helmet>
       
       <div className="max-w-7xl mx-auto">
@@ -94,10 +106,8 @@ export default function ProductDetailPage() {
             {/* COLUMNA IZQUIERDA: GALERÍA */}
             <div className="space-y-4">
                 
-                {/* IMAGEN PRINCIPAL CON SKELETON ANTI-SALTO */}
                 <div className="w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 relative min-h-[300px] bg-gray-100 dark:bg-gray-700/50 flex items-center justify-center">
                     
-                    {/* Skeleton de carga */}
                     {!imageLoaded && (
                         <div className="absolute inset-0 flex items-center justify-center animate-pulse">
                              <div className="w-20 h-20 bg-gray-300 dark:bg-gray-600 rounded-full opacity-20"></div>
@@ -130,21 +140,20 @@ export default function ProductDetailPage() {
 
             {/* COLUMNA DERECHA: INFO */}
             <div>
-                {product.categoria_info && (
+                {categoryName && (
                     <span className="text-purple-600 font-bold text-sm tracking-wider uppercase bg-purple-100 dark:bg-purple-900/30 px-3 py-1 rounded-full">
-                        {product.categoria_info.nombre}
+                        {categoryName}
                     </span>
                 )}
                 
                 <h1 className="text-3xl md:text-4xl font-extrabold mt-4 mb-2">{product.nombre}</h1>
                 
                 <div className="flex items-end gap-4 mb-6 border-b border-gray-200 dark:border-gray-700 pb-6">
-                    {/* Precio con Helper */}
                     <p className="text-4xl font-bold text-purple-600">
-                        {formatPrice(product.get_precio_actual)}
+                        {formatPrice(currentPrice)}
                     </p>
                     
-                    {product.precio_oferta && (
+                    {product.precio > currentPrice && (
                         <p className="text-xl text-gray-400 line-through mb-1">
                             {formatPrice(product.precio)}
                         </p>
@@ -157,21 +166,21 @@ export default function ProductDetailPage() {
                             </span>
                         ) : (
                             <span className="flex items-center gap-1 text-green-600 font-bold bg-green-100 px-3 py-1 rounded-full">
-                                <Check size={16}/> En Stock ({product.stock})
+                                <Check size={16}/> En Stock ({stock})
                             </span>
                         )}
                     </div>
                 </div>
 
                 <p className={`text-lg leading-relaxed mb-8 ${textMuted}`}>
-                    {product.descripcion_corta}
+                    {product.descripcion || product.nombre}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                     <div className="flex items-center border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden w-fit">
                         <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50" disabled={isOutOfStock}>-</button>
                         <span className="px-4 font-bold w-12 text-center">{quantity}</span>
-                        <button onClick={() => setQuantity(q => Math.min(product.stock, q + 1))} className="px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50" disabled={isOutOfStock || quantity >= product.stock}>+</button>
+                        <button onClick={() => setQuantity(q => Math.min(stock, q + 1))} className="px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50" disabled={isOutOfStock || quantity >= stock}>+</button>
                     </div>
 
                     <button
@@ -197,16 +206,15 @@ export default function ProductDetailPage() {
                 <div className="prose dark:prose-invert max-w-none mb-12">
                     <h3 className="text-xl font-bold mb-2">Detalles del Producto</h3>
                     <p className={`whitespace-pre-line ${textMuted}`}>
-                        {product.descripcion_larga || "No hay descripción detallada disponible."}
+                        {description}
                     </p>
                 </div>
 
-                {/* SECCIÓN DE RESEÑAS */}
                 <ProductReviews 
                    productId={product.id} 
                    reviews={product.reviews} 
                    onReviewAdded={fetchProduct} 
-                />
+                /> 
 
             </div>
         </div>

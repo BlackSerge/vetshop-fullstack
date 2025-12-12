@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { CheckCircle, Package, ArrowRight, Home, Copy } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { useCartStore } from '../store/useCartStore';
@@ -11,10 +11,12 @@ import { toast } from 'react-toastify';
 export default function SuccessPage() {
   const [searchParams] = useSearchParams();
   const paymentIntent = searchParams.get('payment_intent');
-  const { clearCart } = useCartStore();
+  const redirectStatus = searchParams.get('redirect_status');
   
+  const { clearCart } = useCartStore();
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
+  const navigate = useNavigate();
   
   // --- STYLES ---
   const glassCard = isDark 
@@ -22,9 +24,16 @@ export default function SuccessPage() {
     : "bg-white/70 border-white/50 shadow-purple-200/50 backdrop-blur-xl";
 
   useEffect(() => {
+    // 1. PROTECCIÓN DE RUTA: Si no hay payment_intent, expulsar.
+    if (!paymentIntent) {
+        toast.error("No se detectó un pago válido.");
+        navigate('/');
+        return;
+    }
+
+    // 2. Limpiar carrito y lanzar confeti solo si es válido
     clearCart(true);
     
-    // Confetti Burst Animation
     const duration = 3000;
     const end = Date.now() + duration;
 
@@ -48,7 +57,7 @@ export default function SuccessPage() {
         requestAnimationFrame(frame);
       }
     }());
-  }, []);
+  }, [paymentIntent, navigate, clearCart]);
 
   const copyToClipboard = () => {
       if(paymentIntent) {
@@ -56,6 +65,9 @@ export default function SuccessPage() {
           toast.success("ID copiado al portapapeles");
       }
   };
+
+  // Si no hay paymentIntent (y el useEffect aún no redirige), no renderizar nada o un loader
+  if (!paymentIntent) return null;
 
   return (
     <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden font-sans">

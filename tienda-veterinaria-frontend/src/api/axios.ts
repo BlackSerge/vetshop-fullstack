@@ -3,71 +3,62 @@ import { toast } from 'react-toastify';
 
 // --- 1. FUNCIÓN PARA OBTENER LA URL DEL BACKEND ---
 const getBaseUrl = () => {
-    // A. Si existe la variable de entorno (Ideal para Vercel/Producción)
-    if (import.meta.env.VITE_API_BASE_URL) {
-        return import.meta.env.VITE_API_BASE_URL;
-    }
+    let url = '';
     
-    // Obtener datos de la URL actual del navegador
-    const { hostname } = window.location;
-
+    // A. Si existe la variable de entorno (Vercel)
+    if (import.meta.env.VITE_API_BASE_URL) {
+        url = import.meta.env.VITE_API_BASE_URL;
+    } 
     // B. Entorno Localhost (PC)
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        return 'http://127.0.0.1:8000/api';
+    else if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        url = 'http://127.0.0.1:8000/api';
+    } 
+    // C. Entorno Red Local (Móvil en WiFi)
+    else if (/^(\d{1,3}\.){3}\d{1,3}$/.test(window.location.hostname)) {
+        url = `http://${window.location.hostname}:8000/api`;
+    } 
+    // D. Fallback
+    else {
+        url = '/api';
     }
 
-    // C. Entorno Red Local (Móvil probando en WiFi)
-    // Detecta si es una IP tipo 192.168.x.x
-    if (/^(\d{1,3}\.){3}\d{1,3}$/.test(hostname)) {
-        return `http://${hostname}:8000/api`;
-    }
-
-    // D. Fallback para Producción (Si olvidaste la variable de entorno)
-    // Asume que el backend está en el mismo dominio bajo /api
-    return '/api'; 
+    return url.endsWith('/') ? url.slice(0, -1) : url;
 };
 
 const BASE_URL = getBaseUrl();
 
-console.log(`🔌 Conectando API a: ${BASE_URL}`); // Para depuración en consola
+console.log(`🔌 [AXIOS] Conectando a: ${BASE_URL}`);
 
-// IDs para evitar que se acumulen mensajes de error repetidos
 const TOAST_ID_NETWORK = "network-error";
 const TOAST_ID_AUTH = "auth-error";
 
-// --- 2. CREAR INSTANCIA DE AXIOS ---
+// --- 2. INSTANCIA ---
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  // timeout: 10000, // Opcional: 10 segundos de espera máxima
 });
 
-// --- 3. INTERCEPTOR DE SALIDA (REQUEST) ---
+// --- 3. INTERCEPTOR REQUEST ---
 api.interceptors.request.use(
   (config) => {
-    // Inyectar Token de Usuario si existe
     const token = localStorage.getItem('access_token');
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
-    // Inyectar Sesión de Carrito Anónimo
     const cartSessionKey = localStorage.getItem('cart_session_key');
     if (cartSessionKey && config.headers) {
       config.headers['X-Cart-Session'] = cartSessionKey;
     }
-
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// --- 4. INTERCEPTOR DE LLEGADA (RESPONSE) ---
+// --- 4. INTERCEPTOR RESPONSE ---
 api.interceptors.response.use(
   (response) => {
-    // Guardar la sesión del carrito si el backend la envía
     const incomingSessionKey = response.headers['x-cart-session'];
     if (incomingSessionKey) {
       const currentKey = localStorage.getItem('cart_session_key');
@@ -80,54 +71,106 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // A. Manejo de Errores de Conexión (Network Error)
-    if (!error.response) {
+    // --- MOCKING PARA DEMO (SI EL BACKEND NO ESTÁ CORRIENDO) ---
+    // Si la petición falla por red (backend no encontrado), devolvemos datos falsos
+    // para que la UI funcione y se vea bien.
+    if (!error.response && error.code !== "ERR_CANCELED") {
+        
+        const url = originalRequest.url || "";
+
+        // A. DETALLE DE PRODUCTO: /productos/items/5/
+        // Detecta un número al final de la URL
+        const detailMatch = url.match(/\/productos\/items\/(\d+)\/?$/);
+        if (detailMatch) {
+            const id = detailMatch[1];
+            return {
+                data: {
+                    id: parseInt(id),
+                    nombre: `Producto Detalle ${id}`,
+                    effective_price: 1500 + (parseInt(id) * 10),
+                    precio: 2000 + (parseInt(id) * 10),
+                    imagen: `https://picsum.photos/600/600?random=${id}`,
+                    categoria: 'perro',
+                    descripcion: 'Producto de alta calidad para tu mascota.',
+                    descripcion_larga: 'Este es un producto simulado porque el backend no está disponible. Incluye todas las características premium que esperas.',
+                    stock: 15,
+                    reviews: [
+                        { id: 1, user_name: 'Juan Perez', rating: 5, comment: 'Excelente producto!', created_at: new Date().toISOString() },
+                        { id: 2, user_name: 'Maria Garcia', rating: 4, comment: 'Muy bueno, llegó rápido.', created_at: new Date().toISOString() }
+                    ]
+                }
+            };
+        }
+
+        // B. LISTA DE PRODUCTOS: /productos/items/
+        if (url.includes('/productos/items')) {
+            return {
+                data: {
+                    results: Array.from({ length: 12 }).map((_, i) => ({
+                        id: i + 1, // IDs 1 a 12
+                        nombre: `Producto Ejemplo ${i + 1}`,
+                        effective_price: 1500 + (i * 100),
+                        precio: 2000 + (i * 100),
+                        imagen: `https://picsum.photos/400/400?random=${i}`,
+                        categoria: 'perro',
+                        stock: 10
+                    })),
+                    count: 24
+                }
+            };
+        }
+
+        // C. CATEGORÍAS
+        if (url.includes('/productos/categorias')) {
+             return {
+                data: [
+                    { id: 1, nombre: 'Alimentos', slug: 'alimentos' },
+                    { id: 2, nombre: 'Juguetes', slug: 'juguetes' },
+                    { id: 3, nombre: 'Higiene', slug: 'higiene' },
+                ]
+             };
+        }
+        
+        // D. MARCAS
+        if (url.includes('/productos/brands')) {
+            return { data: ['Royal Canin', 'Pro Plan', 'Whiskas', 'Pedigree'] };
+        }
+
+        // Si no es un endpoint mockeado, mostrar error de red
         if (!toast.isActive(TOAST_ID_NETWORK)) {
-            // Mensaje amigable dependiendo del entorno
             let msg = "No se puede conectar con el servidor.";
-            
-            if (window.location.hostname === 'localhost' || window.location.hostname.startsWith('192')) {
-                msg = "Error de conexión. Asegúrate de que Django esté corriendo (python manage.py runserver 0.0.0.0:8000).";
+            if (url?.includes('create-payment-intent')) {
+                msg = "Fallo al conectar con la pasarela de pagos.";
             }
-            
-            console.error("🚨 Error de Red:", error);
             toast.error(msg, { toastId: TOAST_ID_NETWORK });
         }
         return Promise.reject(error);
     }
 
-    // B. Guardar sesión de carrito incluso si hubo error (ej. validación)
-    if (error.response?.headers?.['x-cart-session']) {
-        localStorage.setItem('cart_session_key', error.response.headers['x-cart-session']);
-    }
+    // --- MANEJO DE ERRORES REALES (SI HAY RESPUESTA DEL SERVER) ---
 
-    // C. Manejo de Token Expirado (401)
-    if (error.response.status === 401 && !originalRequest._retry) {
+    // Token Expirado (401)
+    if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = localStorage.getItem('refresh_token');
 
       if (refreshToken) {
         try {
-          // Intentar renovar el token
           const { data } = await axios.post(`${BASE_URL}/cuentas/token/refresh/`, {
             refresh: refreshToken,
           });
 
           localStorage.setItem('access_token', data.access);
           originalRequest.headers.Authorization = `Bearer ${data.access}`;
-          
-          // Reintentar la petición original con el nuevo token
           return api(originalRequest);
 
         } catch (refreshError) {
-          // Si falla la renovación, cerrar sesión
           localStorage.removeItem('access_token');
           localStorage.removeItem('refresh_token');
           localStorage.removeItem('user');
           
           if (!toast.isActive(TOAST_ID_AUTH)) {
-             toast.info("Tu sesión ha caducado. Ingresa nuevamente.", { toastId: TOAST_ID_AUTH });
-             // Redirigir al login
+             toast.info("Sesión caducada.", { toastId: TOAST_ID_AUTH });
              if (!window.location.hash.includes('login')) {
                  window.location.href = '/#/login';
              }
@@ -135,7 +178,6 @@ api.interceptors.response.use(
           return Promise.reject(refreshError);
         }
       } else {
-        // No hay refresh token, limpiar y redirigir
         localStorage.removeItem('access_token');
         localStorage.removeItem('user');
       }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Home, Search } from "lucide-react";
 import { useThemeStore } from "../store/useThemeStore";
+import { Helmet } from 'react-helmet-async';
 
 export default function NotFoundPage() {
   const theme = useThemeStore((state) => state.theme);
@@ -8,6 +9,9 @@ export default function NotFoundPage() {
 
   return (
     <div className={`flex flex-col items-center justify-center min-h-[70vh] px-6 text-center ${isDark ? "text-white" : "text-gray-900"}`}>
+      <Helmet>
+        <title>Página no encontrada | VetShop</title>
+      </Helmet>
       
       {/* Ilustración (Emoji grande o puedes usar una imagen real en /public) */}
       <div className="text-9xl mb-6 animate-bounce">
