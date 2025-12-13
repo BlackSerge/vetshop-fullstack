@@ -4,7 +4,9 @@ import { ShoppingCart, ArrowLeft, Check, AlertCircle, Truck, ShieldCheck } from 
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet-async';
 
-import api from '../api/axios';
+// Queries
+import { useProductDetail } from '../hooks/useProductQueries';
+
 import LoadingSpinner from '../components/LoadingSpinner';
 import ProductReviews from '../components/ProductReviews';
 import { useCartStore } from '../store/useCartStore';
@@ -18,64 +20,48 @@ export default function ProductDetailPage() {
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  // --- REACT QUERY ---
+  const { data: product, isLoading, isError, refetch } = useProductDetail(id);
 
   // Estilos
   const bgPage = isDark ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900";
   const cardBg = isDark ? "bg-gray-800 border-gray-700" : "bg-white border-gray-200";
   const textMuted = isDark ? "text-gray-400" : "text-gray-500";
 
+  // Efecto para setear imagen inicial cuando llega el producto
+  useEffect(() => {
+    if (product) {
+        if (product.imagenes && product.imagenes.length > 0) {
+            const mainImg = product.imagenes.find(img => img.is_feature) || product.imagenes[0];
+            setSelectedImage(mainImg.imagen);
+        } else {
+            setSelectedImage(product.imagen || '/placeholder.jpg');
+        }
+    }
+  }, [product]);
+
   useEffect(() => {
       setImageLoaded(false);
   }, [selectedImage]);
 
-  const fetchProduct = async () => {
-      try {
-        // Intentamos obtener el producto específico por ID
-        // Esto funcionará tanto con el Mock actualizado como con un Backend real
-        const response = await api.get(`/productos/items/${id}/`);
-        const foundProduct = response.data;
-
-        if (!foundProduct) {
-            throw new Error("Datos de producto vacíos");
-        }
-
-        setProduct(foundProduct);
-        
-        // Configurar imagen inicial
-        if (!selectedImage) {
-            if (foundProduct.imagenes && foundProduct.imagenes.length > 0) {
-                const mainImg = foundProduct.imagenes.find(img => img.is_feature) || foundProduct.imagenes[0];
-                setSelectedImage(mainImg.imagen);
-            } else {
-                setSelectedImage(foundProduct.imagen || '/placeholder.jpg');
-            }
-        }
-      } catch (error) {
-        console.error("Error cargando producto:", error);
-        toast.error("Producto no encontrado o error de conexión.");
-        navigate('/products');
-      } finally {
-        setLoading(false);
-      }
-  };
-
+  // Manejo de error
   useEffect(() => {
-    setLoading(true);
-    fetchProduct();
-  }, [id, navigate]);
+      if (isError) {
+          toast.error("Producto no encontrado.");
+          navigate('/products');
+      }
+  }, [isError, navigate]);
 
   const handleAddToCart = () => {
     if (!product) return;
     addItem(product, quantity);
   };
 
-  if (loading) return <div className={`min-h-screen flex justify-center items-center ${bgPage}`}><LoadingSpinner /></div>;
+  if (isLoading) return <div className={`min-h-screen flex justify-center items-center ${bgPage}`}><LoadingSpinner /></div>;
   if (!product) return null;
 
   // Adaptación de datos
@@ -213,7 +199,7 @@ export default function ProductDetailPage() {
                 <ProductReviews 
                    productId={product.id} 
                    reviews={product.reviews} 
-                   onReviewAdded={fetchProduct} 
+                   onReviewAdded={refetch} // React Query refetch
                 /> 
 
             </div>

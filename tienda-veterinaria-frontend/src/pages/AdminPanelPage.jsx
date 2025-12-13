@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { 
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar 
 } from 'recharts';
 import { 
     Package, Users, DollarSign, ShoppingBag, TrendingUp, 
-    ArrowUpRight, ArrowDownRight, Activity, Plus 
+    ArrowUpRight, ArrowDownRight, Activity 
 } from 'lucide-react';
 
 import SkeletonLoader from '../components/ProductCardSkeleton';
@@ -20,22 +21,12 @@ export default function AdminPanelPage() {
   const isDark = theme === "dark";
   const navigate = useNavigate();
 
-  const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-      const fetchStats = async () => {
-          try {
-              const data = await adminService.getDashboardStats();
-              setStats(data);
-          } catch (error) {
-              console.error("Error fetching stats", error);
-          } finally {
-              setLoading(false);
-          }
-      };
-      fetchStats();
-  }, []);
+  // --- REACT QUERY: Dashboard Stats ---
+  const { data: stats, isLoading } = useQuery({
+    queryKey: ['adminStats'],
+    queryFn: adminService.getDashboardStats,
+    refetchInterval: 30000, // Actualizar cada 30 segundos automáticamente
+  });
   
   // --- GLASS STYLES RESTORED ---
   const cardStyle = isDark 
@@ -72,7 +63,7 @@ export default function AdminPanelPage() {
       </div>
   );
 
-  if (loading) {
+  if (isLoading) {
       return (
           <div className="w-full space-y-8 p-2">
               <div className="h-10 w-64 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse mb-8"></div>
