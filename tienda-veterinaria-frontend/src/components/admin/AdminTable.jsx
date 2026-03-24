@@ -10,7 +10,7 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
   // Usamos colores sólidos para evitar repintado constante al hacer scroll
   const tableContainerClass = isDark 
     ? 'bg-gray-900 border-gray-700 shadow-xl shadow-black/20' 
-    : 'bg-white border-gray-200 shadow-xl shadow-purple-100/50';
+    : 'bg-white border-gray-100 shadow-xl shadow-purple-100/30';
     
   // Gradiente sutil solo en el encabezado
   const headerBgClass = isDark 
@@ -27,7 +27,7 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
   if (isLoading) {
     return (
       <div className={`rounded-3xl overflow-hidden border ${tableContainerClass}`}>
-        <div className={`p-6 border-b ${isDark ? 'border-gray-800' : 'border-gray-100'}`}>
+        <div className={`p-6 border-b ${isDark ? 'border-gray-800' : 'border-gray-50'}`}>
              <div className="h-6 w-1/3 bg-gray-400/20 rounded animate-pulse"></div>
         </div>
         <div className="p-4">

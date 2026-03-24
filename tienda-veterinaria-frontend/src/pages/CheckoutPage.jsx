@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Link, useNavigate } from "react-router-dom";
@@ -27,15 +27,17 @@ export default function CheckoutPage() {
   // Calcular total fallback
   const cartTotal = storeTotal || cartItems.reduce((acc, item) => acc + (Number(item.effective_price || item.price) * (item.quantity || 1)), 0);
 
+  const cartId = useCartStore((state) => state.cartId);
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === "dark";
   const navigate = useNavigate();
 
-  const fetchPaymentIntent = async () => {
+  const fetchPaymentIntent = useCallback(async () => {
+      if (!cartId) return;
       setLoading(true);
       setError(null);
       try {
-          const res = await api.post("/pedidos/create-payment-intent/");
+          const res = await api.post("pedidos/create-payment-intent/", { cart_id: cartId })
           if (res.data.clientSecret) {
               setClientSecret(res.data.clientSecret);
           } else {
@@ -47,14 +49,14 @@ export default function CheckoutPage() {
       } finally {
           setLoading(false);
       }
-  };
+  }, [cartId]);
 
   useEffect(() => {
-    // Solo llamar al backend si hay items y no tenemos el secret
-    if (cartItems.length > 0 && !clientSecret) {
+    // Solo llamar al backend si hay items y no tenemos el secret y tenemos cartId
+    if (cartItems.length > 0 && !clientSecret && cartId) {
         fetchPaymentIntent();
     }
-  }, [cartItems, clientSecret]);
+  }, [cartItems, clientSecret, cartId, fetchPaymentIntent]);
 
   // --- CONFIGURACIÓN VISUAL DE STRIPE ---
   const appearance = { 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Edit, Trash2, PlusCircle, Image as ImageIcon, Search, Filter } from 'lucide-react';
+import { Edit, Trash2, Plus, Image as ImageIcon, Search, Filter } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { useThemeStore } from '../../store/useThemeStore';
 import adminService from '../../services/adminService';
@@ -28,16 +28,6 @@ export default function AdminProductListPage() {
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
 
-  // --- ESTILOS SÓLIDOS (Sin Blur) ---
-  const cardContainer = isDark 
-    ? "bg-gray-900 border-gray-700 shadow-lg shadow-black/20" 
-    : "bg-white border-gray-200 shadow-lg shadow-purple-100/50";
-    
-  const inputClass = isDark 
-    ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-500 focus:border-purple-500' 
-    : 'bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-400 focus:border-purple-500 focus:bg-white';
-
-  const btnPrimary = "bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-500/30";
   const btnAction = isDark ? "bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-600" : "bg-white hover:bg-gray-50 text-gray-600 border border-gray-200";
 
   const fetchProducts = useCallback(async () => {
@@ -172,50 +162,49 @@ export default function AdminProductListPage() {
       {/* Header Mobile-First */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div>
-            <h1 className={`text-3xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>Productos</h1>
-            <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Gestiona el inventario de tu tienda</p>
+            <h1 className={`text-3xl sm:text-4xl font-black ${isDark ? 'text-white' : 'text-gray-900'}`}>Productos</h1>
+            <p className={`text-sm sm:text-base mt-2 font-medium ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Gestiona el inventario de tu tienda</p>
           </div>
           
           <Link
             to="/admin-panel/productos/new"
-            className={`w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-2xl font-bold transition-transform active:scale-95 ${btnPrimary}`}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-2xl font-bold bg-purple-600 text-white shadow-lg shadow-purple-500/30 hover:bg-purple-700 active:scale-95 transition-all w-full sm:w-auto gap-2"
           >
-            <PlusCircle size={20} className="mr-2" />
+            <Plus size={20} />
             Nuevo Producto
           </Link>
       </div>
 
       {error && <div className="p-4 mb-6 bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-xl">{error}</div>}
 
-      {/* Filters Bar - Solid Card */}
-      <div className={`p-4 rounded-3xl mb-8 border ${cardContainer}`}>
-        <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-1 group">
-                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-500' : 'text-gray-400'} group-focus-within:text-purple-500 transition-colors`} size={20} />
-                <input
-                    type="text"
-                    placeholder="Buscar por nombre, SKU..."
-                    value={searchQuery}
-                    onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl border outline-none transition-all ${inputClass}`}
-                />
-            </div>
-            <div className="relative md:w-72">
-                <Filter className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} size={18} />
-                <select
-                    value={filterCategory}
-                    onChange={(e) => { setFilterCategory(e.target.value); setCurrentPage(1); }}
-                    className={`w-full pl-10 pr-10 py-3 rounded-xl border outline-none appearance-none transition-all cursor-pointer ${inputClass}`}
-                >
-                    {categoriesOptions.map(option => (
-                        <option key={option.value} value={option.value} className={isDark ? "bg-gray-800" : "bg-white"}>{option.label}</option>
-                    ))}
-                </select>
-                <div className={`absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
-                </div>
-            </div>
-        </div>
+      {/* Filters Bar - Fixed Colors */}
+      <div className={`p-2 rounded-3xl mb-8 border flex flex-col md:flex-row gap-3 shadow-sm ${isDark ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-100'}`}>
+          <div className={`flex-1 flex items-center gap-3 p-2 rounded-2xl border transition-all focus-within:ring-2 focus-within:ring-purple-500/20 ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-50 shadow-inner'}`}>
+              <Search className="text-gray-400 ml-2" size={18} />
+              <input
+                  type="text"
+                  placeholder="Buscar por nombre, SKU..."
+                  value={searchQuery}
+                  onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
+                  className="bg-transparent w-full text-sm font-bold outline-none text-gray-900 dark:text-white placeholder-gray-400/60"
+              />
+          </div>
+          
+          <div className={`relative md:w-72 flex items-center gap-2 p-2 rounded-2xl border ${isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-50 shadow-inner'}`}>
+              <Filter className="text-gray-400 ml-2" size={18} />
+              <select
+                  value={filterCategory}
+                  onChange={(e) => { setFilterCategory(e.target.value); setCurrentPage(1); }}
+                  className={`bg-transparent w-full text-sm font-bold outline-none cursor-pointer appearance-none pr-8 ${isDark ? 'text-white' : 'text-gray-900'}`}
+              >
+                  {categoriesOptions.map(option => (
+                      <option key={option.value} value={option.value} className={isDark ? "bg-gray-800 text-white" : "bg-white text-gray-900"}>{option.label}</option>
+                  ))}
+              </select>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
+              </div>
+          </div>
       </div>
 
       <AdminTable
@@ -223,8 +212,9 @@ export default function AdminProductListPage() {
         data={products.map(prod => ({
             id: prod.id,
             nombre: (
-                <div className="font-bold text-base">{prod.nombre}</div>
+                <div className="font-medium">{prod.nombre}</div>
             ),
+            nombre_text: prod.nombre, // <--- Texto plano para el modal
             categoria_display_name: (
                 <span className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wide border ${isDark ? 'bg-gray-800 border-gray-600 text-gray-300' : 'bg-gray-100 border-gray-200 text-gray-600'}`}>
                     {prod.categoria_info?.nombre || '—'}
@@ -291,7 +281,7 @@ export default function AdminProductListPage() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={confirmDelete}
-        message={`¿Eliminar "${productToDelete?.nombre}"? Esta acción es irreversible.`}
+        message={`¿Eliminar "${productToDelete?.nombre_text}"? Esta acción es irreversible.`}
       />
     </div>
   );

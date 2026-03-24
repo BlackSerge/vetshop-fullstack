@@ -66,11 +66,7 @@ const adminService = {
         return response.data;
     },
     uploadProductImage: async (formData) => {
-        const response = await api.post('/productos/admin/imagenes/', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        });
+        const response = await api.post('/productos/admin/imagenes/', formData);
         return response.data;
     },
     updateProductImage: async (imageId, imageData) => {
@@ -119,8 +115,8 @@ const adminService = {
         const response = await api.get(`/pedidos/admin/orders/?user=${userId}`);
         return response.data;
     },
-    getDashboardStats: async () => {
-        const response = await api.get('/pedidos/admin/stats/');
+    getDashboardStats: async (period = '30d') => {
+        const response = await api.get(`/pedidos/admin/stats/?period=${period}`);
         return response.data;
     },
     

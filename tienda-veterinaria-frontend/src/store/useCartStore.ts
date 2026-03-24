@@ -9,6 +9,7 @@ interface CartState {
   count: number;
   isLoading: boolean;
   isAnimating: boolean; 
+  cartId: number | null;
   
   // Acciones
   fetchCart: () => Promise<void>;
@@ -26,6 +27,7 @@ export const useCartStore = create<CartState>((set, get) => ({
   count: 0,
   isLoading: false,
   isAnimating: false,
+  cartId: null,
  
 
 setCart: (cart: Cart) => {
@@ -36,12 +38,13 @@ setCart: (cart: Cart) => {
     set({ 
         items: items, 
         totalPrice: Number(cart?.total_price || 0), 
-        count: totalItems 
+        count: totalItems,
+        cartId: cart?.id || null,
     });
   },
 
   clearLocalCart: () => {
-      set({ items: [], totalPrice: 0, count: 0 });
+      set({ items: [], totalPrice: 0, count: 0, cartId: null });
   },
 
   fetchCart: async () => {

@@ -35,8 +35,11 @@ export default function ProductDetailPage() {
   // Efecto para setear imagen inicial cuando llega el producto
   useEffect(() => {
     if (product) {
-        if (product.imagenes && product.imagenes.length > 0) {
-            const mainImg = product.imagenes.find(img => img.is_feature) || product.imagenes[0];
+        // Encontra la imagen destacada o la primera disponible
+        const mainImg = (product.imagenes && product.imagenes.find(img => img.is_feature)) || 
+                        (product.imagenes && product.imagenes[0]);
+        
+        if (mainImg) {
             setSelectedImage(mainImg.imagen);
         } else {
             setSelectedImage(product.imagen || '/placeholder.jpg');
@@ -89,10 +92,9 @@ export default function ProductDetailPage() {
 
         <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 p-6 md:p-10 rounded-3xl shadow-xl border ${cardBg}`}>
             
-            {/* COLUMNA IZQUIERDA: GALERÍA */}
-            <div className="space-y-4">
-                
-                <div className="w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 relative min-h-[300px] bg-gray-100 dark:bg-gray-700/50 flex items-center justify-center">
+            {/* COLUMNA IZQUIERDA: IMAGEN PRINCIPAL (Sin Galería) */}
+            <div className="flex items-center justify-center">
+                <div className="w-full rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 relative min-h-[300px] bg-gray-100 dark:bg-gray-700/50 flex items-center justify-center shadow-inner">
                     
                     {!imageLoaded && (
                         <div className="absolute inset-0 flex items-center justify-center animate-pulse">
@@ -103,25 +105,10 @@ export default function ProductDetailPage() {
                     <img 
                         src={selectedImage} 
                         alt={product.nombre} 
-                        className={`w-full h-auto max-h-[600px] block object-contain transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                        className={`w-full h-auto max-h-[600px] block object-contain transition-opacity duration-500 p-4 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
                         onLoad={() => setImageLoaded(true)}
                     />
                 </div>
-                
-                {/* Miniaturas */}
-                {product.imagenes && product.imagenes.length > 1 && (
-                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide justify-center lg:justify-start">
-                        {product.imagenes.map((img) => (
-                            <button 
-                                key={img.id}
-                                onClick={() => setSelectedImage(img.imagen)}
-                                className={`w-16 h-16 flex-shrink-0 rounded-lg border-2 overflow-hidden p-1 bg-white dark:bg-gray-700 transition-all ${selectedImage === img.imagen ? 'border-purple-600 ring-2 ring-purple-200 dark:ring-purple-900' : 'border-transparent hover:border-gray-300'}`}
-                            >
-                                <img src={img.imagen} alt="" className="w-full h-full object-contain" />
-                            </button>
-                        ))}
-                    </div>
-                )}
             </div>
 
             {/* COLUMNA DERECHA: INFO */}

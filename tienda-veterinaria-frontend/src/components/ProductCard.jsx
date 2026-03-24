@@ -13,8 +13,9 @@ export default function ProductCard({ product, onAdd }) {
   if (!product) return null;
 
   // Datos
-  const imageUrl = product.imagenes?.[0]?.imagen || '/placeholder.jpg';
-  const altText = product.imagenes?.[0]?.alt_text || product.nombre;
+  const featuredImage = product.imagenes?.find(img => img.is_feature) || product.imagenes?.[0];
+  const imageUrl = featuredImage?.imagen || '/placeholder.jpg';
+  const altText = featuredImage?.alt_text || product.nombre;
   const productBadges = product.is_featured ? ["Destacado"] : [];
   const productRating = product.rating || 0;
   

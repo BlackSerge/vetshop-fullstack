@@ -65,7 +65,7 @@ export default function ProductsPage() {
 
   // 2. Marcas
   const { data: brandsData } = useBrands();
-  const availableBrands = ["Todas", ...(brandsData || [])];
+  const availableBrands = ["Todas", ...(brandsData || []).filter(brand => brand && brand.trim() !== "")];
 
   // 3. Productos
   const { 
@@ -140,7 +140,7 @@ export default function ProductsPage() {
             const response = await api.get(`/productos/items/?search=${query}&page_size=5`);
             const matches = response.data.results.map((p) => p.nombre);
             setSuggestions([...new Set(matches)]);
-        } catch (error) { setSuggestions([]); }
+        } catch { setSuggestions([]); }
       } else {
           setSuggestions([]);
       }

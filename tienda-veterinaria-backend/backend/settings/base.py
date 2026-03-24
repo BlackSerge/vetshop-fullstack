@@ -1,4 +1,3 @@
-# backend/settings/base.py
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -72,14 +71,17 @@ SIMPLE_JWT = {
     'SIGNING_KEY': SECRET_KEY,
     'AUTH_HEADER_TYPES': ('Bearer',),
     'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id', 
+    'TOKEN_TYPE_CLAIM': 'token_type', 
 }
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = [
     'accept', 'accept-encoding', 'authorization', 'content-type',
     'dnt', 'origin', 'user-agent', 'x-csrftoken', 'x-requested-with', 'x-cart-session',
+    'x-cart-id', 
 ]
-CORS_EXPOSE_HEADERS = ['X-Cart-Session']
+CORS_EXPOSE_HEADERS = ['X-Cart-Session', 'X-Cart-Id']
 
 ROOT_URLCONF = "backend.urls"
 WSGI_APPLICATION = "backend.wsgi.application"
@@ -108,7 +110,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# En base.py dejamos MEDIA_URL y MEDIA_ROOT solo para desarrollo local
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -118,10 +120,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'sergiosaborit99@gmail.com') # Leer de ENV o default
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') # Siempre de ENV por seguridad
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'sergiosaborit99@gmail.com') 
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
 DEFAULT_FROM_EMAIL = 'VetShop <no-reply@vetshop.com>'
 
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', 'pk_test_dummy')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_dummy')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_dummy')
+
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')

@@ -35,9 +35,6 @@ const TOAST_ID_AUTH = "auth-error";
 // --- 2. INSTANCIA ---
 const api = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 // --- 3. INTERCEPTOR REQUEST ---

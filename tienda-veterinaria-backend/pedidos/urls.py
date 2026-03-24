@@ -1,4 +1,3 @@
-# backend/pedidos/urls.py
 from django.urls import path
 from .views import CreatePaymentIntentView,StripeWebhookView,OrderListAPIView,MyOrderListAPIView,AdminDashboardStatsView
 
