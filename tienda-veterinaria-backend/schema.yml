@@ -1,0 +1,2159 @@
+openapi: 3.0.3
+info:
+  title: Tienda Veterinaria API
+  version: 1.0.0
+  description: API para e-commerce veterinario integral con catálogo de productos,
+    carrito, checkout y procesamiento de pagos con Stripe (incluyendo webhooks).
+paths:
+  /api/carrito/cart/:
+    get:
+      operationId: carrito_cart_retrieve
+      description: Recupera el carrito actual o crea uno anónimo.
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: carrito_cart_create
+      description: Añade un producto al carrito.
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: carrito_cart_update
+      description: Actualiza la cantidad de un ítem en el carrito.
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: carrito_cart_destroy
+      description: Elimina un ítem del carrito o vacía todo el carrito.
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/carrito/cart/items/{item_id}/:
+    get:
+      operationId: carrito_cart_items_retrieve
+      description: Recupera el carrito actual o crea uno anónimo.
+      parameters:
+      - in: path
+        name: item_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: carrito_cart_items_create
+      description: Añade un producto al carrito.
+      parameters:
+      - in: path
+        name: item_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: carrito_cart_items_update
+      description: Actualiza la cantidad de un ítem en el carrito.
+      parameters:
+      - in: path
+        name: item_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: carrito_cart_items_destroy
+      description: Elimina un ítem del carrito o vacía todo el carrito.
+      parameters:
+      - in: path
+        name: item_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - carrito
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/cuentas/admin/users/:
+    get:
+      operationId: cuentas_admin_users_list
+      description: 'Administración: lista todos los usuarios.'
+      parameters:
+      - name: search
+        required: false
+        in: query
+        description: Un término de búsqueda.
+        schema:
+          type: string
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AdminUser'
+          description: ''
+    post:
+      operationId: cuentas_admin_users_create
+      description: 'Administración: lista todos los usuarios.'
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+  /api/cuentas/admin/users/{id}/:
+    get:
+      operationId: cuentas_admin_users_retrieve
+      description: 'Administración: detalle, edición y eliminación de usuarios.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUserDetail'
+          description: ''
+    put:
+      operationId: cuentas_admin_users_update
+      description: 'Administración: detalle, edición y eliminación de usuarios.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdminUser'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+    patch:
+      operationId: cuentas_admin_users_partial_update
+      description: 'Administración: detalle, edición y eliminación de usuarios.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAdminUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUser'
+          description: ''
+    delete:
+      operationId: cuentas_admin_users_destroy
+      description: 'Administración: detalle, edición y eliminación de usuarios.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/cuentas/cambiar-contrasena/:
+    post:
+      operationId: cuentas_cambiar_contrasena_create
+      description: Cambia la contraseña del usuario autenticado.
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/cuentas/logout/:
+    post:
+      operationId: cuentas_logout_create
+      description: Registra un logout del usuario.
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/cuentas/perfil/:
+    get:
+      operationId: cuentas_perfil_retrieve
+      description: Obtiene y actualiza el perfil del usuario autenticado.
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+    put:
+      operationId: cuentas_perfil_update
+      description: Obtiene y actualiza el perfil del usuario autenticado.
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CustomUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+    patch:
+      operationId: cuentas_perfil_partial_update
+      description: Obtiene y actualiza el perfil del usuario autenticado.
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCustomUser'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomUser'
+          description: ''
+    delete:
+      operationId: cuentas_perfil_destroy
+      description: Obtiene y actualiza el perfil del usuario autenticado.
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/cuentas/registro/:
+    post:
+      operationId: cuentas_registro_create
+      description: Registra un nuevo usuario.
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserRegistration'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRegistration'
+          description: ''
+  /api/cuentas/restablecer-contrasena/confirmar/:
+    post:
+      operationId: cuentas_restablecer_contrasena_confirmar_create
+      description: Confirma el restablecimiento de contraseña con token.
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/cuentas/restablecer-contrasena/solicitar/:
+    post:
+      operationId: cuentas_restablecer_contrasena_solicitar_create
+      description: Solicita un correo para restablecimiento de contraseña.
+      tags:
+      - cuentas
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/cuentas/token/:
+    post:
+      operationId: cuentas_token_create
+      description: |-
+        Login personalizado que incluye:
+        - Tokens JWT
+        - Datos del usuario
+        - Fusión de carrito anónimo
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/cuentas/token/refresh/:
+    post:
+      operationId: cuentas_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/cuentas/token/verify/:
+    post:
+      operationId: cuentas_token_verify_create
+      description: |-
+        Takes a token and indicates if it is valid.  This view provides no
+        information about a token's fitness for a particular use.
+      tags:
+      - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenVerify'
+          description: ''
+  /api/pedidos/admin/orders/:
+    get:
+      operationId: pedidos_admin_orders_list
+      description: Lista todos los pedidos (solo admin).
+      tags:
+      - pedidos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+          description: ''
+  /api/pedidos/admin/stats/:
+    get:
+      operationId: pedidos_admin_stats_retrieve
+      description: Retorna estadísticas de ventas para el dashboard admin.
+      tags:
+      - pedidos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/pedidos/create-payment-intent/:
+    post:
+      operationId: pedidos_create_payment_intent_create
+      description: Crea un PaymentIntent en Stripe para iniciar el checkout.
+      tags:
+      - pedidos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/pedidos/my-orders/:
+    get:
+      operationId: pedidos_my_orders_list
+      description: Lista los pedidos del usuario autenticado.
+      tags:
+      - pedidos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+          description: ''
+  /api/pedidos/webhook/:
+    post:
+      operationId: pedidos_webhook_create
+      description: Endpoint de webhook de Stripe para procesar eventos de pago.
+      tags:
+      - pedidos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StripeWebhookPayload'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/StripeWebhookPayload'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/StripeWebhookPayload'
+        required: true
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+        '400':
+          description: No response body
+  /api/productos/admin/categorias/:
+    get:
+      operationId: productos_admin_categorias_list
+      description: 'Admin: lista y crea categorías.'
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Un número de página dentro del conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a devolver por página.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: Un término de búsqueda.
+        schema:
+          type: string
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCategoriaList'
+          description: ''
+    post:
+      operationId: productos_admin_categorias_create
+      description: 'Admin: lista y crea categorías.'
+      tags:
+      - productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+  /api/productos/admin/categorias/{slug}/:
+    get:
+      operationId: productos_admin_categorias_retrieve
+      description: 'Admin: ve, edita y elimina categorías.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+    put:
+      operationId: productos_admin_categorias_update
+      description: 'Admin: ve, edita y elimina categorías.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Categoria'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+    patch:
+      operationId: productos_admin_categorias_partial_update
+      description: 'Admin: ve, edita y elimina categorías.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoria'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoria'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedCategoria'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+    delete:
+      operationId: productos_admin_categorias_destroy
+      description: 'Admin: ve, edita y elimina categorías.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/productos/admin/imagenes/:
+    get:
+      operationId: productos_admin_imagenes_list
+      description: 'Admin: lista y crea (sube) imágenes.'
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Un número de página dentro del conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a devolver por página.
+        schema:
+          type: integer
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedImagenProductoAdminList'
+          description: ''
+    post:
+      operationId: productos_admin_imagenes_create
+      description: 'Admin: lista y crea (sube) imágenes.'
+      tags:
+      - productos
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImagenProductoAdmin'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ImagenProductoAdmin'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagenProductoAdmin'
+          description: ''
+  /api/productos/admin/imagenes/{id}/:
+    get:
+      operationId: productos_admin_imagenes_retrieve
+      description: 'Admin: ve, edita y elimina imágenes.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagenProductoAdmin'
+          description: ''
+    put:
+      operationId: productos_admin_imagenes_update
+      description: 'Admin: ve, edita y elimina imágenes.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - productos
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImagenProductoAdmin'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ImagenProductoAdmin'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagenProductoAdmin'
+          description: ''
+    patch:
+      operationId: productos_admin_imagenes_partial_update
+      description: 'Admin: ve, edita y elimina imágenes.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - productos
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedImagenProductoAdmin'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedImagenProductoAdmin'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImagenProductoAdmin'
+          description: ''
+    delete:
+      operationId: productos_admin_imagenes_destroy
+      description: 'Admin: ve, edita y elimina imágenes.'
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/productos/admin/items/:
+    get:
+      operationId: productos_admin_items_list
+      description: 'Admin: lista y crea productos.'
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Un número de página dentro del conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a devolver por página.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: Un término de búsqueda.
+        schema:
+          type: string
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductoCreateUpdateList'
+          description: ''
+    post:
+      operationId: productos_admin_items_create
+      description: 'Admin: lista y crea productos.'
+      tags:
+      - productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductoCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductoCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductoCreateUpdate'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoCreateUpdate'
+          description: ''
+  /api/productos/admin/items/{slug}/:
+    get:
+      operationId: productos_admin_items_retrieve
+      description: 'Admin: ve, edita y elimina productos.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+          description: ''
+    put:
+      operationId: productos_admin_items_update
+      description: 'Admin: ve, edita y elimina productos.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductoCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProductoCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProductoCreateUpdate'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoCreateUpdate'
+          description: ''
+    patch:
+      operationId: productos_admin_items_partial_update
+      description: 'Admin: ve, edita y elimina productos.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProductoCreateUpdate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProductoCreateUpdate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProductoCreateUpdate'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductoCreateUpdate'
+          description: ''
+    delete:
+      operationId: productos_admin_items_destroy
+      description: 'Admin: ve, edita y elimina productos.'
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/productos/brands/:
+    get:
+      operationId: productos_brands_retrieve
+      description: Lista todas las marcas únicas.
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/productos/categorias/:
+    get:
+      operationId: productos_categorias_list
+      description: Lista categorías activas (público).
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: Un número de página dentro del conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a devolver por página.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: Un término de búsqueda.
+        schema:
+          type: string
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCategoriaList'
+          description: ''
+  /api/productos/categorias/{slug}/:
+    get:
+      operationId: productos_categorias_retrieve
+      description: Detalle de categoría (público).
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+          description: ''
+  /api/productos/items/:
+    get:
+      operationId: productos_items_list
+      description: Lista productos públicos con filtros y búsqueda.
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Qué campo usar para ordenar los resultados.
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: Un número de página dentro del conjunto de resultados paginado.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Número de resultados a devolver por página.
+        schema:
+          type: integer
+      - name: search
+        required: false
+        in: query
+        description: Un término de búsqueda.
+        schema:
+          type: string
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedProductoList'
+          description: ''
+  /api/productos/items/{product_id}/reviews/:
+    post:
+      operationId: productos_items_reviews_create
+      description: Crea un review para un producto.
+      parameters:
+      - in: path
+        name: product_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Review'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+  /api/productos/items/{slug}/:
+    get:
+      operationId: productos_items_retrieve
+      description: Detalle de producto (público).
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - productos
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+          description: ''
+components:
+  schemas:
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          title: Nombre de usuario
+          description: 'Requerido. 150 carácteres como máximo. Únicamente letras,
+            dígitos y @/./+/-/_ '
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Correo Electrónico
+          maxLength: 254
+        first_name:
+          type: string
+          title: Nombre
+          maxLength: 150
+        last_name:
+          type: string
+          title: Apellidos
+          maxLength: 150
+        is_staff:
+          type: boolean
+          title: Es staff
+          description: Indica si el usuario puede entrar en este sitio de administración.
+        is_active:
+          type: boolean
+          title: Activo
+          description: Indica si el usuario debe ser tratado como activo. Desmarque
+            esta opción en lugar de borrar la cuenta.
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de alta
+        is_vip:
+          type: boolean
+          title: Es Cliente VIP
+          description: Indica si el usuario tiene estatus VIP (Descuentos, etc.)
+      required:
+      - date_joined
+      - email
+      - id
+      - username
+    AdminUserDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          title: Nombre de usuario
+          description: 'Requerido. 150 carácteres como máximo. Únicamente letras,
+            dígitos y @/./+/-/_ '
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Correo Electrónico
+          maxLength: 254
+        first_name:
+          type: string
+          title: Nombre
+          maxLength: 150
+        last_name:
+          type: string
+          title: Apellidos
+          maxLength: 150
+        is_staff:
+          type: boolean
+          title: Es staff
+          description: Indica si el usuario puede entrar en este sitio de administración.
+        is_active:
+          type: boolean
+          title: Activo
+          description: Indica si el usuario debe ser tratado como activo. Desmarque
+            esta opción en lugar de borrar la cuenta.
+        is_vip:
+          type: boolean
+          title: Es Cliente VIP
+          description: Indica si el usuario tiene estatus VIP (Descuentos, etc.)
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de alta
+        last_login:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          title: Último inicio de sesión
+        activity_logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserActivityLog'
+          readOnly: true
+        total_orders:
+          type: string
+          readOnly: true
+        total_spent:
+          type: string
+          readOnly: true
+        last_order_date:
+          type: string
+          readOnly: true
+      required:
+      - activity_logs
+      - date_joined
+      - email
+      - id
+      - last_login
+      - last_order_date
+      - total_orders
+      - total_spent
+      - username
+    BlankEnum:
+      enum:
+      - ''
+    Categoria:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          title: Nombre de la Categoría
+          maxLength: 100
+        slug:
+          type: string
+          title: Slug de la Categoría
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        descripcion:
+          type: string
+          title: Descripción
+        is_active:
+          type: boolean
+          title: Activa
+      required:
+      - id
+      - nombre
+    CustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+          title: Nombre de usuario
+          description: 'Requerido. 150 carácteres como máximo. Únicamente letras,
+            dígitos y @/./+/-/_ '
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Correo Electrónico
+        first_name:
+          type: string
+          title: Nombre
+          maxLength: 150
+        last_name:
+          type: string
+          title: Apellidos
+          maxLength: 150
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de alta
+        is_staff:
+          type: boolean
+          readOnly: true
+          title: Es staff
+          description: Indica si el usuario puede entrar en este sitio de administración.
+        is_superuser:
+          type: boolean
+          readOnly: true
+          title: Estado de superusuario
+          description: Indica que este usuario tiene todos los permisos sin asignárselos
+            explícitamente.
+        is_vip:
+          type: boolean
+          readOnly: true
+          title: Es Cliente VIP
+          description: Indica si el usuario tiene estatus VIP (Descuentos, etc.)
+      required:
+      - date_joined
+      - email
+      - id
+      - is_staff
+      - is_superuser
+      - is_vip
+      - username
+    ImagenProducto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        imagen:
+          type: string
+          nullable: true
+        alt_text:
+          type: string
+          maxLength: 255
+        is_feature:
+          type: boolean
+        order:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+      required:
+      - id
+    ImagenProductoAdmin:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        producto:
+          type: integer
+        imagen:
+          type: string
+          nullable: true
+        alt_text:
+          type: string
+          maxLength: 255
+        is_feature:
+          type: boolean
+        order:
+          type: integer
+          readOnly: true
+      required:
+      - id
+      - order
+      - producto
+    NullEnum:
+      enum:
+      - null
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - items
+      - total
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product_name:
+          type: string
+          readOnly: true
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+      required:
+      - id
+      - price
+      - product_name
+    PaginatedCategoriaList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Categoria'
+    PaginatedImagenProductoAdminList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImagenProductoAdmin'
+    PaginatedProductoCreateUpdateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductoCreateUpdate'
+    PaginatedProductoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Producto'
+    PatchedAdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          title: Nombre de usuario
+          description: 'Requerido. 150 carácteres como máximo. Únicamente letras,
+            dígitos y @/./+/-/_ '
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Correo Electrónico
+          maxLength: 254
+        first_name:
+          type: string
+          title: Nombre
+          maxLength: 150
+        last_name:
+          type: string
+          title: Apellidos
+          maxLength: 150
+        is_staff:
+          type: boolean
+          title: Es staff
+          description: Indica si el usuario puede entrar en este sitio de administración.
+        is_active:
+          type: boolean
+          title: Activo
+          description: Indica si el usuario debe ser tratado como activo. Desmarque
+            esta opción en lugar de borrar la cuenta.
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de alta
+        is_vip:
+          type: boolean
+          title: Es Cliente VIP
+          description: Indica si el usuario tiene estatus VIP (Descuentos, etc.)
+    PatchedCategoria:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          title: Nombre de la Categoría
+          maxLength: 100
+        slug:
+          type: string
+          title: Slug de la Categoría
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        descripcion:
+          type: string
+          title: Descripción
+        is_active:
+          type: boolean
+          title: Activa
+    PatchedCustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+          title: Nombre de usuario
+          description: 'Requerido. 150 carácteres como máximo. Únicamente letras,
+            dígitos y @/./+/-/_ '
+        email:
+          type: string
+          format: email
+          readOnly: true
+          title: Correo Electrónico
+        first_name:
+          type: string
+          title: Nombre
+          maxLength: 150
+        last_name:
+          type: string
+          title: Apellidos
+          maxLength: 150
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de alta
+        is_staff:
+          type: boolean
+          readOnly: true
+          title: Es staff
+          description: Indica si el usuario puede entrar en este sitio de administración.
+        is_superuser:
+          type: boolean
+          readOnly: true
+          title: Estado de superusuario
+          description: Indica que este usuario tiene todos los permisos sin asignárselos
+            explícitamente.
+        is_vip:
+          type: boolean
+          readOnly: true
+          title: Es Cliente VIP
+          description: Indica si el usuario tiene estatus VIP (Descuentos, etc.)
+    PatchedImagenProductoAdmin:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        producto:
+          type: integer
+        imagen:
+          type: string
+          nullable: true
+        alt_text:
+          type: string
+          maxLength: 255
+        is_feature:
+          type: boolean
+        order:
+          type: integer
+          readOnly: true
+    PatchedProductoCreateUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          title: Nombre del Producto
+          maxLength: 255
+        descripcion_corta:
+          type: string
+          title: Descripción Corta
+          maxLength: 255
+        descripcion_larga:
+          type: string
+          title: Descripción Larga
+        precio:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        precio_oferta:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+          title: Precio de Oferta
+        categoria:
+          type: integer
+          nullable: true
+          title: Categoría
+        categoria_info:
+          allOf:
+          - $ref: '#/components/schemas/SimpleCategoria'
+          readOnly: true
+        sku:
+          type: string
+          title: SKU (Stock Keeping Unit)
+          maxLength: 50
+        stock:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Cantidad en Stock
+        is_active:
+          type: boolean
+          title: Activo
+        is_featured:
+          type: boolean
+          title: Destacado (Home)
+        marca:
+          type: string
+          nullable: true
+          maxLength: 100
+        tipo_mascota:
+          nullable: true
+          title: Tipo de Mascota
+          oneOf:
+          - $ref: '#/components/schemas/TipoMascotaEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        slug:
+          type: string
+          readOnly: true
+          title: Slug del Producto
+          pattern: ^[-a-zA-Z0-9_]+$
+    Producto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          title: Nombre del Producto
+          maxLength: 255
+        slug:
+          type: string
+          readOnly: true
+          title: Slug del Producto
+          pattern: ^[-a-zA-Z0-9_]+$
+        descripcion_corta:
+          type: string
+          title: Descripción Corta
+          maxLength: 255
+        descripcion_larga:
+          type: string
+          title: Descripción Larga
+        precio:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        precio_oferta:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+          title: Precio de Oferta
+        get_precio_actual:
+          type: string
+          readOnly: true
+        categoria:
+          type: integer
+          nullable: true
+          title: Categoría
+        categoria_info:
+          allOf:
+          - $ref: '#/components/schemas/SimpleCategoria'
+          readOnly: true
+        sku:
+          type: string
+          title: SKU (Stock Keeping Unit)
+          maxLength: 50
+        stock:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Cantidad en Stock
+        is_active:
+          type: boolean
+          title: Activo
+        is_featured:
+          type: boolean
+          title: Destacado (Home)
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de Creación
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última Actualización
+        imagenes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImagenProducto'
+          readOnly: true
+        marca:
+          type: string
+          nullable: true
+          maxLength: 100
+        tipo_mascota:
+          nullable: true
+          title: Tipo de Mascota
+          oneOf:
+          - $ref: '#/components/schemas/TipoMascotaEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        rating_average:
+          type: number
+          format: double
+          readOnly: true
+        review_count:
+          type: integer
+          readOnly: true
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+          readOnly: true
+      required:
+      - categoria_info
+      - created_at
+      - get_precio_actual
+      - id
+      - imagenes
+      - nombre
+      - precio
+      - rating_average
+      - review_count
+      - reviews
+      - slug
+      - updated_at
+    ProductoCreateUpdate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          title: Nombre del Producto
+          maxLength: 255
+        descripcion_corta:
+          type: string
+          title: Descripción Corta
+          maxLength: 255
+        descripcion_larga:
+          type: string
+          title: Descripción Larga
+        precio:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        precio_oferta:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+          title: Precio de Oferta
+        categoria:
+          type: integer
+          nullable: true
+          title: Categoría
+        categoria_info:
+          allOf:
+          - $ref: '#/components/schemas/SimpleCategoria'
+          readOnly: true
+        sku:
+          type: string
+          title: SKU (Stock Keeping Unit)
+          maxLength: 50
+        stock:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Cantidad en Stock
+        is_active:
+          type: boolean
+          title: Activo
+        is_featured:
+          type: boolean
+          title: Destacado (Home)
+        marca:
+          type: string
+          nullable: true
+          maxLength: 100
+        tipo_mascota:
+          nullable: true
+          title: Tipo de Mascota
+          oneOf:
+          - $ref: '#/components/schemas/TipoMascotaEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        slug:
+          type: string
+          readOnly: true
+          title: Slug del Producto
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - categoria_info
+      - id
+      - nombre
+      - precio
+      - slug
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user_name:
+          type: string
+          readOnly: true
+        rating:
+          type: integer
+          maximum: 5
+          minimum: 1
+        comment:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - rating
+      - user_name
+    SimpleCategoria:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nombre:
+          type: string
+          readOnly: true
+          title: Nombre de la Categoría
+        slug:
+          type: string
+          readOnly: true
+          title: Slug de la Categoría
+          pattern: ^[-a-zA-Z0-9_]+$
+      required:
+      - id
+      - nombre
+      - slug
+    StatusEnum:
+      enum:
+      - PENDING
+      - PAID
+      - SHIPPED
+      - CANCELLED
+      type: string
+      description: |-
+        * `PENDING` - Pendiente
+        * `PAID` - Pagado
+        * `SHIPPED` - Enviado
+        * `CANCELLED` - Cancelado
+    StripeWebhookPayload:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        data:
+          type: object
+          additionalProperties: {}
+      required:
+      - data
+      - type
+    TipoMascotaEnum:
+      enum:
+      - perro
+      - gato
+      - ave
+      - roedor
+      - reptil
+      - otros
+      type: string
+      description: |-
+        * `perro` - Perro
+        * `gato` - Gato
+        * `ave` - Ave
+        * `roedor` - Roedor
+        * `reptil` - Reptil
+        * `otros` - Otros
+    TokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - password
+      - refresh
+      - username
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TokenVerify:
+      type: object
+      properties:
+        token:
+          type: string
+          writeOnly: true
+      required:
+      - token
+    UserActivityLog:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        action:
+          type: string
+          maxLength: 50
+        details:
+          type: string
+          nullable: true
+        ip_address:
+          type: string
+          nullable: true
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - action
+      - id
+      - timestamp
+    UserRegistration:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+          title: Correo Electrónico
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+        password2:
+          type: string
+          writeOnly: true
+        first_name:
+          type: string
+        last_name:
+          type: string
+      required:
+      - email
+      - password
+      - password2
+      - username
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
