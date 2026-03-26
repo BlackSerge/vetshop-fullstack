@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .env
+.env.*
+!.env.example
+
+# Test & cache artifacts
+coverage/
+.vitest/
+.cache/
