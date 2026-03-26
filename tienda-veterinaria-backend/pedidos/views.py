@@ -73,6 +73,19 @@ class StripeWebhookView(APIView):
 
     permission_classes = [permissions.AllowAny]
 
+    @extend_schema(
+        request=inline_serializer(
+            name='StripeWebhookPayload',
+            fields={
+                'id': serializers.CharField(required=False),
+                'type': serializers.CharField(required=True),
+                'data': serializers.DictField(required=True),
+            },
+        ),
+        responses={200: None, 400: None},
+        description='Endpoint de webhook de Stripe para procesar eventos de pago.',
+    )
+
     def post(self, request, *args, **kwargs):
         try:
             # 1. Verificar firma del webhook

@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "rest_framework",
     'rest_framework_simplejwt',
     "cloudinary_storage",
+    "drf_spectacular",
     "cloudinary",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -48,7 +49,9 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
+        
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 12,
     'DEFAULT_THROTTLE_CLASSES': [
@@ -129,3 +132,14 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', 'sk_test_dummy')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', 'whsec_dummy')
 
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Tienda Veterinaria API',
+    'DESCRIPTION': (
+        'API para e-commerce veterinario integral con catálogo de productos, '
+        'carrito, checkout y procesamiento de pagos con Stripe (incluyendo webhooks).'
+    ),
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
