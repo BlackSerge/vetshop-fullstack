@@ -5,19 +5,13 @@ import os
 DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*"]
 
-DATABASE_URL_LOCAL = os.getenv(
-    "DATABASE_URL_LOCAL", 
-    "postgres://postgres:SxD13052023@127.0.0.1:5433/tienda_vet_db"
-)
-
 DATABASES = {
     'default': dj_database_url.config(
-        default=DATABASE_URL_LOCAL,
+        default=os.getenv("DATABASE_URL"),
         conn_max_age=600,
-        ssl_require=False 
+        conn_health_checks=True,
     )
 }
-
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
