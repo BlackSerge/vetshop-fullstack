@@ -1,14 +1,11 @@
-// src/pages/admin/AdminDashboardPage.jsx
-import React, { useEffect, useState, useCallback } from 'react';
+import  { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-    Package, Users, DollarSign, ShoppingBag, TrendingUp, 
-    Calendar, ArrowUpRight, ArrowDownRight, Activity,
-    ChevronRight, Award, Clock
+     Users, DollarSign, ShoppingBag, TrendingUp, Activity,ChevronRight, Award, Clock
 } from 'lucide-react';
 import { 
     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, 
-    ResponsiveContainer, BarChart, Bar, Cell 
+    ResponsiveContainer
 } from 'recharts';
 import adminService from '../services/adminService';
 import { useThemeStore } from '@/shared';
@@ -22,10 +19,8 @@ export default function AdminDashboardPage() {
   const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState('30d');
   const [isRefreshing, setIsRefreshing] = useState(false);
-
-  // Estilos constantes
   const cardBg = isDark ? "bg-gray-800 border-gray-700 text-white" : "bg-white border-gray-200 text-gray-900 shadow-sm";
-  const accentColor = "#8b5cf6"; // Purple 500
+  const accentColor = "#8b5cf6"; 
 
   const fetchStats = useCallback(async (selectedPeriod) => {
     setIsRefreshing(true);
@@ -69,7 +64,6 @@ export default function AdminDashboardPage() {
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8 pb-20">
       
-      {/* HEADER & FILTROS */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <h1 className={`text-3xl font-black tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>Dashboard</h1>
@@ -95,7 +89,6 @@ export default function AdminDashboardPage() {
         </div>
       </div>
 
-      {/* 1. SECCIÓN DE MÉTRICAS PRINCIPALES */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <MetricCard 
             title="Ventas del Periodo"
@@ -137,7 +130,6 @@ export default function AdminDashboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* 2. GRÁFICO DE EVOLUCIÓN (Ocupa 2 columnas) */}
         <div className={`lg:col-span-2 p-6 rounded-2xl border ${cardBg} transition-all hover:shadow-lg`}>
             <div className="flex items-center justify-between mb-8">
                 <div>
@@ -187,7 +179,6 @@ export default function AdminDashboardPage() {
             </div>
         </div>
 
-        {/* 3. PRODUCTOS ESTRELLA (Ocupa 1 columna) */}
         <div className={`p-6 rounded-2xl border ${cardBg} transition-all hover:shadow-lg flex flex-col`}>
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-bold flex items-center gap-2">
@@ -234,7 +225,6 @@ export default function AdminDashboardPage() {
   );
 }
 
-// --- COMPONENTES AUXILIARES ---
 
 function MetricCard({ title, value, icon, trend, color, isDark, isLoading }) {
     const colorClasses = {
@@ -266,7 +256,6 @@ function MetricCard({ title, value, icon, trend, color, isDark, isLoading }) {
                 <h3 className={`text-2xl font-black ${isDark ? "text-white" : "text-gray-900"}`}>{value}</h3>
             </div>
             
-            {/* Decoración sutil */}
             <div className="absolute -bottom-6 -right-6 w-20 h-20 bg-gray-400/5 group-hover:bg-purple-500/5 rounded-full transition-colors"></div>
         </div>
     );

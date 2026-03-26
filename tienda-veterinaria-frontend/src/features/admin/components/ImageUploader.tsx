@@ -11,27 +11,23 @@ export default function ImageUploader({
 }) {
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
-
   const [preview, setPreview] = useState(currentImageUrl || null);
+  
   const fileInputRef = useRef(null);
-
   useEffect(() => {
       setPreview(currentImageUrl);
   }, [currentImageUrl]);
 
   const containerBaseClasses = `relative flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-2xl transition-all duration-300`;
-  
-  // ESTILOS SÓLIDOS Y MODERNOS
   const containerThemeClasses = isDark 
     ? 'bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-750 hover:border-gray-500' 
     : 'bg-white border-gray-300 text-gray-600 hover:bg-purple-50/30 hover:border-purple-300';
-    
   const containerErrorClasses = error ? 'border-red-500 bg-red-50 dark:bg-red-900/10' : '';
   const removeBtnClasses = isDark ? 'bg-red-600 hover:bg-red-700' : 'bg-red-500 hover:bg-red-600';
   const labelColor = isDark ? 'text-gray-300' : 'text-gray-700';
   const mutedTextColor = isDark ? 'text-gray-500' : 'text-gray-400';
   const errorColor = 'text-red-500';
-
+  
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {

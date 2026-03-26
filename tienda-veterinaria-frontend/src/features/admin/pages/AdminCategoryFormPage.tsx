@@ -8,7 +8,7 @@ import { LoadingSpinner } from '@/shared';
 import { useThemeStore } from '@/shared';
 
 export default function AdminCategoryFormPage() {
-  const { slug } = useParams(); // Para modo edición
+  const { slug } = useParams(); 
   const navigate = useNavigate();
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
@@ -107,7 +107,7 @@ export default function AdminCategoryFormPage() {
           name="nombre"
           value={categoryData.nombre}
           onChange={handleChange}
-          error={null} // Implementar validación de errores aquí si es necesario
+          error={null} 
           placeholder="Ej: Alimentos, Juguetes"
           required
         />

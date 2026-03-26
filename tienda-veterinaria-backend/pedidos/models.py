@@ -1,4 +1,3 @@
-# backend/pedidos/models.py
 from django.db import models
 from django.conf import settings
 from productos.models import Producto
@@ -12,15 +11,11 @@ class Order(models.Model):
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='orders')
-    
-    # Datos de contacto/envío (Simplificado, puedes ampliarlo)
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
     address = models.CharField(max_length=250)
     city = models.CharField(max_length=100)
     postal_code = models.CharField(max_length=20)
-    
-    # Datos del pago
     stripe_payment_intent_id = models.CharField(max_length=100, blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
     total = models.DecimalField(max_digits=10, decimal_places=2)
@@ -37,7 +32,7 @@ class Order(models.Model):
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Producto, related_name='order_items', on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2) # Precio al momento de la compra
+    price = models.DecimalField(max_digits=10, decimal_places=2) 
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):

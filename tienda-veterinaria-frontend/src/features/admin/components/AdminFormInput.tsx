@@ -1,4 +1,3 @@
-// src/components/admin/AdminFormInput.jsx
 import { useThemeStore } from '@/shared';
 
 export default function AdminFormInput({

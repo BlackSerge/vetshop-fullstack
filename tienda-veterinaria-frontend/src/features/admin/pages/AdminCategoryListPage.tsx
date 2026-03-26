@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus, Edit, Trash2 } from 'lucide-react';
 import { toast } from 'react-toastify';
@@ -11,8 +11,6 @@ export default function AdminCategoriesPage() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  // Estado Modal Eliminación
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [categoryToDelete, setCategoryToDelete] = useState(null);
 

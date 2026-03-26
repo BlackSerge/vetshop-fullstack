@@ -1,11 +1,8 @@
-
-# carrito/models.py
 from django.db import models
 from django.conf import settings
-from productos.models import Producto # Importa el modelo Producto de tu app productos
-from decimal import Decimal # Para asegurar precisión en los precios
-import uuid # <--- ¡Nueva importación!
-
+from productos.models import Producto 
+from decimal import Decimal 
+import uuid 
 class Cart(models.Model):
     """
     Representa el carrito de compras de un usuario (autenticado) o anónimo (por session_key).
@@ -15,12 +12,11 @@ class Cart(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='cart',
-        null=True,           # <--- Permitir carritos sin usuario
-        blank=True,          # <--- Permitir carritos sin usuario
+        null=True,          
         verbose_name="Usuario"
     )
-    session_key = models.UUIDField( # <--- Campo para identificar carritos anónimos
-        default=uuid.uuid4,  # Genera un UUID por defecto si no se proporciona
+    session_key = models.UUIDField( 
+        default=uuid.uuid4,  
         unique=True,
         null=True,
         blank=True,
@@ -33,20 +29,8 @@ class Cart(models.Model):
         verbose_name = "Carrito"
         verbose_name_plural = "Carritos"
         ordering = ['-created_at']
-        # Opcional: Puedes añadir estas restricciones para asegurar que siempre haya un user o session_key, pero no ambos
-        # constraints = [
-        #     models.CheckConstraint(
-        #         check=models.Q(user__isnull=False) | models.Q(session_key__isnull=False),
-        #         name='has_user_or_session_key',
-        #     ),
-        #     models.CheckConstraint(
-        #         check=~(models.Q(user__isnull=False) & models.Q(session_key__isnull=False)),
-        #         name='not_both_user_and_session_key',
-        #     )
-        # ]
 
     def save(self, *args, **kwargs):
-        # Asegurarse de que al menos uno de user o session_key exista al crear un nuevo carrito
         if not self.pk and self.user is None and self.session_key is None:
             self.session_key = uuid.uuid4()
 
@@ -57,7 +41,7 @@ class Cart(models.Model):
             return f"Carrito de {self.user.username}"
         elif self.session_key:
             return f"Carrito Anónimo ({str(self.session_key)[:8]}...)"
-        return "Carrito sin identificador" # Debería ser un caso raro si las lógicas se cumplen
+        return "Carrito sin identificador" 
 
     @property
     def total_price(self):
@@ -87,7 +71,7 @@ class CartItem(models.Model):
     class Meta:
         verbose_name = "Ítem de Carrito"
         verbose_name_plural = "Ítems de Carrito"
-        unique_together = ('cart', 'product') # Asegura que un producto solo pueda estar una vez en el mismo carrito
+        unique_together = ('cart', 'product') 
 
     def __str__(self):
         owner_info = self.cart.user.username if self.cart.user else f"Anónimo ({str(self.cart.session_key)[:8]}...)"

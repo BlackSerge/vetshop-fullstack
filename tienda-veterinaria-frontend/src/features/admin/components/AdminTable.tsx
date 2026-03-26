@@ -5,22 +5,15 @@ import SkeletonLoader from '@/features/products/components/ProductCardSkeleton';
 export default function AdminTable({ headers, data, renderRowActions, isLoading }) {
   const theme = useThemeStore((state) => state.theme);
   const isDark = theme === 'dark';
-
-  // --- ESTILOS SÓLIDOS (SIN BLUR) ---
-  // Usamos colores sólidos para evitar repintado constante al hacer scroll
   const tableContainerClass = isDark 
     ? 'bg-gray-900 border-gray-700 shadow-xl shadow-black/20' 
     : 'bg-white border-gray-100 shadow-xl shadow-purple-100/30';
-    
-  // Gradiente sutil solo en el encabezado
   const headerBgClass = isDark 
     ? 'bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300' 
     : 'bg-gradient-to-r from-gray-50 to-gray-100 text-gray-600';
-    
   const rowHoverClass = isDark 
     ? 'hover:bg-gray-800/80' 
     : 'hover:bg-purple-50/50';
-    
   const dividerColor = isDark ? 'divide-gray-800' : 'divide-gray-100';
   const textPrimary = isDark ? 'text-gray-100' : 'text-gray-800';
 
@@ -48,8 +41,7 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
 
   return (
     <div className={`rounded-3xl overflow-hidden border transition-all duration-300 ${tableContainerClass}`}>
-      
-      {/* Wrapper para scroll horizontal fluido en móviles */}
+
       <div className="overflow-x-auto w-full scrollbar-thin">
       
           <table className={`min-w-full divide-y ${dividerColor}`}>
@@ -78,7 +70,6 @@ export default function AdminTable({ headers, data, renderRowActions, isLoading 
                     const fieldName = headerConfig.field;
                     let displayValue = row[fieldName];
 
-                    // Renderizado condicional básico
                     if (typeof displayValue === 'boolean') {
                       displayValue = displayValue ? (
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20">
