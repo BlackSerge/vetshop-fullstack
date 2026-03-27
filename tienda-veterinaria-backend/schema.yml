@@ -16,29 +16,69 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
     post:
       operationId: carrito_cart_create
       description: Añade un producto al carrito.
       tags:
       - carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
       security:
       - jwtAuth: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
     put:
       operationId: carrito_cart_update
       description: Actualiza la cantidad de un ítem en el carrito.
       tags:
       - carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
       security:
       - jwtAuth: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
     delete:
       operationId: carrito_cart_destroy
       description: Elimina un ítem del carrito o vacía todo el carrito.
@@ -48,8 +88,12 @@ paths:
       - jwtAuth: []
       - {}
       responses:
-        '204':
-          description: No response body
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
   /api/carrito/cart/items/{item_id}/:
     get:
       operationId: carrito_cart_items_retrieve
@@ -67,7 +111,17 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
     post:
       operationId: carrito_cart_items_create
       description: Añade un producto al carrito.
@@ -79,12 +133,27 @@ paths:
         required: true
       tags:
       - carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
       security:
       - jwtAuth: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
     put:
       operationId: carrito_cart_items_update
       description: Actualiza la cantidad de un ítem en el carrito.
@@ -96,12 +165,27 @@ paths:
         required: true
       tags:
       - carrito
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CartItemMutation'
       security:
       - jwtAuth: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
     delete:
       operationId: carrito_cart_items_destroy
       description: Elimina un ítem del carrito o vacía todo el carrito.
@@ -117,8 +201,12 @@ paths:
       - jwtAuth: []
       - {}
       responses:
-        '204':
-          description: No response body
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: ''
   /api/cuentas/admin/users/:
     get:
       operationId: cuentas_admin_users_list
@@ -275,22 +363,54 @@ paths:
       description: Cambia la contraseña del usuario autenticado.
       tags:
       - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+        required: true
       security:
       - jwtAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: ''
   /api/cuentas/logout/:
     post:
       operationId: cuentas_logout_create
       description: Registra un logout del usuario.
       tags:
       - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageResponse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MessageResponse'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MessageResponse'
+        required: true
       security:
       - jwtAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: ''
   /api/cuentas/perfil/:
     get:
       operationId: cuentas_perfil_retrieve
@@ -400,24 +520,56 @@ paths:
       description: Confirma el restablecimiento de contraseña con token.
       tags:
       - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+        required: true
       security:
       - jwtAuth: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: ''
   /api/cuentas/restablecer-contrasena/solicitar/:
     post:
       operationId: cuentas_restablecer_contrasena_solicitar_create
       description: Solicita un correo para restablecimiento de contraseña.
       tags:
       - cuentas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordResetRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordResetRequest'
+        required: true
       security:
       - jwtAuth: []
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+          description: ''
   /api/cuentas/token/:
     post:
       operationId: cuentas_token_create
@@ -528,18 +680,37 @@ paths:
       - jwtAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDashboardStatsResponse'
+          description: ''
   /api/pedidos/create-payment-intent/:
     post:
       operationId: pedidos_create_payment_intent_create
       description: Crea un PaymentIntent en Stripe para iniciar el checkout.
       tags:
       - pedidos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentIntentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentIntentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentIntentRequest'
       security:
       - jwtAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePaymentIntentResponse'
+          description: ''
   /api/pedidos/my-orders/:
     get:
       operationId: pedidos_my_orders_list
@@ -1059,7 +1230,13 @@ paths:
       - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+          description: ''
   /api/productos/categorias/:
     get:
       operationId: productos_categorias_list
@@ -1215,6 +1392,60 @@ paths:
           description: ''
 components:
   schemas:
+    AdminDashboardStatsResponse:
+      type: object
+      properties:
+        total_sales:
+          type: number
+          format: double
+        total_orders:
+          type: integer
+        total_users:
+          type: integer
+        total_products:
+          type: integer
+        period_sales:
+          type: number
+          format: double
+        period_orders:
+          type: integer
+        period_avg_value:
+          type: number
+          format: double
+        active_customers:
+          type: integer
+        trends:
+          type: object
+          additionalProperties: {}
+        top_products:
+          type: array
+          items: {}
+        chart_data:
+          type: object
+          additionalProperties: {}
+        orders_by_status:
+          type: array
+          items: {}
+        sales_by_category:
+          type: array
+          items: {}
+        period_days:
+          type: integer
+      required:
+      - active_customers
+      - chart_data
+      - orders_by_status
+      - period_avg_value
+      - period_days
+      - period_orders
+      - period_sales
+      - sales_by_category
+      - top_products
+      - total_orders
+      - total_products
+      - total_sales
+      - total_users
+      - trends
     AdminUser:
       type: object
       properties:
@@ -1320,13 +1551,16 @@ components:
             $ref: '#/components/schemas/UserActivityLog'
           readOnly: true
         total_orders:
-          type: string
+          type: integer
           readOnly: true
         total_spent:
-          type: string
+          type: number
+          format: double
           readOnly: true
         last_order_date:
           type: string
+          format: date-time
+          nullable: true
           readOnly: true
       required:
       - activity_logs
@@ -1341,6 +1575,99 @@ components:
     BlankEnum:
       enum:
       - ''
+    Cart:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+          readOnly: true
+          nullable: true
+          title: Usuario
+        session_key:
+          type: string
+          format: uuid
+          readOnly: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+          readOnly: true
+        total_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Fecha de Creación
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          title: Última Actualización
+      required:
+      - created_at
+      - id
+      - items
+      - session_key
+      - total_price
+      - updated_at
+      - user
+    CartItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product_id:
+          type: integer
+          writeOnly: true
+        product_name:
+          type: string
+          readOnly: true
+        product_slug:
+          type: string
+          readOnly: true
+          pattern: ^[-a-zA-Z0-9_]+$
+        product_main_image:
+          type: string
+          readOnly: true
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          title: Cantidad
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+          title: Precio Unitario
+        subtotal:
+          type: string
+          readOnly: true
+      required:
+      - id
+      - price
+      - product_id
+      - product_main_image
+      - product_name
+      - product_slug
+      - subtotal
+    CartItemMutation:
+      type: object
+      properties:
+        product_id:
+          type: integer
+        item_id:
+          type: integer
+        quantity:
+          type: integer
     Categoria:
       type: object
       properties:
@@ -1365,6 +1692,18 @@ components:
       required:
       - id
       - nombre
+    CreatePaymentIntentRequest:
+      type: object
+      properties:
+        cart_id:
+          type: integer
+    CreatePaymentIntentResponse:
+      type: object
+      properties:
+        clientSecret:
+          type: string
+      required:
+      - clientSecret
     CustomUser:
       type: object
       properties:
@@ -1462,6 +1801,13 @@ components:
       - id
       - order
       - producto
+    MessageResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+      - message
     NullEnum:
       enum:
       - null
@@ -1604,6 +1950,43 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Producto'
+    PasswordChange:
+      type: object
+      properties:
+        old_password:
+          type: string
+        new_password:
+          type: string
+        new_password_confirm:
+          type: string
+      required:
+      - new_password
+      - new_password_confirm
+      - old_password
+    PasswordResetConfirm:
+      type: object
+      properties:
+        uidb64:
+          type: string
+        token:
+          type: string
+        new_password:
+          type: string
+        new_password_confirm:
+          type: string
+      required:
+      - new_password
+      - new_password_confirm
+      - token
+      - uidb64
+    PasswordResetRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+      required:
+      - email
     PatchedAdminUser:
       type: object
       properties:
@@ -1833,7 +2216,8 @@ components:
           nullable: true
           title: Precio de Oferta
         get_precio_actual:
-          type: string
+          type: number
+          format: double
           readOnly: true
         categoria:
           type: integer
