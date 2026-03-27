@@ -1,4 +1,6 @@
-# usuarios/serializers.py
+from datetime import datetime
+from decimal import Decimal
+from typing import Optional
 from rest_framework import serializers
 from .models import CustomUser , UserActivityLog
 from django.contrib.auth.password_validation import validate_password # Para validación de contraseña
@@ -67,6 +69,20 @@ class PasswordChangeSerializer(serializers.Serializer):
         return data
     
 
+class PasswordResetRequestSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+
+
+class PasswordResetConfirmSerializer(serializers.Serializer):
+    uidb64 = serializers.CharField(required=True)
+    token = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True, validators=[validate_password], style={'input_type': 'password'})
+    new_password_confirm = serializers.CharField(required=True, style={'input_type': 'password'})
+
+
+class MessageResponseSerializer(serializers.Serializer):
+    message = serializers.CharField()
+    
 
 class AdminUserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -102,15 +118,15 @@ class AdminUserDetailSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('date_joined', 'last_login', 'activity_logs')
 
-    def get_total_orders(self, obj):
+    def get_total_orders(self, obj) -> int:
         # Cuenta todas las órdenes asociadas al usuario
         return obj.orders.count()
 
-    def get_total_spent(self, obj):
+    def get_total_spent(self, obj) -> Decimal:
         # Suma el total solo de las órdenes PAGADAS ('PAID')
         total = obj.orders.filter(status='PAID').aggregate(Sum('total'))['total__sum']
         return total or 0.00 # Devuelve 0 si es None
 
-    def get_last_order_date(self, obj):
+    def get_last_order_date(self, obj) -> Optional[datetime]:
         last_order = obj.orders.order_by('-created_at').first()
         return last_order.created_at if last_order else None

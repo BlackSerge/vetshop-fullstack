@@ -89,7 +89,7 @@ class Producto(models.Model):
         return self.nombre
 
     @property
-    def get_precio_actual(self):
+    def get_precio_actual(self) -> Decimal:
         return self.precio_oferta if self.precio_oferta else self.precio
     
     @property
@@ -142,4 +142,5 @@ class Review(models.Model):
         unique_together = ('product', 'user') 
 
     def __str__(self):
-        return f"{self.rating}★ - {self.product.nombre}"
+        
+            return f"{self.rating}★ - {self.product.nombre}"

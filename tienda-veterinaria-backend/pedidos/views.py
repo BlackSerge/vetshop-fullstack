@@ -10,10 +10,15 @@ from django.http import HttpResponse
 from rest_framework import generics, status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+<<<<<<< Updated upstream
 from drf_spectacular.utils import extend_schema, inline_serializer 
 from rest_framework import serializers
 
 from .models import Order
+=======
+from drf_spectacular.utils import extend_schema, inline_serializer
+from rest_framework import serializers
+>>>>>>> Stashed changes
 from .serializers import OrderSerializer
 from .services import PaymentService, OrderService
 from .exceptions import (
@@ -37,6 +42,21 @@ class CreatePaymentIntentView(APIView):
     """Crea un PaymentIntent en Stripe para iniciar el checkout."""
 
     permission_classes = [permissions.IsAuthenticated]
+
+    serializer_class = inline_serializer(
+        name='CreatePaymentIntentRequest',
+        fields={'cart_id': serializers.IntegerField(required=False)},
+    )
+
+    @extend_schema(
+        request=serializer_class,
+        responses={
+            200: inline_serializer(
+                name='CreatePaymentIntentResponse',
+                fields={'clientSecret': serializers.CharField()},
+            )
+        },
+    )
 
     def post(self, request, *args, **kwargs):
         try:
@@ -74,6 +94,19 @@ class StripeWebhookView(APIView):
     """Procesa eventos de Stripe (pagos exitosos, etc.)."""
 
     permission_classes = [permissions.AllowAny]
+    
+    @extend_schema(
+        request=inline_serializer(
+            name='StripeWebhookPayload',
+            fields={
+                'id': serializers.CharField(required=False),
+                'type': serializers.CharField(required=True),
+                'data': serializers.DictField(required=True),
+            },
+        ),
+        responses={200: None, 400: None},
+        description='Endpoint de webhook de Stripe para procesar eventos de pago.',
+    )
 
     @extend_schema(
         request=inline_serializer(
@@ -173,6 +206,34 @@ class AdminDashboardStatsView(APIView):
     """Retorna estadísticas de ventas para el dashboard admin."""
 
     permission_classes = [permissions.IsAdminUser]
+    serializer_class = inline_serializer(
+        name='AdminDashboardStatsQuery',
+        fields={'period': serializers.CharField(required=False)},
+    )
+
+    @extend_schema(
+        responses={
+            200: inline_serializer(
+                name='AdminDashboardStatsResponse',
+                fields={
+                    'total_sales': serializers.FloatField(),
+                    'total_orders': serializers.IntegerField(),
+                    'total_users': serializers.IntegerField(),
+                    'total_products': serializers.IntegerField(),
+                    'period_sales': serializers.FloatField(),
+                    'period_orders': serializers.IntegerField(),
+                    'period_avg_value': serializers.FloatField(),
+                    'active_customers': serializers.IntegerField(),
+                    'trends': serializers.DictField(),
+                    'top_products': serializers.ListField(),
+                    'chart_data': serializers.DictField(),
+                    'orders_by_status': serializers.ListField(),
+                    'sales_by_category': serializers.ListField(),
+                    'period_days': serializers.IntegerField(),
+                },
+            )
+        }
+    )
 
     def get(self, request):
         period = request.query_params.get("period", "30d")
@@ -211,4 +272,5 @@ class AdminDashboardStatsView(APIView):
                 "sales_by_category": selectors.get_sales_by_category_period(days),
                 "period_days": days
             }
+        
         )

@@ -1,4 +1,3 @@
-# productos/serializers.py
 from rest_framework import serializers
 from .models import Categoria, Producto, ImagenProducto, Review
 from django.utils.text import slugify

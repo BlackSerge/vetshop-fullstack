@@ -11,7 +11,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.shortcuts import get_object_or_404
+from drf_spectacular.utils import extend_schema
 
 from .models import Categoria, Producto, ImagenProducto, Review
 from .serializers import (
@@ -194,6 +194,12 @@ class BrandListAPIView(APIView):
     """Lista todas las marcas únicas."""
 
     permission_classes = [permissions.AllowAny]
+
+    serializer_class = serializers.ListSerializer
+
+    @extend_schema(
+        responses={200: serializers.ListField(child=serializers.CharField())},
+    )
 
     def get(self, request, *args, **kwargs):
         brands = selectors.get_unique_brands(active_only=True)
@@ -438,4 +444,5 @@ class CreateReviewAPIView(generics.CreateAPIView):
             return Response(
                 {"detail": "Error al crear review"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            
             )

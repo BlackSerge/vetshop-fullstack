@@ -14,12 +14,16 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.core.exceptions import ValidationError as DjangoValidationError
+from drf_spectacular.utils import extend_schema
 
 from .models import CustomUser
 from .serializers import (
     CustomUserSerializer,
     UserRegistrationSerializer,
     UserProfileUpdateSerializer,
+    PasswordResetRequestSerializer,
+    PasswordResetConfirmSerializer,
+    MessageResponseSerializer,
     PasswordChangeSerializer,
     AdminUserSerializer,
     AdminUserDetailSerializer,
@@ -281,6 +285,12 @@ class ChangePasswordView(APIView):
     """Cambia la contraseña del usuario autenticado."""
 
     permission_classes = (IsAuthenticated,)
+    serializer_class = PasswordChangeSerializer
+
+    @extend_schema(
+        request=PasswordChangeSerializer,
+        responses={200: MessageResponseSerializer},
+    )
 
     def post(self, request):
         serializer = PasswordChangeSerializer(
@@ -325,6 +335,12 @@ class RequestPasswordResetAPIView(APIView):
     """Solicita un correo para restablecimiento de contraseña."""
 
     permission_classes = (AllowAny,)
+    serializer_class = PasswordResetRequestSerializer
+
+    @extend_schema(
+        request=PasswordResetRequestSerializer,
+        responses={200: MessageResponseSerializer},
+    )
 
     def post(self, request, *args, **kwargs):
         email = request.data.get("email")
@@ -364,6 +380,12 @@ class ConfirmPasswordResetAPIView(APIView):
     """Confirma el restablecimiento de contraseña con token."""
 
     permission_classes = (AllowAny,)
+    serializer_class = PasswordResetConfirmSerializer
+
+    @extend_schema(
+        request=PasswordResetConfirmSerializer,
+        responses={200: MessageResponseSerializer},
+    )
 
     def post(self, request, *args, **kwargs):
         uidb64 = request.data.get("uidb64")
@@ -461,6 +483,11 @@ class LogoutView(APIView):
     """Registra un logout del usuario."""
 
     permission_classes = (IsAuthenticated,)
+    serializer_class = MessageResponseSerializer
+
+    @extend_schema(
+        responses={200: MessageResponseSerializer},
+    )
 
     def post(self, request):
         UserService.log_activity(
@@ -472,4 +499,5 @@ class LogoutView(APIView):
         return Response(
             {"message": "Logout registrado"},
             status=status.HTTP_200_OK,
+        
         )

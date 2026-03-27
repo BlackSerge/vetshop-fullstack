@@ -7,10 +7,9 @@ Toda la lógica de negocio está en services.py
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, permissions
-
-from .models import Cart, CartItem
-from .serializers import CartSerializer, CartItemSerializer
+from rest_framework import status, permissions, serializers
+from drf_spectacular.utils import extend_schema
+from .serializers import CartSerializer
 from .services import CartService
 from .exceptions import (
     CartServiceError,
@@ -32,6 +31,13 @@ class CartView(APIView):
     """API para gestionar carritos de compras (autenticados y anónimos)."""
 
     permission_classes = [permissions.AllowAny]
+    serializer_class = CartSerializer
+
+    class CartItemMutationSerializer(serializers.Serializer):
+        product_id = serializers.IntegerField(required=False)
+        item_id = serializers.IntegerField(required=False)
+        quantity = serializers.IntegerField(required=False)
+
 
     def _get_cart_from_request(self, request):
         """Obtiene carrito del usuario autenticado o por session_key."""
@@ -45,6 +51,7 @@ class CartView(APIView):
         if cart_session_key:
             response[CART_SESSION_KEY_HEADER] = str(cart_session_key)
 
+    @extend_schema(responses={200: CartSerializer, 201: CartSerializer})
     def get(self, request, *args, **kwargs):
         """Recupera el carrito actual o crea uno anónimo."""
         try:
@@ -71,6 +78,12 @@ class CartView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
             return response
+        
+        
+    @extend_schema(
+        request=CartItemMutationSerializer,
+        responses={200: CartSerializer},
+    )
 
     def post(self, request, *args, **kwargs):
         """Añade un producto al carrito."""
@@ -127,6 +140,11 @@ class CartView(APIView):
             if cart:
                 self._set_cart_session_header(response, cart.session_key)
             return response
+        
+    @extend_schema(
+        request=CartItemMutationSerializer,
+        responses={200: CartSerializer},
+    )
 
     def put(self, request, *args, **kwargs):
         """Actualiza la cantidad de un ítem en el carrito."""
@@ -191,7 +209,7 @@ class CartView(APIView):
                 self._set_cart_session_header(response, cart.session_key)
             return response
 
-
+    @extend_schema(responses={200: CartSerializer})
     def delete(self, request, item_id=None, *args, **kwargs):
         """Elimina un ítem del carrito o vacía todo el carrito."""
         try:
