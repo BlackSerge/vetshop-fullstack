@@ -19,12 +19,23 @@ tienda-veterinaria-frontend/npm-debug.log*
 tienda-veterinaria-frontend/yarn-debug.log*
 tienda-veterinaria-frontend/yarn-error.log*
 tienda-veterinaria-frontend/coverage/
+tienda-veterinaria-frontend/*.pem
+tienda-veterinaria-frontend/*.key
 
 # --- BACKEND (tienda-veterinaria-backend) ---
+ HEAD
 # Ignorar __pycache__ en cualquier subdirectorio del backend
 tienda-veterinaria-backend/**/__pycache__/
 tienda-veterinaria-backend/**/*.py[cod]
 tienda-veterinaria-backend/**/*.so
+=======
+tienda-veterinaria-backend/__pycache__/
+tienda-veterinaria-backend/**/__pycache__/
+tienda-veterinaria-backend/**/*.py[cod]
+tienda-veterinaria-backend/**/*.pyc
+tienda-veterinaria-backend/media/seed_images/
+tienda-veterinaria-backend/media/productos/
+356ba52 (chore: Remove binary files (images, certificates, Python cache) from git tracking)
 
 # Entornos Virtuales
 tienda-veterinaria-backend/env/
