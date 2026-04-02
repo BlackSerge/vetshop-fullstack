@@ -1,0 +1,727 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "nombre": "Croquetas Premium para Perro Adulto",
+      "slug": "croquetas-premium-perro-adulto",
+      "descripcion_corta": "Alimento balanceado con proteínas de alta calidad.",
+      "descripcion_larga": "Sabor pollo y arroz. Fortificado con vitaminas y minerales para una vida activa. Envase de 15kg.",
+      "precio": "65.50",
+      "precio_oferta": "59.99",
+      "get_precio_actual": "59.99",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM001",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T10:00:00Z",
+      "updated_at": "2023-11-21T10:00:00Z",
+      "imagenes": [
+        {
+          "id": 1,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_1.jpg",
+          "alt_text": "Saco de croquetas para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "NutriCan",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 2,
+      "nombre": "Pienso Húmedo para Gato Esterilizado",
+      "slug": "pienso-humedo-gato-esterilizado",
+      "descripcion_corta": "Paté de salmón y atún para gatos con bajo nivel de actividad.",
+      "descripcion_larga": "Ayuda a mantener un peso saludable y un tracto urinario sano. Pack de 12 latas de 85g.",
+      "precio": "22.00",
+      "precio_oferta": null,
+      "get_precio_actual": "22.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM002",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:05:00Z",
+      "updated_at": "2023-11-21T10:05:00Z",
+      "imagenes": [
+        {
+          "id": 2,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_2.jpg",
+          "alt_text": "Latas de pienso húmedo para gato",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FelineGourmet",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 3,
+      "nombre": "Snacks Dentales para Perros Pequeños",
+      "slug": "snacks-dentales-perros-pequenos",
+      "descripcion_corta": "Ayuda a reducir el sarro y mantener un aliento fresco.",
+      "descripcion_larga": "Con clorofila y eucalipto. Bolsa de 150g.",
+      "precio": "8.75",
+      "precio_oferta": "7.90",
+      "get_precio_actual": "7.90",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM003",
+      "stock": 200,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:10:00Z",
+      "updated_at": "2023-11-21T10:10:00Z",
+      "imagenes": [
+        {
+          "id": 3,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_3.jpg",
+          "alt_text": "Bolsa de snacks dentales para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DentaBite",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 4,
+      "nombre": "Comida para Peces Tropicales",
+      "slug": "comida-peces-tropicales",
+      "descripcion_corta": "Escamas ricas en nutrientes para una dieta completa.",
+      "descripcion_larga": "Potencia los colores y la vitalidad de tus peces. Envase de 100g.",
+      "precio": "5.99",
+      "precio_oferta": null,
+      "get_precio_actual": "5.99",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM004",
+      "stock": 150,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:15:00Z",
+      "updated_at": "2023-11-21T10:15:00Z",
+      "imagenes": [
+        {
+          "id": 4,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_4.jpg",
+          "alt_text": "Bote de comida para peces",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AquaFeed",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 5,
+      "nombre": "Sustituto Lácteo para Cachorros",
+      "slug": "sustituto-lacteo-cachorros",
+      "descripcion_corta": "Fórmula enriquecida para el crecimiento y desarrollo de cachorros huérfanos.",
+      "descripcion_larga": "Con vitaminas, minerales y probióticos. Envase de 500g.",
+      "precio": "28.00",
+      "precio_oferta": null,
+      "get_precio_actual": "28.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM005",
+      "stock": 40,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T10:20:00Z",
+      "updated_at": "2023-11-21T10:20:00Z",
+      "imagenes": [
+        {
+          "id": 5,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_5.jpg",
+          "alt_text": "Bote de leche en polvo para cachorros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PuppyMilk",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 6,
+      "nombre": "Dieta Veterinaria Hipoalergénica Perro",
+      "slug": "dieta-veterinaria-hipoalergenica-perro",
+      "descripcion_corta": "Alimento especializado para perros con sensibilidades alimentarias.",
+      "descripcion_larga": "Fórmula con proteínas hidrolizadas y fuente única de carbohidratos. Envase de 10kg.",
+      "precio": "85.00",
+      "precio_oferta": null,
+      "get_precio_actual": "85.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM006",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:25:00Z",
+      "updated_at": "2023-11-21T10:25:00Z",
+      "imagenes": [
+        {
+          "id": 6,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_6.jpg",
+          "alt_text": "Saco de dieta veterinaria para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VetFormula",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 7,
+      "nombre": "Comida Barf para Perros Adultos",
+      "slug": "comida-barf-perros-adultos",
+      "descripcion_corta": "Dieta cruda biológicamente apropiada. Mezcla de pollo, verduras y frutas.",
+      "descripcion_larga": "Congelada, lista para servir. Contiene todos los nutrientes necesarios. Envase de 1kg.",
+      "precio": "15.00",
+      "precio_oferta": null,
+      "get_precio_actual": "15.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM007",
+      "stock": 50,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:30:00Z",
+      "updated_at": "2023-11-21T10:30:00Z",
+      "imagenes": [
+        {
+          "id": 7,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_7.jpg",
+          "alt_text": "Envase de comida Barf",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "RawPaws",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 8,
+      "nombre": "Leche para Gatos con Taurina",
+      "slug": "leche-gatos-taurina",
+      "descripcion_corta": "Suplemento lácteo especial para gatos de todas las edades.",
+      "descripcion_larga": "Con taurina para la vista y el corazón. Brik de 1 litro.",
+      "precio": "4.50",
+      "precio_oferta": null,
+      "get_precio_actual": "4.50",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM008",
+      "stock": 100,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:35:00Z",
+      "updated_at": "2023-11-21T10:35:00Z",
+      "imagenes": [
+        {
+          "id": 8,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_8.jpg",
+          "alt_text": "Brik de leche para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "KittyLick",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 9,
+      "nombre": "Pienso para Aves Exóticas",
+      "slug": "pienso-aves-exoticas",
+      "descripcion_corta": "Mezcla de semillas y frutas deshidratadas para loros y cacatúas.",
+      "descripcion_larga": "Rico en vitaminas y minerales esenciales. Envase de 1kg.",
+      "precio": "18.99",
+      "precio_oferta": null,
+      "get_precio_actual": "18.99",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM009",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:40:00Z",
+      "updated_at": "2023-11-21T10:40:00Z",
+      "imagenes": [
+        {
+          "id": 9,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_9.jpg",
+          "alt_text": "Bolsa de pienso para aves",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AviaryMix",
+      "tipo_mascota": "ave"
+    },
+    {
+      "id": 10,
+      "nombre": "Alimento para Roedores y Hámsters",
+      "slug": "alimento-roedores-hamsters",
+      "descripcion_corta": "Mezcla de cereales, semillas y vegetales para una dieta equilibrada.",
+      "descripcion_larga": "Con alto contenido en fibra para la salud digestiva. Envase de 750g.",
+      "precio": "7.50",
+      "precio_oferta": "6.75",
+      "get_precio_actual": "6.75",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM010",
+      "stock": 130,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:45:00Z",
+      "updated_at": "2023-11-21T10:45:00Z",
+      "imagenes": [
+        {
+          "id": 10,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_10.jpg",
+          "alt_text": "Bolsa de alimento para hámster",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "RodentPro",
+      "tipo_mascota": "roedor"
+    },
+    {
+      "id": 11,
+      "nombre": "Pienso para Perros Senior Razas Grandes",
+      "slug": "pienso-perros-senior-razas-grandes",
+      "descripcion_corta": "Soporte articular y control de peso para perros mayores de gran tamaño.",
+      "descripcion_larga": "Con condroprotectores y bajo en calorías. Envase de 12kg.",
+      "precio": "78.00",
+      "precio_oferta": null,
+      "get_precio_actual": "78.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM011",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:50:00Z",
+      "updated_at": "2023-11-21T10:50:00Z",
+      "imagenes": [
+        {
+          "id": 11,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_11.jpg",
+          "alt_text": "Saco de pienso para perro senior",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SeniorCare",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 12,
+      "nombre": "Alimento Húmedo para Gatos con Insuficiencia Renal",
+      "slug": "alimento-humedo-gatos-insuficiencia-renal",
+      "descripcion_corta": "Dieta veterinaria específica para soporte renal en felinos.",
+      "descripcion_larga": "Bajo en fósforo y proteínas de alta calidad. Pack de 6 sobres de 100g.",
+      "precio": "18.50",
+      "precio_oferta": null,
+      "get_precio_actual": "18.50",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM012",
+      "stock": 45,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T10:55:00Z",
+      "updated_at": "2023-11-21T10:55:00Z",
+      "imagenes": [
+        {
+          "id": 12,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_12.jpg",
+          "alt_text": "Sobres de comida húmeda renal para gato",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VetDietCat",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 13,
+      "nombre": "Barritas Energéticas para Perros Deportistas",
+      "slug": "barritas-energeticas-perros-deportistas",
+      "descripcion_corta": "Suplemento energético para perros con alta actividad física.",
+      "descripcion_larga": "Ricas en carbohidratos de liberación lenta y proteínas. Pack de 5 barritas.",
+      "precio": "11.00",
+      "precio_oferta": null,
+      "get_precio_actual": "11.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM013",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:00:00Z",
+      "updated_at": "2023-11-21T11:00:00Z",
+      "imagenes": [
+        {
+          "id": 13,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_13.jpg",
+          "alt_text": "Barritas energéticas para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SportDog",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 14,
+      "nombre": "Semillas de Girasol para Pájaros Silvestres",
+      "slug": "semillas-girasol-pajaros-silvestres",
+      "descripcion_corta": "Alimento energético para todo tipo de aves de jardín.",
+      "descripcion_larga": "100% naturales, ricas en grasas saludables. Envase de 2kg.",
+      "precio": "6.75",
+      "precio_oferta": "6.00",
+      "get_precio_actual": "6.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM014",
+      "stock": 110,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:05:00Z",
+      "updated_at": "2023-11-21T11:05:00Z",
+      "imagenes": [
+        {
+          "id": 14,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_14.jpg",
+          "alt_text": "Bolsa de semillas de girasol",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "WildBirdMix",
+      "tipo_mascota": "ave"
+    },
+    {
+      "id": 15,
+      "nombre": "Heno Premium para Conejos y Cobayas",
+      "slug": "heno-premium-conejos-cobayas",
+      "descripcion_corta": "Heno Timothy de alta calidad para la salud digestiva y dental.",
+      "descripcion_larga": "Fibra natural esencial. Envase de 1kg.",
+      "precio": "9.20",
+      "precio_oferta": null,
+      "get_precio_actual": "9.20",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM015",
+      "stock": 75,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:10:00Z",
+      "updated_at": "2023-11-21T11:10:00Z",
+      "imagenes": [
+        {
+          "id": 15,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_15.jpg",
+          "alt_text": "Bolsa de heno para roedores",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HayHeaven",
+      "tipo_mascota": "roedor"
+    },
+    {
+      "id": 16,
+      "nombre": "Galletas de Entrenamiento para Perros",
+      "slug": "galletas-entrenamiento-perros",
+      "descripcion_corta": "Recompensas pequeñas y sabrosas, ideales para el adiestramiento.",
+      "descripcion_larga": "Bajo en grasas, con vitaminas. Bolsa de 300g.",
+      "precio": "6.00",
+      "precio_oferta": "5.50",
+      "get_precio_actual": "5.50",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM016",
+      "stock": 250,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:15:00Z",
+      "updated_at": "2023-11-21T11:15:00Z",
+      "imagenes": [
+        {
+          "id": 16,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_16.jpg",
+          "alt_text": "Bolsa de galletas para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TrainTreats",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 17,
+      "nombre": "Pienso para Gatitos con Pollo",
+      "slug": "pienso-gatitos-pollo",
+      "descripcion_corta": "Fórmula de crecimiento con alto contenido proteico para gatitos.",
+      "descripcion_larga": "Con taurina para el desarrollo cerebral y visual. Envase de 3kg.",
+      "precio": "25.00",
+      "precio_oferta": null,
+      "get_precio_actual": "25.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM017",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T11:20:00Z",
+      "updated_at": "2023-11-21T11:20:00Z",
+      "imagenes": [
+        {
+          "id": 17,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_17.jpg",
+          "alt_text": "Saco de pienso para gatitos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "KittyGrow",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 18,
+      "nombre": "Alimento Vivo para Reptiles (Grillos)",
+      "slug": "alimento-vivo-reptiles-grillos",
+      "descripcion_corta": "Grillos vivos como fuente de alimento para reptiles, anfibios y arácnidos.",
+      "descripcion_larga": "Criados con una dieta nutritiva. Envase de 50 grillos.",
+      "precio": "9.50",
+      "precio_oferta": null,
+      "get_precio_actual": "9.50",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM018",
+      "stock": 30,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:25:00Z",
+      "updated_at": "2023-11-21T11:25:00Z",
+      "imagenes": [
+        {
+          "id": 18,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_18.jpg",
+          "alt_text": "Contenedor de grillos vivos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "LiveBug",
+      "tipo_mascota": "reptil"
+    },
+    {
+      "id": 19,
+      "nombre": "Semillas Mixtas para Canarios",
+      "slug": "semillas-mixtas-canarios",
+      "descripcion_corta": "Dieta básica y nutritiva para canarios y aves pequeñas.",
+      "descripcion_larga": "Mezcla equilibrada de alpiste, mijo y avena. Envase de 1kg.",
+      "precio": "4.00",
+      "precio_oferta": null,
+      "get_precio_actual": "4.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM019",
+      "stock": 180,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:30:00Z",
+      "updated_at": "2023-11-21T11:30:00Z",
+      "imagenes": [
+        {
+          "id": 19,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_19.jpg",
+          "alt_text": "Bolsa de semillas para canarios",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CanaryBlend",
+      "tipo_mascota": "ave"
+    },
+    {
+      "id": 20,
+      "nombre": "Pienso Orgánico para Perros con Salmon",
+      "slug": "pienso-organico-perros-salmon",
+      "descripcion_corta": "Alimento completo y equilibrado con ingredientes 100% orgánicos.",
+      "descripcion_larga": "Con salmón fresco como única fuente de proteína animal. Envase de 5kg.",
+      "precio": "48.00",
+      "precio_oferta": "45.00",
+      "get_precio_actual": "45.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM020",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T11:35:00Z",
+      "updated_at": "2023-11-21T11:35:00Z",
+      "imagenes": [
+        {
+          "id": 20,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_20.jpg",
+          "alt_text": "Saco de pienso orgánico de salmón",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "EcoDog",
+      "tipo_mascota": "perro"
+    }
+  ]
+}

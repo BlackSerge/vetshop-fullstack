@@ -1,0 +1,727 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 141,
+      "nombre": "Consulta Veterinaria General (Presencial)",
+      "slug": "consulta-veterinaria-general-presencial",
+      "descripcion_corta": "Examen completo de salud, diagnóstico y plan de tratamiento.",
+      "descripcion_larga": "Incluye revisión física, toma de temperatura, auscultación y orientación sobre vacunación y desparasitación. Duración aproximada: 30 minutos.",
+      "precio": "40.00",
+      "precio_oferta": null,
+      "get_precio_actual": "40.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV001",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T20:00:00Z",
+      "updated_at": "2023-11-21T20:00:00Z",
+      "imagenes": [
+        {
+          "id": 141,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_1.jpg",
+          "alt_text": "Veterinario examinando perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ClinicVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 142,
+      "nombre": "Vacunación Anual Canina (Polivalente)",
+      "slug": "vacunacion-anual-canina-polivalente",
+      "descripcion_corta": "Protección contra enfermedades comunes: moquillo, parvovirus, hepatitis y leptospirosis.",
+      "descripcion_larga": "Incluye certificado de vacunación. Es necesario presentar cartilla de vacunación anterior. Cita previa requerida.",
+      "precio": "55.00",
+      "precio_oferta": null,
+      "get_precio_actual": "55.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV002",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:05:00Z",
+      "updated_at": "2023-11-21T20:05:00Z",
+      "imagenes": [
+        {
+          "id": 142,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_2.jpg",
+          "alt_text": "Perro recibiendo vacuna",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VaxShield",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 143,
+      "nombre": "Peluquería Canina (Baño y Corte de Pelo)",
+      "slug": "peluqueria-canina-bano-corte-pelo",
+      "descripcion_corta": "Servicio completo de higiene y estética para tu perro.",
+      "descripcion_larga": "Incluye baño con champú profesional, secado, cepillado, corte de pelo adaptado a la raza y limpieza de oídos y glándulas. Precio variable según tamaño.",
+      "precio": "60.00",
+      "precio_oferta": "50.00",
+      "get_precio_actual": "50.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV003",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:10:00Z",
+      "updated_at": "2023-11-21T20:10:00Z",
+      "imagenes": [
+        {
+          "id": 143,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_3.jpg",
+          "alt_text": "Perro en peluquería",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "GroomPalace",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 144,
+      "nombre": "Chequeo Dental Felino (Sin Anestesia)",
+      "slug": "chequeo-dental-felino-sin-anestesia",
+      "descripcion_corta": "Evaluación del estado bucodental de tu gato para detectar problemas.",
+      "descripcion_larga": "Inspección visual de dientes y encías. Recomendaciones para higiene oral en casa o necesidad de limpieza profesional bajo anestesia. Duración: 20 minutos.",
+      "precio": "30.00",
+      "precio_oferta": null,
+      "get_precio_actual": "30.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV004",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T20:15:00Z",
+      "updated_at": "2023-11-21T20:15:00Z",
+      "imagenes": [
+        {
+          "id": 144,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_4.jpg",
+          "alt_text": "Gato en chequeo dental",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FelineDental",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 145,
+      "nombre": "Instalación de Microchip para Mascotas",
+      "slug": "instalacion-microchip-mascotas",
+      "descripcion_corta": "Identificación permanente y registro en base de datos nacional.",
+      "descripcion_larga": "Procedimiento rápido y seguro. Incluye microchip ISO y el alta en el registro. Obligatorio por ley en muchas comunidades.",
+      "precio": "38.00",
+      "precio_oferta": null,
+      "get_precio_actual": "38.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV005",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:20:00Z",
+      "updated_at": "2023-11-21T20:20:00Z",
+      "imagenes": [
+        {
+          "id": 145,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_5.jpg",
+          "alt_text": "Veterinario poniendo microchip",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PetID",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 146,
+      "nombre": "Consulta de Nutrición y Dietética Veterinaria",
+      "slug": "consulta-nutricion-dietetica-veterinaria",
+      "descripcion_corta": "Asesoramiento personalizado sobre la alimentación de tu mascota.",
+      "descripcion_larga": "Ideal para mascotas con sobrepeso, alergias alimentarias o necesidades dietéticas especiales. Creación de un plan nutricional adaptado. Duración: 45 minutos.",
+      "precio": "65.00",
+      "precio_oferta": "55.00",
+      "get_precio_actual": "55.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV006",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:25:00Z",
+      "updated_at": "2023-11-21T20:25:00Z",
+      "imagenes": [
+        {
+          "id": 146,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_6.jpg",
+          "alt_text": "Asesoramiento nutricional",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "NutriPetCare",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 147,
+      "nombre": "Paseo de Perros (Sesión Individual de 30 min)",
+      "slug": "paseo-perros-sesion-individual-30min",
+      "descripcion_corta": "Servicio de paseo profesional para que tu perro haga ejercicio y socialice.",
+      "descripcion_larga": "Paseo individual en tu zona. Ideal para perros que necesitan atención personalizada. Incluye juego y agua fresca.",
+      "precio": "15.00",
+      "precio_oferta": null,
+      "get_precio_actual": "15.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV007",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:30:00Z",
+      "updated_at": "2023-11-21T20:30:00Z",
+      "imagenes": [
+        {
+          "id": 147,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_7.jpg",
+          "alt_text": "Paseador de perros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HappyPawsWalks",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 148,
+      "nombre": "Entrenamiento Básico de Obediencia (Clase Grupal)",
+      "slug": "entrenamiento-basico-obediencia-clase-grupal",
+      "descripcion_corta": "Enseña a tu perro comandos básicos y buen comportamiento en un entorno social.",
+      "descripcion_larga": "Clase de 1 hora. Grupos reducidos. Incluye comandos como 'sentarse', 'quedarse', 'venir' y paseos con correa. Pack de 5 clases.",
+      "precio": "120.00",
+      "precio_oferta": "100.00",
+      "get_precio_actual": "100.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV008",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T20:35:00Z",
+      "updated_at": "2023-11-21T20:35:00Z",
+      "imagenes": [
+        {
+          "id": 148,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_8.jpg",
+          "alt_text": "Clase de entrenamiento canino",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DoggySchool",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 149,
+      "nombre": "Test de Alergias para Perros (Análisis de Sangre)",
+      "slug": "test-alergias-perros-analisis-sangre",
+      "descripcion_corta": "Identifica alérgenos ambientales y alimentarios que afectan a tu perro.",
+      "descripcion_larga": "Extracción de muestra de sangre y envío a laboratorio especializado. Resultados en 7-10 días. Incluye interpretación del veterinario.",
+      "precio": "180.00",
+      "precio_oferta": null,
+      "get_precio_actual": "180.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV009",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:40:00Z",
+      "updated_at": "2023-11-21T20:40:00Z",
+      "imagenes": [
+        {
+          "id": 149,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_9.jpg",
+          "alt_text": "Análisis de sangre para alergias",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AllergyVet",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 150,
+      "nombre": "Guardería Canina (Día Completo)",
+      "slug": "guarderia-canina-dia-completo",
+      "descripcion_corta": "Cuidado y diversión para tu perro mientras trabajas o estás ocupado.",
+      "descripcion_larga": "Supervisión constante, zona de juegos, siestas y socialización. Horario de 8:00 a 18:00. Incluye 2 paseos. Requisitos de vacunas al día.",
+      "precio": "35.00",
+      "precio_oferta": "30.00",
+      "get_precio_actual": "30.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV010",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:45:00Z",
+      "updated_at": "2023-11-21T20:45:00Z",
+      "imagenes": [
+        {
+          "id": 150,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_10.jpg",
+          "alt_text": "Guardería canina",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HappyPawsDaycare",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 151,
+      "nombre": "Consulta Comportamental Veterinaria",
+      "slug": "consulta-comportamental-veterinaria",
+      "descripcion_corta": "Diagnóstico y tratamiento de problemas de comportamiento en mascotas.",
+      "descripcion_larga": "Para ansiedad por separación, agresividad, micción inapropiada, etc. Plan de modificación de conducta personalizado. Duración: 60 minutos.",
+      "precio": "90.00",
+      "precio_oferta": null,
+      "get_precio_actual": "90.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV011",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:50:00Z",
+      "updated_at": "2023-11-21T20:50:00Z",
+      "imagenes": [
+        {
+          "id": 151,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_11.jpg",
+          "alt_text": "Consulta de comportamiento",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "BehaviorVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 152,
+      "nombre": "Vacunación Felina Anual (Trivalente)",
+      "slug": "vacunacion-felina-anual-trivalente",
+      "descripcion_corta": "Protección contra rinotraqueítis, calicivirus y panleucopenia felina.",
+      "descripcion_larga": "Incluye certificado de vacunación. Es necesario presentar cartilla de vacunación anterior. Cita previa requerida.",
+      "precio": "50.00",
+      "precio_oferta": null,
+      "get_precio_actual": "50.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV012",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T20:55:00Z",
+      "updated_at": "2023-11-21T20:55:00Z",
+      "imagenes": [
+        {
+          "id": 152,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_12.jpg",
+          "alt_text": "Gato recibiendo vacuna",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FelineVax",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 153,
+      "nombre": "Revisión Ocular Completa (Perros y Gatos)",
+      "slug": "revision-ocular-completa-perros-y-gatos",
+      "descripcion_corta": "Evaluación de la salud ocular para detectar cataratas, glaucoma, etc.",
+      "descripcion_larga": "Incluye examen con oftalmoscopio, test de Schirmer y test de fluoresceína. Detección temprana de patologías oculares. Duración: 30 minutos.",
+      "precio": "70.00",
+      "precio_oferta": "60.00",
+      "get_precio_actual": "60.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV013",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:00:00Z",
+      "updated_at": "2023-11-21T21:00:00Z",
+      "imagenes": [
+        {
+          "id": 153,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_13.jpg",
+          "alt_text": "Examen ocular",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "OptiVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 154,
+      "nombre": "Sesión de Acupuntura Veterinaria (Inicial)",
+      "slug": "sesion-acupuntura-veterinaria-inicial",
+      "descripcion_corta": "Tratamiento complementario para dolor crónico, artritis y problemas neurológicos.",
+      "descripcion_larga": "Primera consulta y sesión de acupuntura. Puede aliviar el dolor, mejorar la función motora y reducir el estrés. Duración: 45 minutos.",
+      "precio": "85.00",
+      "precio_oferta": null,
+      "get_precio_actual": "85.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV014",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:05:00Z",
+      "updated_at": "2023-11-21T21:05:00Z",
+      "imagenes": [
+        {
+          "id": 154,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_14.jpg",
+          "alt_text": "Sesión de acupuntura",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HolisticPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 155,
+      "nombre": "Rayos X Digital (Una Proyección)",
+      "slug": "rayos-x-digital-una-proyeccion",
+      "descripcion_corta": "Diagnóstico por imagen para evaluar huesos, órganos y tejidos blandos.",
+      "descripcion_larga": "Radiografía digital de alta resolución. Interpretación por veterinario. Precio por una única proyección. Citas para sedación se cobrarán aparte.",
+      "precio": "70.00",
+      "precio_oferta": null,
+      "get_precio_actual": "70.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV015",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:10:00Z",
+      "updated_at": "2023-11-21T21:10:00Z",
+      "imagenes": [
+        {
+          "id": 155,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_15.jpg",
+          "alt_text": "Máquina de Rayos X",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "XRayVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 156,
+      "nombre": "Rehabilitación Física Veterinaria (Sesión)",
+      "slug": "rehabilitacion-fisica-veterinaria-sesion",
+      "descripcion_corta": "Ayuda a la recuperación post-quirúrgica, lesiones o problemas de movilidad.",
+      "descripcion_larga": "Sesión individual de fisioterapia, ejercicios terapéuticos y masajes. Plan de rehabilitación personalizado. Duración: 45 minutos.",
+      "precio": "75.00",
+      "precio_oferta": "65.00",
+      "get_precio_actual": "65.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV016",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T21:15:00Z",
+      "updated_at": "2023-11-21T21:15:00Z",
+      "imagenes": [
+        {
+          "id": 156,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_16.jpg",
+          "alt_text": "Sesión de rehabilitación",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PhysioPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 157,
+      "nombre": "Ecocardiografía Veterinaria (Corazón)",
+      "slug": "ecocardiografia-veterinaria-corazon",
+      "descripcion_corta": "Estudio ecográfico del corazón para evaluar su estructura y función.",
+      "descripcion_larga": "Diagnóstico de enfermedades cardíacas congénitas o adquiridas. Incluye informe detallado y consulta con cardiólogo veterinario. Duración: 60 minutos.",
+      "precio": "250.00",
+      "precio_oferta": null,
+      "get_precio_actual": "250.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV017",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:20:00Z",
+      "updated_at": "2023-11-21T21:20:00Z",
+      "imagenes": [
+        {
+          "id": 157,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_17.jpg",
+          "alt_text": "Ecografía cardíaca",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CardioVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 158,
+      "nombre": "Eutanasia Humanitaria a Domicilio",
+      "slug": "eutanasia-humanitaria-domicilio",
+      "descripcion_corta": "Despedida respetuosa en la comodidad del hogar de tu mascota.",
+      "descripcion_larga": "Incluye sedación, procedimiento de eutanasia y soporte emocional. Posibilidad de gestión de incineración (coste adicional).",
+      "precio": "150.00",
+      "precio_oferta": null,
+      "get_precio_actual": "150.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV018",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:25:00Z",
+      "updated_at": "2023-11-21T21:25:00Z",
+      "imagenes": [
+        {
+          "id": 158,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_18.jpg",
+          "alt_text": "Servicio de eutanasia",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PeacefulFarewell",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 159,
+      "nombre": "Certificado de Salud para Viajes Internacionales",
+      "slug": "certificado-salud-viajes-internacionales",
+      "descripcion_corta": "Documento oficial requerido para el transporte de mascotas al extranjero.",
+      "descripcion_larga": "Examen veterinario y emisión de certificado conforme a la normativa del país de destino. Requiere cita previa y documentación del animal.",
+      "precio": "100.00",
+      "precio_oferta": null,
+      "get_precio_actual": "100.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV019",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:30:00Z",
+      "updated_at": "2023-11-21T21:30:00Z",
+      "imagenes": [
+        {
+          "id": 159,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_19.jpg",
+          "alt_text": "Certificado sanitario para viajes",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TravelVetDoc",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 160,
+      "nombre": "Limpieza Dental con Ultrasonidos (Bajo Anestesia)",
+      "slug": "limpieza-dental-ultrasonidos-bajo-anestesia",
+      "descripcion_corta": "Eliminación profesional de sarro y pulido dental completo.",
+      "descripcion_larga": "Incluye pre-anestesia, anestesia inhalatoria, monitoreo y limpieza con ultrasonidos. Requiere analítica pre-anestésica. Precio puede variar según complejidad.",
+      "precio": "200.00",
+      "precio_oferta": "180.00",
+      "get_precio_actual": "180.00",
+      "categoria": 8,
+      "categoria_info": {
+        "id": 8,
+        "nombre": "Servicios",
+        "slug": "servicios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SRV020",
+      "stock": 9999,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T21:35:00Z",
+      "updated_at": "2023-11-21T21:35:00Z",
+      "imagenes": [
+        {
+          "id": 160,
+          "imagen": "http://localhost:8000/media/productos/placeholder_servicios_20.jpg",
+          "alt_text": "Limpieza dental veterinaria",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ProDentalVet",
+      "tipo_mascota": "otros"
+    }
+  ]
+}

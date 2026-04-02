@@ -1,0 +1,151 @@
+{
+  "count": 180,
+  "next": "http://localhost:8000/api/productos/items/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "nombre": "Croquetas Premium para Perro Adulto",
+      "slug": "croquetas-premium-perro-adulto",
+      "descripcion_corta": "Alimento balanceado con proteínas de alta calidad.",
+      "descripcion_larga": "Sabor pollo y arroz. Fortificado con vitaminas y minerales para una vida activa. Envase de 15kg.",
+      "precio": "65.50",
+      "precio_oferta": "59.99",
+      "get_precio_actual": "59.99",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM001",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T10:00:00Z",
+      "updated_at": "2023-11-21T10:00:00Z",
+      "imagenes": [
+        {
+          "id": 1,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_1.jpg",
+          "alt_text": "Saco de croquetas para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "NutriCan",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 2,
+      "nombre": "Pienso Húmedo para Gato Esterilizado",
+      "slug": "pienso-humedo-gato-esterilizado",
+      "descripcion_corta": "Paté de salmón y atún para gatos con bajo nivel de actividad.",
+      "descripcion_larga": "Ayuda a mantener un peso saludable y un tracto urinario sano. Pack de 12 latas de 85g.",
+      "precio": "22.00",
+      "precio_oferta": null,
+      "get_precio_actual": "22.00",
+      "categoria": 1,
+      "categoria_info": {
+        "id": 1,
+        "nombre": "Alimentos",
+        "slug": "alimentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ALM002",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:05:00Z",
+      "updated_at": "2023-11-21T10:05:00Z",
+      "imagenes": [
+        {
+          "id": 2,
+          "imagen": "http://localhost:8000/media/productos/placeholder_alimentos_2.jpg",
+          "alt_text": "Latas de pienso húmedo para gato",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FelineGourmet",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 21,
+      "nombre": "Antiinflamatorio para Articulaciones",
+      "slug": "antiinflamatorio-articulaciones",
+      "descripcion_corta": "Tratamiento eficaz para el dolor articular en perros y gatos.",
+      "descripcion_larga": "Comprimidos masticables con sabor a carne. Envase de 30 unidades.",
+      "precio": "35.00",
+      "precio_oferta": "30.00",
+      "get_precio_actual": "30.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED001",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T10:10:00Z",
+      "updated_at": "2023-11-21T10:10:00Z",
+      "imagenes": [
+        {
+          "id": 21,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_1.jpg",
+          "alt_text": "Caja de antiinflamatorio",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "JointEase",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 41,
+      "nombre": "Champú Suave para Cachorros",
+      "slug": "champu-suave-cachorros",
+      "descripcion_corta": "Fórmula sin lágrimas para la piel sensible de los cachorros.",
+      "descripcion_larga": "Aroma a manzanilla, hipoalergénico. Botella de 500ml.",
+      "precio": "12.50",
+      "precio_oferta": null,
+      "get_precio_actual": "12.50",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG001",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T10:15:00Z",
+      "updated_at": "2023-11-21T10:15:00Z",
+      "imagenes": [
+        {
+          "id": 41,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_1.jpg",
+          "alt_text": "Botella de champú para cachorros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PuppyFresh",
+      "tipo_mascota": "perro"
+    }
+  ]
+}

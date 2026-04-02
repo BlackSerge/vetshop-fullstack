@@ -1,0 +1,19 @@
+# Forzar archivos comunes a texto con saltos de línea LF (Linux)
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.tsx text eol=lf
+*.html text eol=lf
+
+# Asegurar que los binarios reales se traten como binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.db binary
+*.sqlite3 binary
