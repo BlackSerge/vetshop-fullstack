@@ -1,0 +1,727 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 21,
+      "nombre": "Desparasitante Interno de Amplio Espectro (Perros)",
+      "slug": "desparasitante-interno-amplio-espectro-perros",
+      "descripcion_corta": "Comprimidos para eliminar lombrices intestinales en perros.",
+      "descripcion_larga": "Eficaz contra nematodos y cestodos comunes. Sabor a carne para facilitar la administración. Pack de 2 comprimidos.",
+      "precio": "28.00",
+      "precio_oferta": "25.00",
+      "get_precio_actual": "25.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED001",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T18:20:00Z",
+      "updated_at": "2023-11-21T18:20:00Z",
+      "imagenes": [
+        {
+          "id": 21,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_1.jpg",
+          "alt_text": "Caja de desparasitante interno",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ParasitOff",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 22,
+      "nombre": "Pipetas Antipulgas y Garrapatas para Gatos",
+      "slug": "pipetas-antipulgas-garrapatas-gatos",
+      "descripcion_corta": "Protección mensual efectiva contra parásitos externos.",
+      "descripcion_larga": "Fórmula de acción rápida que elimina pulgas, garrapatas y piojos. Para gatos de 4 a 8 kg. Pack de 3 pipetas.",
+      "precio": "42.00",
+      "precio_oferta": null,
+      "get_precio_actual": "42.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED002",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:25:00Z",
+      "updated_at": "2023-11-21T18:25:00Z",
+      "imagenes": [
+        {
+          "id": 22,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_2.jpg",
+          "alt_text": "Pipetas antipulgas para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FleaFree",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 23,
+      "nombre": "Antibiótico de Amplio Espectro (Inyectable)",
+      "slug": "antibiotico-amplio-espectro-inyectable",
+      "descripcion_corta": "Solución inyectable para el tratamiento de diversas infecciones bacterianas.",
+      "descripcion_larga": "Uso veterinario exclusivo. Solo bajo prescripción. Vial de 100ml. Requiere refrigeración.",
+      "precio": "60.00",
+      "precio_oferta": null,
+      "get_precio_actual": "60.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED003",
+      "stock": 40,
+      "is_active": false,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:30:00Z",
+      "updated_at": "2023-11-21T18:30:00Z",
+      "imagenes": [
+        {
+          "id": 23,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_3.jpg",
+          "alt_text": "Vial de antibiótico",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VetCure",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 24,
+      "nombre": "Protector Hepático para Perros y Gatos",
+      "slug": "protector-hepatico-perros-gatos",
+      "descripcion_corta": "Ayuda a la función hepática y la desintoxicación del organismo.",
+      "descripcion_larga": "Comprimidos con cardo mariano y vitaminas del grupo B. Envase de 60 comprimidos. Sabor palatable.",
+      "precio": "35.00",
+      "precio_oferta": "30.00",
+      "get_precio_actual": "30.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED004",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T18:35:00Z",
+      "updated_at": "2023-11-21T18:35:00Z",
+      "imagenes": [
+        {
+          "id": 24,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_4.jpg",
+          "alt_text": "Caja de protector hepático",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HepatoGuard",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 25,
+      "nombre": "Colirio Antibiótico Oftálmico para Mascotas",
+      "slug": "colirio-antibiotico-oftalmico-mascotas",
+      "descripcion_corta": "Tratamiento de infecciones oculares bacterianas.",
+      "descripcion_larga": "Solo bajo prescripción veterinaria. Solución estéril. Frasco de 10ml.",
+      "precio": "22.50",
+      "precio_oferta": null,
+      "get_precio_actual": "22.50",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED005",
+      "stock": 50,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:40:00Z",
+      "updated_at": "2023-11-21T18:40:00Z",
+      "imagenes": [
+        {
+          "id": 25,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_5.jpg",
+          "alt_text": "Colirio oftálmico",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "EyeDropsVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 26,
+      "nombre": "Analgésico y Antiinflamatorio para Mascotas (Jarabe)",
+      "slug": "analgesico-antiinflamatorio-jarabe",
+      "descripcion_corta": "Alivio del dolor y la inflamación post-quirúrgica o por traumatismos.",
+      "descripcion_larga": "Sabor palatable, fácil de administrar por vía oral. Frasco de 30ml con jeringa dosificadora.",
+      "precio": "48.00",
+      "precio_oferta": null,
+      "get_precio_actual": "48.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED006",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:45:00Z",
+      "updated_at": "2023-11-21T18:45:00Z",
+      "imagenes": [
+        {
+          "id": 26,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_6.jpg",
+          "alt_text": "Jarabe analgésico",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PainReliefVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 27,
+      "nombre": "Probiótico para Mascotas con Problemas Digestivos",
+      "slug": "probiotico-mascotas-problemas-digestivos",
+      "descripcion_corta": "Ayuda a restaurar la flora intestinal y mejorar la digestión.",
+      "descripcion_larga": "Cápsulas con cepas probióticas beneficiosas. Envase de 30 cápsulas. Ideal para diarreas o tratamientos con antibióticos.",
+      "precio": "30.00",
+      "precio_oferta": "28.00",
+      "get_precio_actual": "28.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED007",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:50:00Z",
+      "updated_at": "2023-11-21T18:50:00Z",
+      "imagenes": [
+        {
+          "id": 27,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_7.jpg",
+          "alt_text": "Probiótico para mascotas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "GutHealth",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 28,
+      "nombre": "Crema Antifúngica Tópica para Piel",
+      "slug": "crema-antifungica-topica-piel",
+      "descripcion_corta": "Tratamiento de infecciones fúngicas y dermatitis.",
+      "descripcion_larga": "Aplicación local para irritaciones de la piel. Tubo de 30g. Solo para uso externo.",
+      "precio": "19.00",
+      "precio_oferta": null,
+      "get_precio_actual": "19.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED008",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T18:55:00Z",
+      "updated_at": "2023-11-21T18:55:00Z",
+      "imagenes": [
+        {
+          "id": 28,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_8.jpg",
+          "alt_text": "Crema antifúngica",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FungiClear",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 29,
+      "nombre": "Vitamina B Complejo Inyectable",
+      "slug": "vitamina-b-complejo-inyectable",
+      "descripcion_corta": "Suplemento vitamínico para estados carenciales o de recuperación.",
+      "descripcion_larga": "Uso veterinario. Vial de 50ml. Favorece el metabolismo energético y la función nerviosa. Requiere receta.",
+      "precio": "40.00",
+      "precio_oferta": null,
+      "get_precio_actual": "40.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED009",
+      "stock": 30,
+      "is_active": false,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:00:00Z",
+      "updated_at": "2023-11-21T19:00:00Z",
+      "imagenes": [
+        {
+          "id": 29,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_9.jpg",
+          "alt_text": "Vitamina B inyectable",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VitaBoost",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 30,
+      "nombre": "Loción Calmante para Alergias Cutáneas",
+      "slug": "locion-calmante-alergias-cutaneas",
+      "descripcion_corta": "Alivia el picor y la irritación de la piel por alergias.",
+      "descripcion_larga": "Con hidrocortisona y aloe vera. Frasco pulverizador de 100ml. Uso tópico. No apto para heridas abiertas.",
+      "precio": "26.00",
+      "precio_oferta": "23.50",
+      "get_precio_actual": "23.50",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED010",
+      "stock": 55,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T19:05:00Z",
+      "updated_at": "2023-11-21T19:05:00Z",
+      "imagenes": [
+        {
+          "id": 30,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_10.jpg",
+          "alt_text": "Loción calmante para piel",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DermaSoothe",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 31,
+      "nombre": "Suplemento para la Salud Renal (Gatos)",
+      "slug": "suplemento-salud-renal-gatos",
+      "descripcion_corta": "Apoya la función renal en gatos con insuficiencia renal crónica.",
+      "descripcion_larga": "Con quelantes de fósforo y antioxidantes. Sabor a pescado. Envase de 60 sobres en polvo.",
+      "precio": "55.00",
+      "precio_oferta": null,
+      "get_precio_actual": "55.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED011",
+      "stock": 45,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:10:00Z",
+      "updated_at": "2023-11-21T19:10:00Z",
+      "imagenes": [
+        {
+          "id": 31,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_11.jpg",
+          "alt_text": "Suplemento renal para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "RenalAid",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 32,
+      "nombre": "Comprimidos para Control de Diarrea (Perros)",
+      "slug": "comprimidos-control-diarrea-perros",
+      "descripcion_corta": "Tratamiento sintomático para episodios agudos de diarrea.",
+      "descripcion_larga": "Con carbón activado y protectores de la mucosa intestinal. Envase de 10 comprimidos. Consultar dosis.",
+      "precio": "15.00",
+      "precio_oferta": null,
+      "get_precio_actual": "15.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED012",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:15:00Z",
+      "updated_at": "2023-11-21T19:15:00Z",
+      "imagenes": [
+        {
+          "id": 32,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_12.jpg",
+          "alt_text": "Comprimidos para diarrea",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DiarrheaStop",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 33,
+      "nombre": "Crema Cicatrizante para Heridas Cutáneas",
+      "slug": "crema-cicatrizante-heridas-cutaneas",
+      "descripcion_corta": "Promueve la curación de pequeñas heridas, abrasiones y rozaduras.",
+      "descripcion_larga": "Con zinc y centella asiática. Protege y regenera la piel. Tubo de 20g.",
+      "precio": "17.00",
+      "precio_oferta": "15.00",
+      "get_precio_actual": "15.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED013",
+      "stock": 95,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:20:00Z",
+      "updated_at": "2023-11-21T19:20:00Z",
+      "imagenes": [
+        {
+          "id": 33,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_13.jpg",
+          "alt_text": "Crema cicatrizante",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HealFast",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 34,
+      "nombre": "Antiemético para Vómitos en Mascotas (Oral)",
+      "slug": "antiemetico-vomitos-mascotas-oral",
+      "descripcion_corta": "Reduce los vómitos y náuseas. Sabor neutro.",
+      "descripcion_larga": "Jarabe fácil de dosificar. Frasco de 15ml. Solo bajo indicación veterinaria.",
+      "precio": "32.00",
+      "precio_oferta": null,
+      "get_precio_actual": "32.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED014",
+      "stock": 40,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:25:00Z",
+      "updated_at": "2023-11-21T19:25:00Z",
+      "imagenes": [
+        {
+          "id": 34,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_14.jpg",
+          "alt_text": "Jarabe antiemético",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VomitRelief",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 35,
+      "nombre": "Condroprotector Articular para Perros Grandes",
+      "slug": "condroprotector-articular-perros-grandes",
+      "descripcion_corta": "Soporte para la salud de las articulaciones y cartílagos.",
+      "descripcion_larga": "Con glucosamina, condroitín y MSM. Comprimidos masticables. Envase de 90 unidades.",
+      "precio": "68.00",
+      "precio_oferta": "60.00",
+      "get_precio_actual": "60.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED015",
+      "stock": 50,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T19:30:00Z",
+      "updated_at": "2023-11-21T19:30:00Z",
+      "imagenes": [
+        {
+          "id": 35,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_15.jpg",
+          "alt_text": "Condroprotector para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "JointCare",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 36,
+      "nombre": "Gotas Calmantes Naturales para Estrés (Mascotas)",
+      "slug": "gotas-calmantes-naturales-estres",
+      "descripcion_corta": "Ayuda a reducir la ansiedad y el estrés en situaciones como viajes o visitas al veterinario.",
+      "descripcion_larga": "Extractos de plantas naturales. Se administran en el agua o la comida. Frasco de 20ml.",
+      "precio": "19.50",
+      "precio_oferta": null,
+      "get_precio_actual": "19.50",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED016",
+      "stock": 110,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:35:00Z",
+      "updated_at": "2023-11-21T19:35:00Z",
+      "imagenes": [
+        {
+          "id": 36,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_16.jpg",
+          "alt_text": "Gotas calmantes",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CalmPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 37,
+      "nombre": "Inmunomodulador Oral para Gatos",
+      "slug": "inmunomodulador-oral-gatos",
+      "descripcion_corta": "Fortalece el sistema inmunitario en gatos, especialmente en épocas de estrés.",
+      "descripcion_larga": "Con Lisina. Jarabe de sabor apetitoso. Frasco de 100ml. Ayuda en casos de herpesvirus felino.",
+      "precio": "42.00",
+      "precio_oferta": null,
+      "get_precio_actual": "42.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED017",
+      "stock": 35,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:40:00Z",
+      "updated_at": "2023-11-21T19:40:00Z",
+      "imagenes": [
+        {
+          "id": 37,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_17.jpg",
+          "alt_text": "Inmunomodulador para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ImmunoCat",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 38,
+      "nombre": "Loción Antiséptica Cutánea para Heridas",
+      "slug": "locion-antiseptica-cutanea",
+      "descripcion_corta": "Desinfecta y limpia heridas leves en la piel de las mascotas.",
+      "descripcion_larga": "Solución de clorhexidina. No irritante. Frasco de 50ml con pulverizador. Uso tópico.",
+      "precio": "12.00",
+      "precio_oferta": "10.00",
+      "get_precio_actual": "10.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED018",
+      "stock": 140,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:45:00Z",
+      "updated_at": "2023-11-21T19:45:00Z",
+      "imagenes": [
+        {
+          "id": 38,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_18.jpg",
+          "alt_text": "Loción antiséptica",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AntiseptVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 39,
+      "nombre": "Suplemento para Control de Bolas de Pelo (Gatos)",
+      "slug": "suplemento-control-bolas-pelo-gatos",
+      "descripcion_corta": "Ayuda a prevenir y eliminar las bolas de pelo en el tracto digestivo.",
+      "descripcion_larga": "Pasta palatable con malta y aceite mineral. Tubo de 100g. Fácil de administrar.",
+      "precio": "16.00",
+      "precio_oferta": null,
+      "get_precio_actual": "16.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED019",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T19:50:00Z",
+      "updated_at": "2023-11-21T19:50:00Z",
+      "imagenes": [
+        {
+          "id": 39,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_19.jpg",
+          "alt_text": "Pasta para bolas de pelo",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HairballGone",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 40,
+      "nombre": "Fármaco para la Osteoartritis Canina (Oral)",
+      "slug": "farmaco-osteoartritis-canina-oral",
+      "descripcion_corta": "Alivia el dolor y la inflamación asociados a la osteoartritis en perros.",
+      "descripcion_larga": "Comprimidos masticables. Solo bajo prescripción veterinaria. Envase de 20 comprimidos.",
+      "precio": "75.00",
+      "precio_oferta": "68.00",
+      "get_precio_actual": "68.00",
+      "categoria": 2,
+      "categoria_info": {
+        "id": 2,
+        "nombre": "Medicamentos",
+        "slug": "medicamentos",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "MED020",
+      "stock": 25,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T19:55:00Z",
+      "updated_at": "2023-11-21T19:55:00Z",
+      "imagenes": [
+        {
+          "id": 40,
+          "imagen": "http://localhost:8000/media/productos/placeholder_medicamentos_20.jpg",
+          "alt_text": "Fármaco para osteoartritis",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ArthroFlex",
+      "tipo_mascota": "perro"
+    }
+  ]
+}

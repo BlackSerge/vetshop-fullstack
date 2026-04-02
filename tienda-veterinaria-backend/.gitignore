@@ -1,0 +1,74 @@
+# Django
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Environment variables (NUNCA commitar)
+.env
+.env.local
+.env.*.local
+
+# Database
+*.db
+*.sqlite3
+db.sqlite3
+
+# Media files
+media/
+/media/
+!media/.gitkeep
+
+# Static files
+staticfiles/
+/staticfiles/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# IDE specific
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+
+# Node (evitar subir dependencias locales en backend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python virtual environments alternativos
+.venv/
+venv*/
+
+# Env files adicionales
+.env.*
+!.env.example
+!.env.template
