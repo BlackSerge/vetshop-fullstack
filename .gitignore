@@ -1,0 +1,62 @@
+# --- SISTEMA / IDE ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# --- FRONTEND (tienda-veterinaria-frontend) ---
+tienda-veterinaria-frontend/node_modules/
+tienda-veterinaria-frontend/dist/
+tienda-veterinaria-frontend/build/
+tienda-veterinaria-frontend/.env
+tienda-veterinaria-frontend/.env.local
+tienda-veterinaria-frontend/.env.development.local
+tienda-veterinaria-frontend/.env.test.local
+tienda-veterinaria-frontend/.env.production.local
+tienda-veterinaria-frontend/npm-debug.log*
+tienda-veterinaria-frontend/yarn-debug.log*
+tienda-veterinaria-frontend/yarn-error.log*
+tienda-veterinaria-frontend/coverage/
+tienda-veterinaria-frontend/*.pem
+tienda-veterinaria-frontend/*.key
+
+# --- BACKEND (tienda-veterinaria-backend) ---
+ HEAD
+# Ignorar __pycache__ en cualquier subdirectorio del backend
+tienda-veterinaria-backend/**/__pycache__/
+tienda-veterinaria-backend/**/*.py[cod]
+tienda-veterinaria-backend/**/*.so
+=======
+tienda-veterinaria-backend/__pycache__/
+tienda-veterinaria-backend/**/__pycache__/
+tienda-veterinaria-backend/**/*.py[cod]
+tienda-veterinaria-backend/**/*.pyc
+tienda-veterinaria-backend/media/seed_images/
+tienda-veterinaria-backend/media/productos/
+356ba52 (chore: Remove binary files (images, certificates, Python cache) from git tracking)
+
+# Entornos Virtuales
+tienda-veterinaria-backend/env/
+tienda-veterinaria-backend/venv/
+tienda-veterinaria-backend/.venv/
+env/
+venv/
+.venv/
+
+# Secretos (¡CRÍTICO!)
+tienda-veterinaria-backend/.env
+.env
+*.env
+
+# Testing y estáticos
+tienda-veterinaria-backend/.pytest_cache/
+.pytest_cache/
+tienda-veterinaria-backend/media/
+tienda-veterinaria-backend/staticfiles/
+tienda-veterinaria-backend/db.sqlite3
+
+# --- OTROS ---
+*.log
+*.tmp

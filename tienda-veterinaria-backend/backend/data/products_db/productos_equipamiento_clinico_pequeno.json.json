@@ -1,0 +1,727 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 121,
+      "nombre": "Termómetro Digital Veterinario Flexible",
+      "slug": "termometro-digital-veterinario-flexible",
+      "descripcion_corta": "Medición rápida y precisa de la temperatura en animales.",
+      "descripcion_larga": "Punta flexible para mayor comodidad y seguridad. Impermeable y fácil de limpiar. Ideal para perros, gatos y otras mascotas pequeñas.",
+      "precio": "25.00",
+      "precio_oferta": null,
+      "get_precio_actual": "25.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM001",
+      "stock": 75,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T13:20:00Z",
+      "updated_at": "2023-11-21T13:20:00Z",
+      "imagenes": [
+        {
+          "id": 121,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_1.jpg",
+          "alt_text": "Termómetro digital veterinario",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VetTemp",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 122,
+      "nombre": "Set de 5 Vendas Elásticas Autoadhesivas",
+      "slug": "set-vendas-elasticas-autoadhesivas",
+      "descripcion_corta": "Vendas cohesivas para primeros auxilios en mascotas.",
+      "descripcion_larga": "No se pegan al pelo, son transpirables y fáciles de aplicar. Colores variados. Ancho de 5 cm.",
+      "precio": "18.50",
+      "precio_oferta": "16.99",
+      "get_precio_actual": "16.99",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM002",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:25:00Z",
+      "updated_at": "2023-11-21T13:25:00Z",
+      "imagenes": [
+        {
+          "id": 122,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_2.jpg",
+          "alt_text": "Set de vendas elásticas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "MediWrap",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 123,
+      "nombre": "Tijeras Quirúrgicas de Punta Roma (12cm)",
+      "slug": "tijeras-quirurgicas-punta-roma",
+      "descripcion_corta": "Acero inoxidable de grado médico, seguras para uso veterinario.",
+      "descripcion_larga": "Ideales para cortar vendas o retirar puntos de sutura con precisión y sin riesgos. Esterilizables.",
+      "precio": "32.00",
+      "precio_oferta": null,
+      "get_precio_actual": "32.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM003",
+      "stock": 50,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:30:00Z",
+      "updated_at": "2023-11-21T13:30:00Z",
+      "imagenes": [
+        {
+          "id": 123,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_3.jpg",
+          "alt_text": "Tijeras quirúrgicas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SurgiCare",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 124,
+      "nombre": "Estetoscopio de Doble Campana Pediátrico",
+      "slug": "estetoscopio-doble-campana-pediatrico",
+      "descripcion_corta": "Auscultación precisa para animales pequeños y cachorros.",
+      "descripcion_larga": "Campana de acero inoxidable y tubo de PVC duradero. Alta sensibilidad acústica. Color azul.",
+      "precio": "65.00",
+      "precio_oferta": "59.00",
+      "get_precio_actual": "59.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM004",
+      "stock": 30,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T13:35:00Z",
+      "updated_at": "2023-11-21T13:35:00Z",
+      "imagenes": [
+        {
+          "id": 124,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_4.jpg",
+          "alt_text": "Estetoscopio",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AuscultoPro",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 125,
+      "nombre": "Pinzas Hemostáticas Rectas (14cm)",
+      "slug": "pinzas-hemostaticas-rectas",
+      "descripcion_corta": "Instrumento esencial para la sujeción de tejidos y vasos.",
+      "descripcion_larga": "Fabricadas en acero quirúrgico de alta calidad. Cierre de cremallera seguro. Esterilizables.",
+      "precio": "28.00",
+      "precio_oferta": null,
+      "get_precio_actual": "28.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM005",
+      "stock": 40,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:40:00Z",
+      "updated_at": "2023-11-21T13:40:00Z",
+      "imagenes": [
+        {
+          "id": 125,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_5.jpg",
+          "alt_text": "Pinzas hemostáticas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ClamperMed",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 126,
+      "nombre": "Kit de Sutura Estéril Desechable",
+      "slug": "kit-sutura-esteril-desechable",
+      "descripcion_corta": "Contiene aguja, hilo de sutura y portaagujas. Para pequeñas intervenciones.",
+      "descripcion_larga": "Materiales de grado médico, envasado individualmente estéril. Ideal para estudiantes o emergencias.",
+      "precio": "40.00",
+      "precio_oferta": null,
+      "get_precio_actual": "40.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM006",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:45:00Z",
+      "updated_at": "2023-11-21T13:45:00Z",
+      "imagenes": [
+        {
+          "id": 126,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_6.jpg",
+          "alt_text": "Kit de sutura",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SutureKit",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 127,
+      "nombre": "Lámpara de Examen LED Recargable",
+      "slug": "lampara-examen-led-recargable",
+      "descripcion_corta": "Iluminación potente y de bajo consumo para exploraciones detalladas.",
+      "descripcion_larga": "Foco ajustable, con clip para fijar a la ropa. Batería de larga duración. Ideal para veterinarios de campo.",
+      "precio": "55.00",
+      "precio_oferta": "49.99",
+      "get_precio_actual": "49.99",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM007",
+      "stock": 35,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T13:50:00Z",
+      "updated_at": "2023-11-21T13:50:00Z",
+      "imagenes": [
+        {
+          "id": 127,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_7.jpg",
+          "alt_text": "Lámpara de examen",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "VETLight",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 128,
+      "nombre": "Esfigmomanómetro Anemómetro para Mascotas",
+      "slug": "esfigmomanometro-anemometro-mascotas",
+      "descripcion_corta": "Medidor de presión arterial para uso veterinario.",
+      "descripcion_larga": "Con varios tamaños de manguitos adaptados a diferentes animales. Pantalla LCD de fácil lectura.",
+      "precio": "120.00",
+      "precio_oferta": null,
+      "get_precio_actual": "120.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM008",
+      "stock": 20,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:55:00Z",
+      "updated_at": "2023-11-21T13:55:00Z",
+      "imagenes": [
+        {
+          "id": 128,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_8.jpg",
+          "alt_text": "Medidor de presión arterial",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "BPVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 129,
+      "nombre": "Martillo de Reflejos Neurológico Veterinario",
+      "slug": "martillo-reflejos-neurologico-veterinario",
+      "descripcion_corta": "Herramienta para evaluar reflejos en el examen neurológico.",
+      "descripcion_larga": "Diseño robusto de acero inoxidable con mango de goma. Equilibrio óptimo para golpecitos precisos.",
+      "precio": "48.00",
+      "precio_oferta": null,
+      "get_precio_actual": "48.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM009",
+      "stock": 28,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:00:00Z",
+      "updated_at": "2023-11-21T14:00:00Z",
+      "imagenes": [
+        {
+          "id": 129,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_9.jpg",
+          "alt_text": "Martillo de reflejos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "NeuroPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 130,
+      "nombre": "Otoscopio Veterinario con Luz LED",
+      "slug": "otoscopio-veterinario-luz-led",
+      "descripcion_corta": "Examen detallado del canal auditivo en diferentes animales.",
+      "descripcion_larga": "Con iluminación LED brillante y varios tamaños de espéculos desechables. Diseño compacto y ligero.",
+      "precio": "89.00",
+      "precio_oferta": "80.00",
+      "get_precio_actual": "80.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM010",
+      "stock": 40,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T14:05:00Z",
+      "updated_at": "2023-11-21T14:05:00Z",
+      "imagenes": [
+        {
+          "id": 130,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_10.jpg",
+          "alt_text": "Otoscopio",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "OtoVET",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 131,
+      "nombre": "Pinza Extirpación de Garrapatas (Acero Inoxidable)",
+      "slug": "pinza-extirpacion-garrapatas",
+      "descripcion_corta": "Remoción segura y completa de garrapatas sin aplastarlas.",
+      "descripcion_larga": "Diseño ergonómico para un agarre firme. Apta para perros, gatos y humanos.",
+      "precio": "12.00",
+      "precio_oferta": null,
+      "get_precio_actual": "12.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM011",
+      "stock": 100,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:10:00Z",
+      "updated_at": "2023-11-21T14:10:00Z",
+      "imagenes": [
+        {
+          "id": 131,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_11.jpg",
+          "alt_text": "Pinza para garrapatas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TickRemover",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 132,
+      "nombre": "Vendas de Gasa Estéril (Pack de 10)",
+      "slug": "vendas-gasa-esteril",
+      "descripcion_corta": "Para cubrir heridas, apósitos y protección post-operatoria.",
+      "descripcion_larga": "Algodón 100%, transpirables y absorbentes. Envasadas individualmente. Tamaño 10x10 cm.",
+      "precio": "9.99",
+      "precio_oferta": null,
+      "get_precio_actual": "9.99",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM012",
+      "stock": 150,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:15:00Z",
+      "updated_at": "2023-11-21T14:15:00Z",
+      "imagenes": [
+        {
+          "id": 132,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_12.jpg",
+          "alt_text": "Vendas de gasa estéril",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SterileAid",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 133,
+      "nombre": "Oftalmoscopio Directo Compacto",
+      "slug": "oftalmoscopio-directo-compacto",
+      "descripcion_corta": "Examen del fondo de ojo en animales pequeños.",
+      "descripcion_larga": "Iluminación halógena y dial de dioptrías. Diseño de bolsillo, ligero y fácil de transportar.",
+      "precio": "150.00",
+      "precio_oferta": null,
+      "get_precio_actual": "150.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM013",
+      "stock": 15,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T14:20:00Z",
+      "updated_at": "2023-11-21T14:20:00Z",
+      "imagenes": [
+        {
+          "id": 133,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_13.jpg",
+          "alt_text": "Oftalmoscopio",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "OphthalmoPro",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 134,
+      "nombre": "Set de Instrumental Básico para Cirugía Menor",
+      "slug": "set-instrumental-basico-cirugia-menor",
+      "descripcion_corta": "Incluye bisturí, pinzas, tijeras y portaagujas. Acero quirúrgico.",
+      "descripcion_larga": "Ideal para clínicas pequeñas o uso en emergencias. Esterilizable y reutilizable. Presentado en estuche.",
+      "precio": "250.00",
+      "precio_oferta": "220.00",
+      "get_precio_actual": "220.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM014",
+      "stock": 10,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:25:00Z",
+      "updated_at": "2023-11-21T14:25:00Z",
+      "imagenes": [
+        {
+          "id": 134,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_14.jpg",
+          "alt_text": "Set de instrumental quirúrgico",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SurgiKit",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 135,
+      "nombre": "Bombilla de Repuesto para Otoscopio/Oftalmoscopio",
+      "slug": "bombilla-repuesto-otoscopio-oftalmoscopio",
+      "descripcion_corta": "Bombilla halógena de larga duración para instrumentos de diagnóstico.",
+      "descripcion_larga": "Compatible con la mayoría de otoscopios y oftalmoscopios veterinarios estándar. Pack de 2 unidades.",
+      "precio": "15.00",
+      "precio_oferta": null,
+      "get_precio_actual": "15.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM015",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:30:00Z",
+      "updated_at": "2023-11-21T14:30:00Z",
+      "imagenes": [
+        {
+          "id": 135,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_15.jpg",
+          "alt_text": "Bombilla de repuesto",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "MedLamp",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 136,
+      "nombre": "Tubo de Prueba con Tapa (Pack de 50)",
+      "slug": "tubo-prueba-con-tapa",
+      "descripcion_corta": "Tubos de ensayo de plástico estériles para muestras de laboratorio.",
+      "descripcion_larga": "Capacidad de 10 ml, con tapa hermética. Ideales para análisis de orina, heces o sangre.",
+      "precio": "19.00",
+      "precio_oferta": "17.50",
+      "get_precio_actual": "17.50",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM016",
+      "stock": 200,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:35:00Z",
+      "updated_at": "2023-11-21T14:35:00Z",
+      "imagenes": [
+        {
+          "id": 136,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_16.jpg",
+          "alt_text": "Tubos de prueba",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "LabEssentials",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 137,
+      "nombre": "Microscopio Portátil de Mano (60x-100x)",
+      "slug": "microscopio-portatil-mano",
+      "descripcion_corta": "Aumento para examen de muestras a nivel micro. Con luz LED.",
+      "descripcion_larga": "Ideal para análisis rápidos de parásitos o células en campo. Ligero y fácil de usar.",
+      "precio": "80.00",
+      "precio_oferta": null,
+      "get_precio_actual": "80.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM017",
+      "stock": 25,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:40:00Z",
+      "updated_at": "2023-11-21T14:40:00Z",
+      "imagenes": [
+        {
+          "id": 137,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_17.jpg",
+          "alt_text": "Microscopio portátil",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "MicroVue",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 138,
+      "nombre": "Laringoscopio de Fibra Óptica Veterinario",
+      "slug": "laringoscopio-fibra-optica-veterinario",
+      "descripcion_corta": "Visualización clara de la laringe para intubación o examen.",
+      "descripcion_larga": "Con iluminación fría para evitar quemaduras. Hoja de tamaño mediano (ej. para gatos/perros pequeños).",
+      "precio": "280.00",
+      "precio_oferta": null,
+      "get_precio_actual": "280.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM018",
+      "stock": 8,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T14:45:00Z",
+      "updated_at": "2023-11-21T14:45:00Z",
+      "imagenes": [
+        {
+          "id": 138,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_18.jpg",
+          "alt_text": "Laringoscopio",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "LaryngoVET",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 139,
+      "nombre": "Pipetas Pasteur Desechables (Pack de 100)",
+      "slug": "pipetas-pasteur-desechables",
+      "descripcion_corta": "Para la transferencia de líquidos en laboratorio o clínica.",
+      "descripcion_larga": "Plástico transparente, capacidad de 3ml. Estériles y graduadas. Ideales para dosificar medicamentos o recoger muestras.",
+      "precio": "15.50",
+      "precio_oferta": null,
+      "get_precio_actual": "15.50",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM019",
+      "stock": 300,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:50:00Z",
+      "updated_at": "2023-11-21T14:50:00Z",
+      "imagenes": [
+        {
+          "id": 139,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_19.jpg",
+          "alt_text": "Pipetas Pasteur",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "LiquidTransfer",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 140,
+      "nombre": "Fórceps Dental para Extracciones (Pequeño)",
+      "slug": "forceps-dental-extracciones-pequeno",
+      "descripcion_corta": "Instrumento especializado para extracciones dentales en mascotas pequeñas.",
+      "descripcion_larga": "Acero inoxidable quirúrgico, mandíbulas finas para un agarre preciso. Esterilizable.",
+      "precio": "95.00",
+      "precio_oferta": "85.00",
+      "get_precio_actual": "85.00",
+      "categoria": 7,
+      "categoria_info": {
+        "id": 7,
+        "nombre": "Equipamiento clínico pequeño",
+        "slug": "equipamiento-clinico-pequeno",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "EQM020",
+      "stock": 12,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T14:55:00Z",
+      "updated_at": "2023-11-21T14:55:00Z",
+      "imagenes": [
+        {
+          "id": 140,
+          "imagen": "http://localhost:8000/media/productos/placeholder_equipamiento_20.jpg",
+          "alt_text": "Fórceps dental",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DentaForce",
+      "tipo_mascota": "otros"
+    }
+  ]
+}

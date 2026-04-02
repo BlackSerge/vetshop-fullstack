@@ -1,0 +1,727 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 41,
+      "nombre": "Champú Hipoalergénico para Perros Piel Sensible",
+      "slug": "champu-hipoalergenico-perros-piel-sensible",
+      "descripcion_corta": "Fórmula suave sin perfumes ni colorantes para pieles atópicas.",
+      "descripcion_larga": "Con extracto de avena calmante. Ayuda a reducir picores e irritaciones. Botella de 500ml.",
+      "precio": "18.00",
+      "precio_oferta": null,
+      "get_precio_actual": "18.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG001",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T15:00:00Z",
+      "updated_at": "2023-11-21T15:00:00Z",
+      "imagenes": [
+        {
+          "id": 41,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_1.jpg",
+          "alt_text": "Champú hipoalergénico para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "Dermacare",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 42,
+      "nombre": "Cepillo Dental de Dedo para Gatos",
+      "slug": "cepillo-dental-dedo-gatos",
+      "descripcion_corta": "Diseño ergonómico para una limpieza dental suave y efectiva.",
+      "descripcion_larga": "Fabricado en silicona, se adapta al dedo para un mejor control. Ideal para empezar con la higiene dental felina. Pack de 2.",
+      "precio": "7.50",
+      "precio_oferta": null,
+      "get_precio_actual": "7.50",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG002",
+      "stock": 150,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:05:00Z",
+      "updated_at": "2023-11-21T15:05:00Z",
+      "imagenes": [
+        {
+          "id": 42,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_2.jpg",
+          "alt_text": "Cepillo dental de dedo para gato",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PurrClean",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 43,
+      "nombre": "Cortauñas Profesional con Protector de Seguridad",
+      "slug": "cortauñas-profesional-protector-seguridad",
+      "descripcion_corta": "Corte preciso y seguro para evitar dañar la vena del animal.",
+      "descripcion_larga": "Mango ergonómico antideslizante y hoja de acero inoxidable. Apto para perros y gatos de todos los tamaños.",
+      "precio": "12.99",
+      "precio_oferta": "10.99",
+      "get_precio_actual": "10.99",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG003",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:10:00Z",
+      "updated_at": "2023-11-21T15:10:00Z",
+      "imagenes": [
+        {
+          "id": 43,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_3.jpg",
+          "alt_text": "Cortauñas profesional",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SafeTrim",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 44,
+      "nombre": "Toallitas Húmedas Desodorantes para Mascotas",
+      "slug": "toallitas-humedas-desodorantes-mascotas",
+      "descripcion_corta": "Limpieza rápida y refrescante para el día a día.",
+      "descripcion_larga": "Con aloe vera y vitamina E. Ideales para patas, hocico y cuerpo. Envase de 100 unidades.",
+      "precio": "9.00",
+      "precio_oferta": null,
+      "get_precio_actual": "9.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG004",
+      "stock": 200,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:15:00Z",
+      "updated_at": "2023-11-21T15:15:00Z",
+      "imagenes": [
+        {
+          "id": 44,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_4.jpg",
+          "alt_text": "Toallitas desodorantes para mascotas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PetFresh",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 45,
+      "nombre": "Spray Antiparasitario Externo para Perros",
+      "slug": "spray-antiparasitario-externo-perros",
+      "descripcion_corta": "Protección eficaz contra pulgas, garrapatas y mosquitos.",
+      "descripcion_larga": "Fórmula de acción rápida y duradera. Apto para cachorros a partir de 8 semanas. Botella de 250ml.",
+      "precio": "28.00",
+      "precio_oferta": null,
+      "get_precio_actual": "28.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG005",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T15:20:00Z",
+      "updated_at": "2023-11-21T15:20:00Z",
+      "imagenes": [
+        {
+          "id": 45,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_5.jpg",
+          "alt_text": "Spray antiparasitario",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FleaGuard",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 46,
+      "nombre": "Loción Limpiadora de Oídos para Perros y Gatos",
+      "slug": "locion-limpiadora-oidos-perros-gatos",
+      "descripcion_corta": "Elimina el exceso de cera y previene infecciones.",
+      "descripcion_larga": "Fórmula suave con pH neutro. Ideal para la higiene regular. Botella de 125ml.",
+      "precio": "14.50",
+      "precio_oferta": null,
+      "get_precio_actual": "14.50",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG006",
+      "stock": 110,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:25:00Z",
+      "updated_at": "2023-11-21T15:25:00Z",
+      "imagenes": [
+        {
+          "id": 46,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_6.jpg",
+          "alt_text": "Loción limpiadora de oídos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "OtoClean",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 47,
+      "nombre": "Pasta Dental Enzimática para Perros (Sabor Carne)",
+      "slug": "pasta-dental-enzimatica-perros",
+      "descripcion_corta": "Combate el sarro y el mal aliento de forma natural.",
+      "descripcion_larga": "Fórmula enzimática que no requiere enjuague. Apta para uso diario. Tubo de 100g.",
+      "precio": "11.00",
+      "precio_oferta": "9.99",
+      "get_precio_actual": "9.99",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG007",
+      "stock": 130,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:30:00Z",
+      "updated_at": "2023-11-21T15:30:00Z",
+      "imagenes": [
+        {
+          "id": 47,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_7.jpg",
+          "alt_text": "Pasta dental enzimática",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DentaBrush",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 48,
+      "nombre": "Cepillo de Cerdas Suaves para Perros de Pelo Corto",
+      "slug": "cepillo-cerdas-suaves-perros-pelo-corto",
+      "descripcion_corta": "Elimina el pelo suelto y estimula la circulación de la piel.",
+      "descripcion_larga": "Mango ergonómico. Ideal para un cepillado diario y un pelaje brillante.",
+      "precio": "9.50",
+      "precio_oferta": null,
+      "get_precio_actual": "9.50",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG008",
+      "stock": 100,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:35:00Z",
+      "updated_at": "2023-11-21T15:35:00Z",
+      "imagenes": [
+        {
+          "id": 48,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_8.jpg",
+          "alt_text": "Cepillo de cerdas suaves",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "GroomEase",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 49,
+      "nombre": "Spray Desenredante para Perros de Pelo Largo",
+      "slug": "spray-desenredante-perros-pelo-largo",
+      "descripcion_corta": "Facilita el cepillado y previene la formación de nudos.",
+      "descripcion_larga": "Con acondicionadores naturales y aroma a coco. Botella de 200ml.",
+      "precio": "16.00",
+      "precio_oferta": null,
+      "get_precio_actual": "16.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG009",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:40:00Z",
+      "updated_at": "2023-11-21T15:40:00Z",
+      "imagenes": [
+        {
+          "id": 49,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_9.jpg",
+          "alt_text": "Spray desenredante",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SilkyCoat",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 50,
+      "nombre": "Limpiador de Lágrimas para Perros y Gatos",
+      "slug": "limpiador-lagrimas-perros-gatos",
+      "descripcion_corta": "Elimina manchas de lágrimas y residuos alrededor de los ojos.",
+      "descripcion_larga": "Fórmula suave con manzanilla. Apto para uso diario. Botella de 100ml.",
+      "precio": "10.50",
+      "precio_oferta": "9.00",
+      "get_precio_actual": "9.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG010",
+      "stock": 140,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:45:00Z",
+      "updated_at": "2023-11-21T15:45:00Z",
+      "imagenes": [
+        {
+          "id": 50,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_10.jpg",
+          "alt_text": "Limpiador de lágrimas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "EyeBright",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 51,
+      "nombre": "Peine Antipulgas de Dientes Finos",
+      "slug": "peine-antipulgas-dientes-finos",
+      "descripcion_corta": "Elimina pulgas, larvas y suciedad del pelaje.",
+      "descripcion_larga": "Dientes de acero inoxidable muy juntos. Ideal para inspeccionar y limpiar el pelaje de perros y gatos.",
+      "precio": "8.00",
+      "precio_oferta": null,
+      "get_precio_actual": "8.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG011",
+      "stock": 180,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T15:50:00Z",
+      "updated_at": "2023-11-21T15:50:00Z",
+      "imagenes": [
+        {
+          "id": 51,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_11.jpg",
+          "alt_text": "Peine antipulgas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FleaFighter",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 52,
+      "nombre": "Secador de Pelo Portátil para Mascotas Silencioso",
+      "slug": "secador-pelo-portatil-mascotas-silencioso",
+      "descripcion_corta": "Secado rápido y sin estrés para perros y gatos sensibles al ruido.",
+      "descripcion_larga": "Varias temperaturas y velocidades. Diseño ligero y compacto para fácil manejo. 1200W.",
+      "precio": "65.00",
+      "precio_oferta": "59.00",
+      "get_precio_actual": "59.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG012",
+      "stock": 40,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T15:55:00Z",
+      "updated_at": "2023-11-21T15:55:00Z",
+      "imagenes": [
+        {
+          "id": 52,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_12.jpg",
+          "alt_text": "Secador de pelo para mascotas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "QuietDry",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 53,
+      "nombre": "Bálsamo Protector de Patas para Perros",
+      "slug": "balsamo-protector-patas-perros",
+      "descripcion_corta": "Protege y nutre las almohadillas de las patas del frío, calor y superficies ásperas.",
+      "descripcion_larga": "Con cera de abejas y aceites naturales. Envase de 50g.",
+      "precio": "15.00",
+      "precio_oferta": null,
+      "get_precio_actual": "15.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG013",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:00:00Z",
+      "updated_at": "2023-11-21T16:00:00Z",
+      "imagenes": [
+        {
+          "id": 53,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_13.jpg",
+          "alt_text": "Bálsamo de patas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PawShield",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 54,
+      "nombre": "Arenero Cubierto para Gatos con Filtro de Carbón",
+      "slug": "arenero-cubierto-gatos-filtro-carbon",
+      "descripcion_corta": "Mantiene el olor bajo control y la arena contenida.",
+      "descripcion_larga": "Diseño con entrada superior y puerta batiente. Incluye pala y filtro de carbón activo reemplazable. Grande.",
+      "precio": "45.00",
+      "precio_oferta": null,
+      "get_precio_actual": "45.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG014",
+      "stock": 30,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:05:00Z",
+      "updated_at": "2023-11-21T16:05:00Z",
+      "imagenes": [
+        {
+          "id": 54,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_14.jpg",
+          "alt_text": "Arenero cubierto",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CatLoo",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 55,
+      "nombre": "Arena Aglomerante de Bentonita para Gatos (10L)",
+      "slug": "arena-aglomerante-bentonita-gatos",
+      "descripcion_corta": "Máxima absorción y control de olores. Forma bolas sólidas.",
+      "descripcion_larga": "100% natural, sin polvo y con aroma a talco de bebé. Muy eficiente.",
+      "precio": "12.00",
+      "precio_oferta": "10.50",
+      "get_precio_actual": "10.50",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG015",
+      "stock": 160,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:10:00Z",
+      "updated_at": "2023-11-21T16:10:00Z",
+      "imagenes": [
+        {
+          "id": 55,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_15.jpg",
+          "alt_text": "Saco de arena aglomerante",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SuperClump",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 56,
+      "nombre": "Champú Seco para Perros y Gatos (Espuma)",
+      "slug": "champu-seco-perros-gatos-espuma",
+      "descripcion_corta": "Limpieza sin agua, ideal para viajes o animales que no les gusta bañarse.",
+      "descripcion_larga": "Elimina la suciedad y el mal olor. Con pH neutro. Envase de 200ml.",
+      "precio": "13.00",
+      "precio_oferta": null,
+      "get_precio_actual": "13.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG016",
+      "stock": 85,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:15:00Z",
+      "updated_at": "2023-11-21T16:15:00Z",
+      "imagenes": [
+        {
+          "id": 56,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_16.jpg",
+          "alt_text": "Champú seco en espuma",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "NoRinse",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 57,
+      "nombre": "Toallitas para Higiene Ocular de Mascotas",
+      "slug": "toallitas-higiene-ocular-mascotas",
+      "descripcion_corta": "Limpieza suave y segura para el área de los ojos.",
+      "descripcion_larga": "Solución de limpieza estéril, sin alcohol ni parabenos. Envase de 60 toallitas.",
+      "precio": "9.99",
+      "precio_oferta": null,
+      "get_precio_actual": "9.99",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG017",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:20:00Z",
+      "updated_at": "2023-11-21T16:20:00Z",
+      "imagenes": [
+        {
+          "id": 57,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_17.jpg",
+          "alt_text": "Toallitas para ojos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ClearEye",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 58,
+      "nombre": "Desodorante Ambiental Elimina Olores de Mascotas",
+      "slug": "desodorante-ambiental-elimina-olores",
+      "descripcion_corta": "Neutraliza y elimina los olores persistentes de mascotas en el hogar.",
+      "descripcion_larga": "Fórmula no tóxica, segura para animales y personas. Spray de 500ml con aroma fresco.",
+      "precio": "11.50",
+      "precio_oferta": "10.00",
+      "get_precio_actual": "10.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG018",
+      "stock": 150,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T16:25:00Z",
+      "updated_at": "2023-11-21T16:25:00Z",
+      "imagenes": [
+        {
+          "id": 58,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_18.jpg",
+          "alt_text": "Desodorante elimina olores",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "OdorGone",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 59,
+      "nombre": "Recambio de Filtros para Arenero Cubierto (3 unidades)",
+      "slug": "recambio-filtros-arenero-cubierto",
+      "descripcion_corta": "Filtros de carbón activo para mantener el arenero fresco.",
+      "descripcion_larga": "Compatible con la mayoría de areneros cubiertos con ventilación. Reduce eficazmente los malos olores. Duración de 1 mes por filtro.",
+      "precio": "8.50",
+      "precio_oferta": null,
+      "get_precio_actual": "8.50",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG019",
+      "stock": 200,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:30:00Z",
+      "updated_at": "2023-11-21T16:30:00Z",
+      "imagenes": [
+        {
+          "id": 59,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_19.jpg",
+          "alt_text": "Filtros para arenero",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FreshLitter",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 60,
+      "nombre": "Tijeras para Desenredar Nudos en Perros",
+      "slug": "tijeras-desenredar-nudos-perros",
+      "descripcion_corta": "Herramienta especializada para deshacer nudos sin tirones.",
+      "descripcion_larga": "Puntas redondeadas para mayor seguridad, hojas afiladas de acero inoxidable. Mango ergonómico. Ideal para pelajes largos.",
+      "precio": "22.00",
+      "precio_oferta": "19.00",
+      "get_precio_actual": "19.00",
+      "categoria": 3,
+      "categoria_info": {
+        "id": 3,
+        "nombre": "Higiene y cuidado",
+        "slug": "higiene-y-cuidado",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "HIG020",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T16:35:00Z",
+      "updated_at": "2023-11-21T16:35:00Z",
+      "imagenes": [
+        {
+          "id": 60,
+          "imagen": "http://localhost:8000/media/productos/placeholder_higiene_20.jpg",
+          "alt_text": "Tijeras para nudos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DetangleCut",
+      "tipo_mascota": "perro"
+    }
+  ]
+}

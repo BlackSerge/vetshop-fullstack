@@ -1,0 +1,728 @@
+{
+  
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 61,
+      "nombre": "Collar Ajustable Reflectante para Perro",
+      "slug": "collar-ajustable-reflectante-perro",
+      "descripcion_corta": "Máxima visibilidad y seguridad en paseos nocturnos.",
+      "descripcion_larga": "Fabricado con nylon resistente y cierre de seguridad. Tallas S, M, L.",
+      "precio": "15.99",
+      "precio_oferta": null,
+      "get_precio_actual": "15.99",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC001",
+      "stock": 100,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T11:40:00Z",
+      "updated_at": "2023-11-21T11:40:00Z",
+      "imagenes": [
+        {
+          "id": 61,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_1.jpg",
+          "alt_text": "Collar reflectante",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "SafeWalk",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 62,
+      "nombre": "Correa Retráctil Ergonómica 5m",
+      "slug": "correa-retractil-ergonomica-5m",
+      "descripcion_corta": "Control y libertad para tu perro en cualquier paseo.",
+      "descripcion_larga": "Con mango ergonómico antideslizante y botón de bloqueo rápido. Para perros de hasta 25kg.",
+      "precio": "28.50",
+      "precio_oferta": "25.99",
+      "get_precio_actual": "25.99",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC002",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:45:00Z",
+      "updated_at": "2023-11-21T11:45:00Z",
+      "imagenes": [
+        {
+          "id": 62,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_2.jpg",
+          "alt_text": "Correa retráctil",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FlexiLead",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 63,
+      "nombre": "Arnés Anti-Tirones para Perros Grandes",
+      "slug": "arnes-anti-tirones-perros-grandes",
+      "descripcion_corta": "Diseño que distribuye la presión, evitando molestias y tirones.",
+      "descripcion_larga": "Ajustable, acolchado y con anilla frontal para mayor control. Talla XL.",
+      "precio": "39.99",
+      "precio_oferta": null,
+      "get_precio_actual": "39.99",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC003",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T11:50:00Z",
+      "updated_at": "2023-11-21T11:50:00Z",
+      "imagenes": [
+        {
+          "id": 63,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_3.jpg",
+          "alt_text": "Arnés anti-tirones",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "WalkEasy",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 64,
+      "nombre": "Bebedero Automático con Filtro para Mascotas",
+      "slug": "bebedero-automatico-filtro",
+      "descripcion_corta": "Fuente de agua fresca y filtrada para perros y gatos.",
+      "descripcion_larga": "Capacidad de 2 litros, mantiene el agua circulando para mayor frescura.",
+      "precio": "45.00",
+      "precio_oferta": "40.00",
+      "get_precio_actual": "40.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC004",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T11:55:00Z",
+      "updated_at": "2023-11-21T11:55:00Z",
+      "imagenes": [
+        {
+          "id": 64,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_4.jpg",
+          "alt_text": "Bebedero automático",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AquaFlow",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 65,
+      "nombre": "Cama Ortopédica para Perros Mayores",
+      "slug": "cama-ortopedica-perros-mayores",
+      "descripcion_corta": "Soporte ideal para articulaciones, alivio de presión.",
+      "descripcion_larga": "Colchón de espuma viscoelástica y funda extraíble lavable. Talla M.",
+      "precio": "75.00",
+      "precio_oferta": null,
+      "get_precio_actual": "75.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC005",
+      "stock": 40,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:00:00Z",
+      "updated_at": "2023-11-21T12:00:00Z",
+      "imagenes": [
+        {
+          "id": 65,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_5.jpg",
+          "alt_text": "Cama ortopédica para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ComfyPaws",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 66,
+      "nombre": "Transportín Homologado para Viajes Aéreos",
+      "slug": "transportin-homologado-viajes-aereos",
+      "descripcion_corta": "Seguro y cómodo para transportar a tu mascota en avión.",
+      "descripcion_larga": "Cumple con las normativas IATA. Ventilación óptima y cierre de seguridad. Talla S.",
+      "precio": "95.00",
+      "precio_oferta": null,
+      "get_precio_actual": "95.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC006",
+      "stock": 25,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T12:05:00Z",
+      "updated_at": "2023-11-21T12:05:00Z",
+      "imagenes": [
+        {
+          "id": 66,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_6.jpg",
+          "alt_text": "Transportín para avión",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TravelPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 67,
+      "nombre": "Chapa Identificativa Personalizada",
+      "slug": "chapa-identificativa-personalizada",
+      "descripcion_corta": "Graba el nombre de tu mascota y tu teléfono de contacto.",
+      "descripcion_larga": "Fabricada en acero inoxidable, resistente al agua. Varios diseños disponibles.",
+      "precio": "8.00",
+      "precio_oferta": null,
+      "get_precio_actual": "8.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC007",
+      "stock": 150,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:10:00Z",
+      "updated_at": "2023-11-21T12:10:00Z",
+      "imagenes": [
+        {
+          "id": 67,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_7.jpg",
+          "alt_text": "Chapa identificativa",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "IDTag",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 68,
+      "nombre": "Comedero Doble Antideslizante Acero Inoxidable",
+      "slug": "comedero-doble-antideslizante",
+      "descripcion_corta": "Dos boles para agua y comida, fácil de limpiar.",
+      "descripcion_larga": "Base de silicona antideslizante. Capacidad de 750ml cada bol.",
+      "precio": "22.00",
+      "precio_oferta": "19.99",
+      "get_precio_actual": "19.99",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC008",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:15:00Z",
+      "updated_at": "2023-11-21T12:15:00Z",
+      "imagenes": [
+        {
+          "id": 68,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_8.jpg",
+          "alt_text": "Comedero doble",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PetFeast",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 69,
+      "nombre": "Fuente de Agua para Gatos con Sensor",
+      "slug": "fuente-agua-gatos-sensor",
+      "descripcion_corta": "Estimula la hidratación con agua en movimiento y sensor de presencia.",
+      "descripcion_larga": "Capacidad de 1.5 litros, ultra silenciosa. Materiales libres de BPA.",
+      "precio": "55.00",
+      "precio_oferta": null,
+      "get_precio_actual": "55.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC009",
+      "stock": 50,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:20:00Z",
+      "updated_at": "2023-11-21T12:20:00Z",
+      "imagenes": [
+        {
+          "id": 69,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_9.jpg",
+          "alt_text": "Fuente de agua para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CatWater",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 70,
+      "nombre": "Ropa Impermeable para Perros Pequeños",
+      "slug": "ropa-impermeable-perros-pequenos",
+      "descripcion_corta": "Protege a tu mascota de la lluvia y el viento.",
+      "descripcion_larga": "Material ligero y transpirable, ajustable con velcro. Talla S.",
+      "precio": "29.99",
+      "precio_oferta": null,
+      "get_precio_actual": "29.99",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC010",
+      "stock": 65,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:25:00Z",
+      "updated_at": "2023-11-21T12:25:00Z",
+      "imagenes": [
+        {
+          "id": 70,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_10.jpg",
+          "alt_text": "Impermeable para perro",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "PawProtect",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 71,
+      "nombre": "Rascador de Cartón Reciclable para Gatos",
+      "slug": "rascador-carton-reciclable-gatos",
+      "descripcion_corta": "Mantiene las uñas sanas y protege tus muebles.",
+      "descripcion_larga": "Diseño ondulado, incluye hierba gatera. Larga duración.",
+      "precio": "12.00",
+      "precio_oferta": "10.00",
+      "get_precio_actual": "10.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC011",
+      "stock": 110,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:30:00Z",
+      "updated_at": "2023-11-21T12:30:00Z",
+      "imagenes": [
+        {
+          "id": 71,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_11.jpg",
+          "alt_text": "Rascador de cartón",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ScratchyCat",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 72,
+      "nombre": "Puerta para Gatos con 4 Bloqueos",
+      "slug": "puerta-gatos-4-bloqueos",
+      "descripcion_corta": "Controla la entrada y salida de tu gato de forma segura.",
+      "descripcion_larga": "Sistema de 4 bloqueos: solo entrada, solo salida, abierta, cerrada. Fácil instalación.",
+      "precio": "35.00",
+      "precio_oferta": null,
+      "get_precio_actual": "35.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC012",
+      "stock": 45,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:35:00Z",
+      "updated_at": "2023-11-21T12:35:00Z",
+      "imagenes": [
+        {
+          "id": 72,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_12.jpg",
+          "alt_text": "Puerta para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FreedomPet",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 73,
+      "nombre": "Guante Cepillo Deslanador para Mascotas",
+      "slug": "guante-cepillo-deslanador",
+      "descripcion_corta": "Elimina el pelo suelto de forma eficaz y suave.",
+      "descripcion_larga": "Con puntas de silicona que masajean la piel. Ideal para perros y gatos de pelo corto y largo.",
+      "precio": "9.99",
+      "precio_oferta": null,
+      "get_precio_actual": "9.99",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC013",
+      "stock": 130,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:40:00Z",
+      "updated_at": "2023-11-21T12:40:00Z",
+      "imagenes": [
+        {
+          "id": 73,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_13.jpg",
+          "alt_text": "Guante deslanador",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "GroomEase",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 74,
+      "nombre": "Arnés para Conejos con Correa",
+      "slug": "arnes-conejos-correa",
+      "descripcion_corta": "Pasea a tu conejo de forma segura y cómoda.",
+      "descripcion_larga": "Fabricado en malla transpirable, ajustable. Talla única.",
+      "precio": "18.00",
+      "precio_oferta": "15.00",
+      "get_precio_actual": "15.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC014",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:45:00Z",
+      "updated_at": "2023-11-21T12:45:00Z",
+      "imagenes": [
+        {
+          "id": 74,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_14.jpg",
+          "alt_text": "Arnés para conejo",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "BunnyStroll",
+      "tipo_mascota": "roedor"
+    },
+    {
+      "id": 75,
+      "nombre": "Jaula para Pájaros Pequeños con Accesorios",
+      "slug": "jaula-pajaros-pequenos",
+      "descripcion_corta": "Completa con bebedero, comedero y perchas.",
+      "descripcion_larga": "Ideal para canarios, periquitos y jilgueros. Fácil de limpiar.",
+      "precio": "60.00",
+      "precio_oferta": null,
+      "get_precio_actual": "60.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC015",
+      "stock": 30,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T12:50:00Z",
+      "updated_at": "2023-11-21T12:50:00Z",
+      "imagenes": [
+        {
+          "id": 75,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_15.jpg",
+          "alt_text": "Jaula para pájaros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "BirdieHome",
+      "tipo_mascota": "ave"
+    },
+    {
+      "id": 76,
+      "nombre": "Kit de Viaje para Mascotas (Bol Plegable + Agua)",
+      "slug": "kit-viaje-mascotas",
+      "descripcion_corta": "Todo lo necesario para mantener a tu mascota hidratada en cualquier lugar.",
+      "descripcion_larga": "Incluye botella de agua con dispensador y bol plegable de silicona. Compacto y ligero.",
+      "precio": "25.00",
+      "precio_oferta": null,
+      "get_precio_actual": "25.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC016",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T12:55:00Z",
+      "updated_at": "2023-11-21T12:55:00Z",
+      "imagenes": [
+        {
+          "id": 76,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_16.jpg",
+          "alt_text": "Kit de viaje para mascotas",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "GoPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 77,
+      "nombre": "Bolsas Recoge Excrementos Biodegradables",
+      "slug": "bolsas-recoge-excrementos-biodegradables",
+      "descripcion_corta": "Respeta el medio ambiente y mantén las calles limpias.",
+      "descripcion_larga": "Con aroma fresco, extra resistentes. Rollo de 120 bolsas.",
+      "precio": "7.00",
+      "precio_oferta": "6.50",
+      "get_precio_actual": "6.50",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC017",
+      "stock": 300,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:00:00Z",
+      "updated_at": "2023-11-21T13:00:00Z",
+      "imagenes": [
+        {
+          "id": 77,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_17.jpg",
+          "alt_text": "Rollos de bolsas para excrementos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "EcoPooch",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 78,
+      "nombre": "Funda Protectora para Asiento de Coche",
+      "slug": "funda-protectora-asiento-coche",
+      "descripcion_corta": "Protege los asientos de tu coche del pelo, suciedad y arañazos.",
+      "descripcion_larga": "Impermeable y resistente, fácil de instalar y limpiar. Universal para la mayoría de vehículos.",
+      "precio": "42.00",
+      "precio_oferta": null,
+      "get_precio_actual": "42.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC018",
+      "stock": 55,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:05:00Z",
+      "updated_at": "2023-11-21T13:05:00Z",
+      "imagenes": [
+        {
+          "id": 78,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_18.jpg",
+          "alt_text": "Funda para asiento de coche",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CarBuddy",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 79,
+      "nombre": "Filtros de Repuesto para Fuente de Agua",
+      "slug": "filtros-repuesto-fuente-agua",
+      "descripcion_corta": "Mantiene el agua de tu mascota limpia y libre de impurezas.",
+      "descripcion_larga": "Paquete de 3 filtros de carbón activo compatibles con la mayoría de fuentes automáticas.",
+      "precio": "14.99",
+      "precio_oferta": null,
+      "get_precio_actual": "14.99",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC019",
+      "stock": 180,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T13:10:00Z",
+      "updated_at": "2023-11-21T13:10:00Z",
+      "imagenes": [
+        {
+          "id": 79,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_19.jpg",
+          "alt_text": "Filtros para fuente de agua",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AquaFilters",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 80,
+      "nombre": "Juego de 3 Bols Plegables de Viaje",
+      "slug": "juego-3-bols-plegables-viaje",
+      "descripcion_corta": "Ideales para agua y comida durante excursiones o viajes.",
+      "descripcion_larga": "Fabricados en silicona de grado alimenticio, resistentes y fáciles de limpiar. Diferentes tamaños.",
+      "precio": "19.50",
+      "precio_oferta": "17.00",
+      "get_precio_actual": "17.00",
+      "categoria": 4,
+      "categoria_info": {
+        "id": 4,
+        "nombre": "Accesorios",
+        "slug": "accesorios",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "ACC020",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T13:15:00Z",
+      "updated_at": "2023-11-21T13:15:00Z",
+      "imagenes": [
+        {
+          "id": 80,
+          "imagen": "http://localhost:8000/media/productos/placeholder_accesorios_20.jpg",
+          "alt_text": "Bols plegables de viaje",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TravelPet",
+      "tipo_mascota": "otros"
+    }
+  ]
+}

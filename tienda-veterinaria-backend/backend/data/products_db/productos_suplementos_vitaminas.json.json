@@ -1,0 +1,727 @@
+{
+  "count": 20,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 101,
+      "nombre": "Omega 3 Aceite de Salmón para Perros y Gatos",
+      "slug": "omega-3-aceite-salmon-perros-gatos",
+      "descripcion_corta": "Mejora la salud del pelaje, la piel y las articulaciones. Con dosificador.",
+      "descripcion_larga": "Rico en EPA y DHA. Ayuda a reducir la inflamación y fortalece el sistema inmunitario. Botella de 250ml.",
+      "precio": "22.50",
+      "precio_oferta": "20.00",
+      "get_precio_actual": "20.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP001",
+      "stock": 90,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T21:40:00Z",
+      "updated_at": "2023-11-21T21:40:00Z",
+      "imagenes": [
+        {
+          "id": 101,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_1.jpg",
+          "alt_text": "Aceite de salmón Omega 3",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "OmegaPets",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 102,
+      "nombre": "Multivitamínico para Gatos Senior (Comprimidos)",
+      "slug": "multivitaminico-gatos-senior-comprimidos",
+      "descripcion_corta": "Soporte para la vitalidad y el bienestar general en gatos mayores.",
+      "descripcion_larga": "Con vitaminas, minerales y taurina. Ayuda a mantener la función cognitiva y articular. Envase de 60 comprimidos masticables.",
+      "precio": "28.00",
+      "precio_oferta": null,
+      "get_precio_actual": "28.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP002",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:45:00Z",
+      "updated_at": "2023-11-21T21:45:00Z",
+      "imagenes": [
+        {
+          "id": 102,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_2.jpg",
+          "alt_text": "Multivitamínico para gatos senior",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "FelineVits",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 103,
+      "nombre": "Probiótico y Prebiótico para Perros y Gatos",
+      "slug": "probiotico-prebiotico-perros-gatos",
+      "descripcion_corta": "Mejora la salud digestiva y fortalece el sistema inmune.",
+      "descripcion_larga": "Fórmula con bacterias beneficiosas y fibra prebiótica. Ideal para episodios de diarrea o tratamientos con antibióticos. Envase de 30 sobres.",
+      "precio": "35.00",
+      "precio_oferta": "30.00",
+      "get_precio_actual": "30.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP003",
+      "stock": 110,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T21:50:00Z",
+      "updated_at": "2023-11-21T21:50:00Z",
+      "imagenes": [
+        {
+          "id": 103,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_3.jpg",
+          "alt_text": "Probiótico y prebiótico",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DigestoPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 104,
+      "nombre": "Condroprotector Líquido para Perros Deportistas",
+      "slug": "condroprotector-liquido-perros-deportistas",
+      "descripcion_corta": "Soporte intensivo para articulaciones de perros con alta actividad.",
+      "descripcion_larga": "Con glucosamina, condroitín, MSM y ácido hialurónico. Fácil de añadir a la comida. Botella de 500ml.",
+      "precio": "58.00",
+      "precio_oferta": null,
+      "get_precio_actual": "58.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP004",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T21:55:00Z",
+      "updated_at": "2023-11-21T21:55:00Z",
+      "imagenes": [
+        {
+          "id": 104,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_4.jpg",
+          "alt_text": "Condroprotector líquido",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "JointFlex",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 105,
+      "nombre": "Biotina y Zinc para Piel y Pelaje Brillante (Perros)",
+      "slug": "biotina-zinc-piel-pelaje-brillante-perros",
+      "descripcion_corta": "Mejora la calidad del pelaje, reduce la caída y fortalece la piel.",
+      "descripcion_larga": "Comprimidos con biotina, zinc y vitaminas del grupo B. Para un pelaje sano y brillante. Envase de 60 comprimidos.",
+      "precio": "20.00",
+      "precio_oferta": null,
+      "get_precio_actual": "20.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP005",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:00:00Z",
+      "updated_at": "2023-11-21T22:00:00Z",
+      "imagenes": [
+        {
+          "id": 105,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_5.jpg",
+          "alt_text": "Biotina y Zinc para perros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "GlowCoat",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 106,
+      "nombre": "Taurina en Polvo para Gatos (100g)",
+      "slug": "taurina-polvo-gatos",
+      "descripcion_corta": "Suplemento esencial para la salud cardíaca y visual felina.",
+      "descripcion_larga": "Aminoácido crucial que los gatos no pueden sintetizar. Se añade directamente a la comida. Envase de 100g con cuchara medidora.",
+      "precio": "15.00",
+      "precio_oferta": "12.99",
+      "get_precio_actual": "12.99",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP006",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:05:00Z",
+      "updated_at": "2023-11-21T22:05:00Z",
+      "imagenes": [
+        {
+          "id": 106,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_6.jpg",
+          "alt_text": "Taurina en polvo para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "TaurinaVital",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 107,
+      "nombre": "Calcio y Fósforo para Cachorros y Gatas Gestantes",
+      "slug": "calcio-fosforo-cachorros-gatas-gestantes",
+      "descripcion_corta": "Para un desarrollo óseo fuerte y soporte durante la gestación/lactancia.",
+      "descripcion_larga": "Con vitamina D3 para una óptima absorción. Comprimidos masticables. Envase de 60 unidades. Esencial para razas grandes.",
+      "precio": "28.00",
+      "precio_oferta": null,
+      "get_precio_actual": "28.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP007",
+      "stock": 75,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:10:00Z",
+      "updated_at": "2023-11-21T22:10:00Z",
+      "imagenes": [
+        {
+          "id": 107,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_7.jpg",
+          "alt_text": "Calcio y fósforo para cachorros",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "BoneGrowth",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 108,
+      "nombre": "Suplemento para Reducir el Estrés y Ansiedad (Comprimidos)",
+      "slug": "suplemento-reducir-estres-ansiedad",
+      "descripcion_corta": "Ayuda a calmar a perros y gatos en situaciones de estrés (viajes, ruidos).",
+      "descripcion_larga": "Con triptófano, valeriana y vitaminas del grupo B. Sabor palatable. Envase de 30 comprimidos.",
+      "precio": "32.00",
+      "precio_oferta": "29.00",
+      "get_precio_actual": "29.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP008",
+      "stock": 85,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T22:15:00Z",
+      "updated_at": "2023-11-21T22:15:00Z",
+      "imagenes": [
+        {
+          "id": 108,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_8.jpg",
+          "alt_text": "Suplemento para estrés",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CalmPaws",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 109,
+      "nombre": "Levadura de Cerveza con Ajo para Pelo y Antiparasitario",
+      "slug": "levadura-cerveza-ajo-pelo-antiparasitario",
+      "descripcion_corta": "Mejora el pelaje, la piel y actúa como repelente natural de insectos.",
+      "descripcion_larga": "Fuente de vitaminas B y minerales. Comprimidos masticables. Envase de 150 unidades.",
+      "precio": "17.00",
+      "precio_oferta": null,
+      "get_precio_actual": "17.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP009",
+      "stock": 130,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:20:00Z",
+      "updated_at": "2023-11-21T22:20:00Z",
+      "imagenes": [
+        {
+          "id": 109,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_9.jpg",
+          "alt_text": "Levadura de cerveza con ajo",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "YeastyGarlic",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 110,
+      "nombre": "Vitamina C para Refuerzo Inmunitario (Polvo)",
+      "slug": "vitamina-c-refuerzo-inmunitario-polvo",
+      "descripcion_corta": "Antioxidante potente para fortalecer las defensas de tu mascota.",
+      "descripcion_larga": "Ácido ascórbico puro. Fácil de mezclar con la comida. Envase de 100g. Ideal para épocas de mayor esfuerzo o estrés.",
+      "precio": "19.99",
+      "precio_oferta": "17.00",
+      "get_precio_actual": "17.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP010",
+      "stock": 100,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:25:00Z",
+      "updated_at": "2023-11-21T22:25:00Z",
+      "imagenes": [
+        {
+          "id": 110,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_10.jpg",
+          "alt_text": "Vitamina C en polvo",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "ImmuneC",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 111,
+      "nombre": "Suplemento de Glucosamina y Condroitín para Gatos",
+      "slug": "suplemento-glucosamina-condroitin-gatos",
+      "descripcion_corta": "Apoyo articular para gatos mayores o con problemas de movilidad.",
+      "descripcion_larga": "Con colágeno y vitamina E. Formato líquido fácil de administrar. Frasco de 50ml.",
+      "precio": "38.00",
+      "precio_oferta": null,
+      "get_precio_actual": "38.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP011",
+      "stock": 65,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:30:00Z",
+      "updated_at": "2023-11-21T22:30:00Z",
+      "imagenes": [
+        {
+          "id": 111,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_11.jpg",
+          "alt_text": "Glucosamina y Condroitín para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "JointFlexFeline",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 112,
+      "nombre": "Aceite de Coco Orgánico (Suplemento Alimenticio)",
+      "slug": "aceite-coco-organico-suplemento-alimenticio",
+      "descripcion_corta": "Beneficios para la piel, pelaje, digestión y energía.",
+      "descripcion_larga": "100% puro y virgen. Se puede añadir a la comida o aplicar tópicamente. Tarro de 250ml.",
+      "precio": "16.00",
+      "precio_oferta": null,
+      "get_precio_actual": "16.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP012",
+      "stock": 95,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:35:00Z",
+      "updated_at": "2023-11-21T22:35:00Z",
+      "imagenes": [
+        {
+          "id": 112,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_12.jpg",
+          "alt_text": "Aceite de coco orgánico",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CocoHealth",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 113,
+      "nombre": "Suplemento para Ansiedad por Separación (Perros)",
+      "slug": "suplemento-ansiedad-separacion-perros",
+      "descripcion_corta": "Ayuda a calmar y reducir el comportamiento destructivo en ausencia.",
+      "descripcion_larga": "Comprimidos con caseína hidrolizada y L-triptófano. Sabor apetitoso. Envase de 40 unidades.",
+      "precio": "45.00",
+      "precio_oferta": "40.00",
+      "get_precio_actual": "40.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP013",
+      "stock": 50,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T22:40:00Z",
+      "updated_at": "2023-11-21T22:40:00Z",
+      "imagenes": [
+        {
+          "id": 113,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_13.jpg",
+          "alt_text": "Suplemento para ansiedad",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AnxietyEase",
+      "tipo_mascota": "perro"
+    },
+    {
+      "id": 114,
+      "nombre": "Vitamina A en Gotas para Roedores y Aves",
+      "slug": "vitamina-a-gotas-roedores-aves",
+      "descripcion_corta": "Esencial para la visión, el crecimiento y la salud de la piel y mucosas.",
+      "descripcion_larga": "Fácil de administrar en el agua de bebida o la comida. Frasco de 15ml. Concentración adecuada para animales pequeños.",
+      "precio": "10.00",
+      "precio_oferta": null,
+      "get_precio_actual": "10.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP014",
+      "stock": 120,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:45:00Z",
+      "updated_at": "2023-11-21T22:45:00Z",
+      "imagenes": [
+        {
+          "id": 114,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_14.jpg",
+          "alt_text": "Vitamina A para roedores",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "AvianRodentVits",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 115,
+      "nombre": "Electrolitos en Polvo para Deshidratación (Mascotas)",
+      "slug": "electrolitos-polvo-deshidratacion-mascotas",
+      "descripcion_corta": "Repone fluidos y sales minerales perdidas por vómitos o diarrea.",
+      "descripcion_larga": "Sabor neutro, fácil de mezclar con agua. Envase de 10 sobres. Esencial en casos de deshidratación leve.",
+      "precio": "18.00",
+      "precio_oferta": null,
+      "get_precio_actual": "18.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP015",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T22:50:00Z",
+      "updated_at": "2023-11-21T22:50:00Z",
+      "imagenes": [
+        {
+          "id": 115,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_15.jpg",
+          "alt_text": "Electrolitos en polvo",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "RehydraPet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 116,
+      "nombre": "Colágeno Hidrolizado para Articulaciones y Piel",
+      "slug": "colageno-hidrolizado-articulaciones-piel",
+      "descripcion_corta": "Mejora la elasticidad de la piel, fortalece articulaciones y tendones.",
+      "descripcion_larga": "Polvo sin sabor, fácil de mezclar con la comida. Envase de 200g. Ideal para mascotas con problemas articulares o piel seca.",
+      "precio": "29.99",
+      "precio_oferta": "25.00",
+      "get_precio_actual": "25.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP016",
+      "stock": 60,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T22:55:00Z",
+      "updated_at": "2023-11-21T22:55:00Z",
+      "imagenes": [
+        {
+          "id": 116,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_16.jpg",
+          "alt_text": "Colágeno hidrolizado",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CollagenMax",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 117,
+      "nombre": "Suplemento Anti-Caída de Pelo (Líquido)",
+      "slug": "suplemento-anti-caida-pelo-liquido",
+      "descripcion_corta": "Reduce la pérdida excesiva de pelo y promueve un pelaje más fuerte.",
+      "descripcion_larga": "Con vitaminas B, zinc y metionina. Se administra directamente en la boca o con la comida. Frasco de 100ml.",
+      "precio": "25.00",
+      "precio_oferta": null,
+      "get_precio_actual": "25.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP017",
+      "stock": 70,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T23:00:00Z",
+      "updated_at": "2023-11-21T23:00:00Z",
+      "imagenes": [
+        {
+          "id": 117,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_17.jpg",
+          "alt_text": "Suplemento anti-caída de pelo",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "HairGuard",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 118,
+      "nombre": "Vitamina K1 para Problemas de Coagulación",
+      "slug": "vitamina-k1-problemas-coagulacion",
+      "descripcion_corta": "Esencial para la coagulación sanguínea. En casos de deficiencia o intoxicaciones.",
+      "descripcion_larga": "Comprimidos de fácil administración. Solo bajo prescripción veterinaria. Envase de 20 comprimidos.",
+      "precio": "50.00",
+      "precio_oferta": null,
+      "get_precio_actual": "50.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP018",
+      "stock": 25,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T23:05:00Z",
+      "updated_at": "2023-11-21T23:05:00Z",
+      "imagenes": [
+        {
+          "id": 118,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_18.jpg",
+          "alt_text": "Vitamina K1",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "CoaguloVet",
+      "tipo_mascota": "otros"
+    },
+    {
+      "id": 119,
+      "nombre": "Suplemento para Apoyo Urinario (Gatos)",
+      "slug": "suplemento-apoyo-urinario-gatos",
+      "descripcion_corta": "Ayuda a mantener la salud del tracto urinario y reducir la formación de cálculos.",
+      "descripcion_larga": "Con arándano rojo y N-acetilglucosamina. Pasta palatable. Tubo de 50g. Para prevención de cistitis.",
+      "precio": "30.00",
+      "precio_oferta": "28.00",
+      "get_precio_actual": "28.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP019",
+      "stock": 65,
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2023-11-21T23:10:00Z",
+      "updated_at": "2023-11-21T23:10:00Z",
+      "imagenes": [
+        {
+          "id": 119,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_19.jpg",
+          "alt_text": "Suplemento urinario para gatos",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "UroCare",
+      "tipo_mascota": "gato"
+    },
+    {
+      "id": 120,
+      "nombre": "Pienso Enriquecido con Omega 6 para Piel Sensible",
+      "slug": "pienso-enriquecido-omega-6-piel-sensible",
+      "descripcion_corta": "Alimento complementario para la salud de la piel y el pelaje.",
+      "descripcion_larga": "Con alto contenido de ácidos grasos esenciales Omega 6. Reduce la sequedad y picor de la piel. Envase de 2kg.",
+      "precio": "28.00",
+      "precio_oferta": "25.00",
+      "get_precio_actual": "25.00",
+      "categoria": 6,
+      "categoria_info": {
+        "id": 6,
+        "nombre": "Suplementos y vitaminas",
+        "slug": "suplementos-y-vitaminas",
+        "descripcion": "",
+        "parent": null,
+        "is_active": true
+      },
+      "sku": "SUP020",
+      "stock": 80,
+      "is_active": true,
+      "is_featured": true,
+      "created_at": "2023-11-21T23:15:00Z",
+      "updated_at": "2023-11-21T23:15:00Z",
+      "imagenes": [
+        {
+          "id": 120,
+          "imagen": "http://localhost:8000/media/productos/placeholder_suplementos_20.jpg",
+          "alt_text": "Pienso enriquecido con Omega 6",
+          "is_feature": true,
+          "order": 1
+        }
+      ],
+      "marca": "DermaFood",
+      "tipo_mascota": "otros"
+    }
+  ]
+}
